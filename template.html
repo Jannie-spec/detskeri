@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>{{TITLE}} – i dag og de næste dage</title>
-<meta name="description" content="{{LEAD}}">
+<meta name="description" content="{{DESC}}">
 <link rel="canonical" href="{{CANON}}">
 {{HREFLANG}}
 <meta property="og:title" content="{{TITLE}}">
-<meta property="og:description" content="{{LEAD}}">
+<meta property="og:description" content="{{DESC}}">
 <meta property="og:url" content="{{CANON}}">
 <meta property="og:locale" content="{{OGLOCALE}}">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="detskeri.dk">
-<meta property="og:image" content="https://detskeri.dk/del.png">
+<meta property="og:image" content="https://detskeri.dk/{{OGIMG}}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -129,6 +129,10 @@ li.now .t::after{content:"nu";display:inline-block;margin-left:6px;font-size:.7r
 .food .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--brick);border-radius:4px;padding:2px 5px;margin-right:6px;vertical-align:2px}
 
 .quiet{color:var(--muted);margin:0}
+.about{padding:6px 4px 0;color:var(--muted)}
+.about h2{font:400 1.5rem/1.1 var(--serif);color:var(--ink);margin:0 0 8px}
+.about p{margin:0 0 10px;max-width:42em}
+.about .also a{color:var(--brick)}
 /* guider: menu over byerne */
 .guides{display:flex;gap:6px;flex-wrap:wrap;margin:18px 0 0}
 .guides a{font-size:.88rem;font-weight:600;text-decoration:none;color:var(--ink);background:rgba(255,255,255,.7);border-radius:999px;padding:5px 12px}

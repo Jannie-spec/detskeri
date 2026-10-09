@@ -49,6 +49,63 @@ def g_in(g):
 def title_of(g):
     return {"da": "Det sker ", "en": "What's on ", "de": "Was ist los ", "sv": "Det händer "}[LANG] + g_in(g)
 
+
+# ---------- SEO: kort, unik tekst om hver by (da, en, de, sv) ----------
+ABOUT = {
+    "bornholm": ["Bornholm er Danmarks solskinsø i Østersøen med klipper, sandstrande, rundkirker og hyggelige havnebyer. Her samler vi, hvad der sker over hele øen – koncerter, teater, film, kirke, markeder og børneaktiviteter – og hvilke spisesteder der har åbent.",
+                 "Bornholm is Denmark's sunshine island in the Baltic Sea, with cliffs, sandy beaches, round churches and charming harbour towns. Here we gather what's on across the island – concerts, theatre, films, church, markets and things for children – and which restaurants are open.",
+                 "Bornholm ist Dänemarks Sonneninsel in der Ostsee mit Felsen, Sandstränden, Rundkirchen und gemütlichen Hafenstädten. Hier findest du, was auf der ganzen Insel los ist – Konzerte, Theater, Filme, Kirche, Märkte und Kinderaktivitäten – und welche Restaurants geöffnet haben.",
+                 "Bornholm är Danmarks solskensö i Östersjön med klippor, sandstränder, rundkyrkor och mysiga hamnstäder. Här samlar vi vad som händer på hela ön – konserter, teater, film, kyrka, marknader och barnaktiviteter – och vilka matställen som har öppet."],
+    "roenne": ["Rønne er Bornholms største by og øens port med færgehavnen. Byen har teater, musikhus, biograf og museer og et gammelt centrum med brostensgader og bindingsværkshuse. Her kan du se, hvad der sker i Rønne i dag og de næste dage.",
+               "Rønne is Bornholm's largest town and the island's gateway with the ferry harbour. The town has a theatre, a concert venue, a cinema and museums, and an old centre with cobbled streets and half-timbered houses. See what's on in Rønne today and the next few days.",
+               "Rønne ist die größte Stadt Bornholms und mit dem Fährhafen das Tor zur Insel. Es gibt Theater, Musikhaus, Kino und Museen und eine Altstadt mit Kopfsteinpflaster und Fachwerkhäusern. Hier siehst du, was heute und in den nächsten Tagen in Rønne los ist.",
+               "Rønne är Bornholms största stad och öns port med färjehamnen. Staden har teater, musikhus, bio och museer och en gammal stadskärna med kullerstensgator och korsvirkeshus. Här ser du vad som händer i Rønne i dag och de närmaste dagarna."],
+    "svaneke": ["Svaneke på Bornholms østkyst er kendt for de okkergule huse, røgeriet, bryghuset og byens mange kunsthåndværkere. Om sommeren er der marked på torvet og liv ved den lille havn. Her kan du se, hvad der sker i Svaneke i dag og de næste dage.",
+                "Svaneke on Bornholm's east coast is known for its ochre houses, the smokehouse, the brewery and the town's many craftspeople. In summer there is a market on the square and life by the little harbour. See what's on in Svaneke today and the next few days.",
+                "Svaneke an der Ostküste Bornholms ist bekannt für seine ockergelben Häuser, die Räucherei, die Brauerei und viele Kunsthandwerker. Im Sommer gibt es Markt auf dem Platz und Leben am kleinen Hafen. Hier siehst du, was heute und in den nächsten Tagen in Svaneke los ist.",
+                "Svaneke på Bornholms östkust är känt för de ockragula husen, röken, bryggeriet och stadens många konsthantverkare. På sommaren är det marknad på torget och liv vid den lilla hamnen. Här ser du vad som händer i Svaneke i dag och de närmaste dagarna."],
+    "allinge": ["Allinge og Sandvig ligger på Bornholms nordkyst tæt på Hammeren og Hammershus, Nordeuropas største borgruin. Byen er kendt for røgerierne, klipperne ved havnen og Folkemødet hver sommer. Her kan du se, hvad der sker i Allinge i dag og de næste dage.",
+                "Allinge and Sandvig lie on Bornholm's north coast close to Hammeren and Hammershus, the largest castle ruin in Northern Europe. The town is known for its smokehouses, the rocks by the harbour and the Folkemødet festival every summer. See what's on in Allinge today and the next few days.",
+                "Allinge und Sandvig liegen an der Nordküste Bornholms nahe Hammeren und Hammershus, der größten Burgruine Nordeuropas. Bekannt sind die Räuchereien, die Felsen am Hafen und das Folkemødet jeden Sommer. Hier siehst du, was heute und in den nächsten Tagen in Allinge los ist.",
+                "Allinge och Sandvig ligger på Bornholms nordkust nära Hammeren och Hammershus, Nordeuropas största borgruin. Staden är känd för rökerierna, klipporna vid hamnen och Folkemødet varje sommar. Här ser du vad som händer i Allinge i dag och de närmaste dagarna."],
+    "nexoe": ["Nexø er Bornholms næststørste by og har øens største fiskerihavn. Herfra er der kort til Paradisbakkerne, Balka Strand og Snogebæk. Her kan du se, hvad der sker i Nexø i dag og de næste dage.",
+              "Nexø is Bornholm's second largest town and has the island's biggest fishing harbour. It is a short trip to Paradisbakkerne, Balka beach and Snogebæk. See what's on in Nexø today and the next few days.",
+              "Nexø ist die zweitgrößte Stadt Bornholms und hat den größten Fischereihafen der Insel. Paradisbakkerne, der Strand von Balka und Snogebæk sind ganz in der Nähe. Hier siehst du, was heute und in den nächsten Tagen in Nexø los ist.",
+              "Nexø är Bornholms näst största stad och har öns största fiskehamn. Härifrån är det nära till Paradisbakkerne, Balka strand och Snogebæk. Här ser du vad som händer i Nexø i dag och de närmaste dagarna."],
+    "hasle": ["Hasle på Bornholms vestkyst er kendt for røgeriet, havnen og solnedgangene over havet, og der er kort til Rubinsøen og Jons Kapel. Her kan du se, hvad der sker i Hasle i dag og de næste dage.",
+              "Hasle on Bornholm's west coast is known for its smokehouse, the harbour and the sunsets over the sea, and Rubinsøen and Jons Kapel are close by. See what's on in Hasle today and the next few days.",
+              "Hasle an der Westküste Bornholms ist bekannt für die Räucherei, den Hafen und die Sonnenuntergänge über dem Meer; Rubinsøen und Jons Kapel liegen ganz in der Nähe. Hier siehst du, was heute und in den nächsten Tagen in Hasle los ist.",
+              "Hasle på Bornholms västkust är känt för röken, hamnen och solnedgångarna över havet, och det är nära till Rubinsøen och Jons Kapel. Här ser du vad som händer i Hasle i dag och de närmaste dagarna."],
+}
+
+def seo_title(g):
+    if LANG == "da": return f"Det sker {g_in(g)} i dag – arrangementer, film og spisesteder"
+    if LANG == "en": return f"What's on {g_in(g)} today – events, films and restaurants"
+    if LANG == "de": return f"Was ist los {g_in(g)} heute – Veranstaltungen, Filme und Restaurants"
+    return f"Det händer {g_in(g)} i dag – evenemang, film och matställen"
+
+def seo_desc(g, n_today, n_week):
+    place = g["name"]
+    if LANG == "da": return f"Se hvad der sker {g_in(g)} i dag og de næste dage: {n_week} arrangementer – koncerter, film, teater, kirke og børneaktiviteter – og spisesteder med åbent. Opdateres hver morgen."
+    if LANG == "en": return f"See what's on {g_in(g)} today and the next few days: {n_week} events – concerts, films, theatre, church and things for children – and restaurants that are open. Updated every morning."
+    if LANG == "de": return f"Was ist heute und in den nächsten Tagen {g_in(g)} los: {n_week} Veranstaltungen – Konzerte, Filme, Theater, Kirche und Kinderaktivitäten – und geöffnete Restaurants. Jeden Morgen aktualisiert."
+    return f"Se vad som händer {g_in(g)} i dag och de närmaste dagarna: {n_week} evenemang – konserter, film, teater, kyrka och barnaktiviteter – och matställen som har öppet. Uppdateras varje morgon."
+
+def render_about(g, depth):
+    i = LANGS.index(LANG)
+    head = {"da": "Om ", "en": "About ", "de": "Über ", "sv": "Om "}[LANG] + g["name"]
+    also = {"da": "Se også", "en": "See also", "de": "Siehe auch", "sv": "Se även"}[LANG]
+    links = [f'<a href="{"../" * depth}{LANG_PRE[LANG]}{o["path"]}">{E(title_of(o))}</a>' for o in GUIDES if o is not g]
+    links.append(f'<a href="{GUDHJEM}{LANG_PRE[LANG]}" rel="noopener">{E(title_of({"name": "Gudhjem"}))}</a>')
+    return f'<section class="about"><h2>{E(head)}</h2><p>{E(ABOUT[g["slug"]][i])}</p><p class="also"><b>{also}:</b> ' + " · ".join(links) + '</p></section>'
+
+def breadcrumbs(g):
+    items = [{"@type": "ListItem", "position": 1, "name": "detskeri.dk", "item": BASE + LANG_PRE[LANG]}]
+    if g["slug"] != "bornholm":
+        items.append({"@type": "ListItem", "position": 2, "name": "Bornholm", "item": BASE + LANG_PRE[LANG] + "bornholm/"})
+    items.append({"@type": "ListItem", "position": len(items) + 1, "name": g["name"], "item": BASE + LANG_PRE[LANG] + g["path"]})
+    return {"@type": "BreadcrumbList", "itemListElement": items}
+
 # ---------- sidens egne tekster: dansk → [en, de, sv] ----------
 U = {
     "Hele dagen": ["All day", "Ganztägig", "Hela dagen"],
@@ -301,9 +358,11 @@ def render_later(months, today):
     return "\n".join(h)
 
 def jsonld(g, days, later):
-    evs = [{"@type": "WebSite", "name": title_of(g), "url": BASE + LANG_PRE[LANG] + g["path"], "inLanguage": LANG}]
+    evs = [{"@type": "WebPage", "name": seo_title(g), "url": BASE + LANG_PRE[LANG] + g["path"], "inLanguage": LANG,
+            "about": {"@type": "Place", "name": g["name"], "address": {"@type": "PostalAddress", "addressLocality": g["name"], "addressRegion": "Bornholm", "addressCountry": "DK"}},
+            "isPartOf": {"@type": "WebSite", "name": "detskeri.dk", "url": BASE}}, breadcrumbs(g)]
     def ev(name, start, where, town, url, endd=None):
-        return {"@type": "Event", "name": name, "startDate": start, **({"endDate": endd} if endd else {}),
+        return {"@type": "Event", "name": name, "startDate": start, **({"endDate": endd} if endd else {}), "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
                 "location": {"@type": "Place", "name": where or town, "address": {"@type": "PostalAddress", "addressLocality": town, "addressCountry": "DK"}},
                 **({"url": url} if url else {})}
@@ -347,7 +406,8 @@ def main():
             later = build_later(g, events, today)
             nav = "".join(f'<a href="#d-{x["iso"]}" data-date="{x["iso"]}">{L("I dag") if i == 0 else L("I morgen") if i == 1 else wds_[x["d"].weekday()].capitalize() + " " + str(x["d"].day) + ("." if LANG in ("da", "de") else "")}</a>' for i, x in enumerate(days))
             nav += f'<a href="#senere" class="latr">{L("Længere frem")}</a>'
-            body = "\n".join(render_day(g, x, i) for i, x in enumerate(days)) + "\n" + render_later(later, today)
+            body = "\n".join(render_day(g, x, i) for i, x in enumerate(days)) + "\n" + render_later(later, today) + "\n" + render_about(g, depth)
+            n_week = sum(len(x["items"]) for x in days)
             hreflang = "\n".join(f'<link rel="alternate" hreflang="{l}" href="{BASE}{LANG_PRE[l]}{g["path"]}">' for l in LANGS) + f'\n<link rel="alternate" hreflang="x-default" href="{BASE}{g["path"]}">'
             langs = "".join(f'<a href="{"../" * depth}{LANG_PRE[l]}{g["path"]}" hreflang="{l}" lang="{l}" aria-current="{str(l == LANG).lower()}">{l.upper()}</a>' for l in LANGS)
             upd = f"{mon_[today.month - 1]} {today.day}, {today.year}" if LANG == "en" else f"{today.day}. {mon_[today.month - 1]} {today.year}"
@@ -356,13 +416,15 @@ def main():
                    L("Byens kalender: koncerter, film, teater, kirke, børneaktiviteter og spisesteder med åbent – samlet ét sted og opdateret hver morgen.")
             ttl = title_of(g)
             h1 = E(ttl[: len(ttl) - len(g_in(g))].strip()) + "<br>" + E(g_in(g))
-            out = (tpl0.replace("– i dag og de næste dage", "– " + L("i dag og de næste dage")).replace("{{LANG}}", LANG).replace("{{TITLE}}", E(ttl)).replace("{{H1}}", h1).replace("{{LEAD}}", E(lead))
+            out = (tpl0.replace("– i dag og de næste dage", "– " + L("i dag og de næste dage")).replace("{{LANG}}", LANG).replace("<title>{{TITLE}} – i dag og de næste dage</title>", "<title>" + E(seo_title(g)) + "</title>").replace("{{DESC}}", E(seo_desc(g, 0, n_week)))
+                   .replace("{{OGIMG}}", f"del-{g['slug']}.png").replace("{{TITLE}}", E(ttl)).replace("{{H1}}", h1).replace("{{LEAD}}", E(lead))
                    .replace("{{CANON}}", BASE + path).replace("{{HREFLANG}}", hreflang).replace("{{LANGS}}", langs)
                    .replace("{{GUIDES}}", guide_nav(g, depth)).replace("{{TOWN}}", tegning.svg(g["slug"])).replace("{{NAV}}", nav).replace("{{DAYS}}", body)
                    .replace("{{JSONLD}}", jsonld(g, days, later)).replace("{{UPDATED}}", f'{L("Opdateret")} {upd}.')
                    .replace("{{SRC}}", L("Arrangementer fra")).replace("{{TODAY}}", L("I dag")).replace("{{TOMORROW}}", L("I morgen"))
                    .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
                    .replace("{{VALGDAG}}", L("Vælg dag")).replace("{{OGLOCALE}}", {"da": "da_DK", "en": "en_GB", "de": "de_DE", "sv": "sv_SE"}[LANG]))
+            out = re.sub(r"<title>.*?</title>", lambda _m: "<title>" + E(seo_title(g)) + "</title>", out, count=1)
             dst = site / path; dst.mkdir(parents=True, exist_ok=True)
             (dst / "index.html").write_text(out, encoding="utf-8")
             sitemap.append(BASE + path)
