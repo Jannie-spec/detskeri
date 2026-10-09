@@ -17,37 +17,45 @@ T = {
     "da": ["Få ugens program på mail", "Hver torsdag: hvad der sker de næste syv dage. Vælg hele Bornholm eller de byer, du vil følge.",
            "Din e-mail", "Tilmeld", "Vælg mindst én.", "Skriv en gyldig e-mail.",
            "Tak! Tjek din mail og bekræft tilmeldingen.", "Tak! Du er tilmeldt.",
-           "Gratis. Din e-mail bruges kun til nyhedsbrevet, som sendes via Brevo. Afmeld når som helst via linket i mailen.", ""],
+           "Gratis. Din e-mail bruges kun til nyhedsbrevet, som sendes via Brevo. Afmeld når som helst via linket i mailen.", "", "Hver torsdag · gratis · vælg selv byerne"],
     "en": ["Get the week's programme by email", "Every Thursday: what's on in the next seven days. Choose all of Bornholm or the towns you want to follow.",
            "Your email", "Subscribe", "Choose at least one.", "Enter a valid email.",
            "Thank you! Check your inbox and confirm.", "Thank you! You're subscribed.",
-           "Free. Your email is only used for the newsletter, sent via Brevo. Unsubscribe any time from the link in the email.", "The newsletter is in Danish."],
+           "Free. Your email is only used for the newsletter, sent via Brevo. Unsubscribe any time from the link in the email.", "The newsletter is in Danish.", "Every Thursday · free · pick your towns"],
     "de": ["Das Wochenprogramm per E-Mail", "Jeden Donnerstag: was in den nächsten sieben Tagen los ist. Wählen Sie ganz Bornholm oder die Orte, die Sie interessieren.",
            "Ihre E-Mail", "Anmelden", "Bitte mindestens eins wählen.", "Bitte eine gültige E-Mail eingeben.",
            "Danke! Bitte prüfen Sie Ihr Postfach und bestätigen Sie.", "Danke! Sie sind angemeldet.",
-           "Kostenlos. Ihre E-Mail wird nur für den Newsletter genutzt, der über Brevo verschickt wird. Abmelden jederzeit über den Link in der E-Mail.", "Der Newsletter ist auf Dänisch."],
+           "Kostenlos. Ihre E-Mail wird nur für den Newsletter genutzt, der über Brevo verschickt wird. Abmelden jederzeit über den Link in der E-Mail.", "Der Newsletter ist auf Dänisch.", "Jeden Donnerstag · kostenlos · Orte selbst wählen"],
     "sv": ["Få veckans program på mejl", "Varje torsdag: vad som händer de kommande sju dagarna. Välj hela Bornholm eller de orter du vill följa.",
            "Din e-post", "Prenumerera", "Välj minst en.", "Skriv en giltig e-postadress.",
            "Tack! Kolla din mejl och bekräfta.", "Tack! Du prenumererar nu.",
-           "Gratis. Din e-post används bara för nyhetsbrevet, som skickas via Brevo. Avsluta när som helst via länken i mejlet.", "Nyhetsbrevet är på danska."],
+           "Gratis. Din e-post används bara för nyhetsbrevet, som skickas via Brevo. Avsluta när som helst via länken i mejlet.", "Nyhetsbrevet är på danska.", "Varje torsdag · gratis · välj orterna själv"],
 }
 E = lambda s: html.escape(str(s or ""), quote=True)
 
 CSS = """
-.news{background:var(--deep);color:#fff;border-radius:22px;padding:22px 20px 18px;margin:0 0 4px}
-.news h2{font:400 clamp(1.5rem,5vw,1.9rem)/1.1 var(--serif);margin:0 0 6px;color:#fff}
-.news p{margin:0 0 12px;color:#e3eeef;max-width:34em}
-.news .nl{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px;padding:0;border:0}
-.news .nl label{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border-radius:999px;padding:5px 12px 5px 8px;font-size:.9rem;font-weight:600;cursor:pointer}
-.news .nl input{accent-color:var(--coral);width:16px;height:16px;margin:0}
-.news .nrow{display:flex;gap:8px;flex-wrap:wrap}
-.news input[type=email]{flex:1 1 220px;font:inherit;border:0;border-radius:999px;padding:10px 16px;color:var(--ink);min-width:0}
-.news button{font:inherit;font-weight:700;border:0;border-radius:999px;padding:10px 20px;background:var(--coral);color:#fff;cursor:pointer}
+/* smal stribe lige under toppen; byvalg og småt foldes ud, når man klikker i feltet */
+.news{background:var(--deep);color:#fff;border-radius:18px;padding:14px 16px;margin:0 0 18px;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center}
+.news .nic{width:40px;height:40px;border-radius:50%;background:var(--coral);display:grid;place-items:center}
+.news .nic svg{width:22px;height:22px;fill:none;stroke:#fff;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.news .nt{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px}
+.news h2{font:400 1.25rem/1.15 var(--serif);margin:0;color:#fff}
+.news .nsub{margin:2px 0 0;font-size:.85rem;color:#cfe0e2}
+.news .nrow{display:flex;gap:6px;flex:1 1 300px;max-width:440px;margin-left:auto}
+.news input[type=email]{flex:1 1 auto;font:inherit;font-size:.95rem;border:0;border-radius:999px;padding:9px 15px;color:var(--ink);min-width:0}
+.news button{font:inherit;font-size:.95rem;font-weight:700;border:0;border-radius:999px;padding:9px 18px;background:var(--coral);color:#fff;cursor:pointer;white-space:nowrap}
 .news button:disabled{opacity:.6}
-.news .nmsg{margin:10px 0 0;font-weight:600}
+.news .more{grid-column:1/-1;display:none}
+.news:focus-within .more,.news.open .more{display:block}
+.news .nl{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 0;padding:0;border:0}
+.news .nl label{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);border-radius:999px;padding:4px 11px 4px 8px;font-size:.85rem;font-weight:600;cursor:pointer}
+.news .nl input{accent-color:var(--coral);width:15px;height:15px;margin:0}
+.news .nmsg{grid-column:1/-1;margin:0;font-weight:600}
 .news .nmsg:empty{display:none}
-.news .nfine{margin:10px 0 0;font-size:.8rem;color:#c9dcde}
+.news .nfine{margin:8px 0 0;font-size:.76rem;color:#c0d5d8}
 .news .hp{position:absolute;left:-9999px}
+@media (max-width:620px){.news{grid-template-columns:minmax(0,1fr)}.news .nic{display:none}.news .nt{display:block}.news .nrow{max-width:none;margin:10px 0 0}}
+.news .nt,.news .nrow{min-width:0}
 """
 
 JS = """
@@ -55,10 +63,11 @@ JS = """
 document.querySelectorAll("form.news").forEach(f => f.addEventListener("submit", async e => {
   e.preventDefault();
   const m = f.querySelector(".nmsg"), em = f.querySelector("input[type=email]"), b = f.querySelector("button");
+  f.classList.add("open");
   if (!f.querySelector(".nl input:checked")) { m.textContent = f.dataset.pick; return; }
   if (!em.checkValidity()) { m.textContent = f.dataset.bad; return; }
-  b.disabled = true;
-  try { await fetch(f.action, { method: "POST", body: new FormData(f), mode: "no-cors" }); f.querySelector(".nrow").remove(); f.querySelector(".nl").remove(); m.textContent = f.dataset.ok; }
+  f.classList.add("open"); b.disabled = true;
+  try { await fetch(f.action, { method: "POST", body: new FormData(f), mode: "no-cors" }); f.querySelector(".nrow").remove(); f.querySelector(".more").remove(); m.textContent = f.dataset.ok; }
   catch (x) { b.disabled = false; m.textContent = f.dataset.err; }
 }));
 </script>"""
@@ -74,14 +83,15 @@ def box(slug, lang):
         n = NAMES[s][lang] if isinstance(NAMES[s], dict) else NAMES[s]
         opts.append(f'<label><input type="checkbox" name="{FIELD}" value="{lid}"{" checked" if s == slug else ""}> {E(n)}</label>')
     fine = t[8] + (" " + t[9] if t[9] else "")
-    return (f'<form class="news" action="{E(ACTION)}" method="post" data-pick="{E(t[4])}" data-bad="{E(t[5])}" data-ok="{E(t[6] if DOI else t[7])}" data-err="{E(ERR[lang])}">'
-            f'<h2>{E(t[0])}</h2><p>{E(t[1])}</p>'
-            f'<fieldset class="nl">{"".join(opts)}</fieldset>'
+    ic = '<span class="nic" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>'
+    return (f'<form class="news" id="nyhedsbrev" action="{E(ACTION)}" method="post" data-pick="{E(t[4])}" data-bad="{E(t[5])}" data-ok="{E(t[6] if DOI else t[7])}" data-err="{E(ERR[lang])}">'
+            f'{ic}<div class="nt"><div><h2>{E(t[0])}</h2><p class="nsub">{E(t[10])}</p></div>'
             f'<div class="nrow"><input type="email" name="EMAIL" required autocomplete="email" placeholder="{E(t[2])}" aria-label="{E(t[2])}">'
-            f'<button type="submit">{E(t[3])}</button></div>'
+            f'<button type="submit">{E(t[3])}</button></div></div>'
+            f'<div class="more"><fieldset class="nl">{"".join(opts)}</fieldset><p class="nfine">{E(fine)}</p></div>'
             f'<input class="hp" type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" aria-hidden="true">'
             f'<input type="hidden" name="locale" value="{lang}"><input type="hidden" name="html_type" value="simple">'
-            f'<p class="nmsg" role="status"></p><p class="nfine">{E(fine)}</p></form>')
+            f'<p class="nmsg" role="status"></p></form>')
 
 def assets():
     """CSS + script, der kun skal med, når boksen vises."""
