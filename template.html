@@ -198,6 +198,7 @@ footer p{margin:0}
 }
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 </style>
+{{NEWSCSS}}
 <script src="{{UP}}samtykke.js" data-ga="G-WW4MDXMEJS" defer></script>
 </head>
 <body data-today="{{TODAY}}" data-tomorrow="{{TOMORROW}}">
@@ -216,6 +217,7 @@ footer p{margin:0}
 {{DAYS}}
 </main>
 <footer>
+  {{NEWS}}
   <p class="small">{{SRC}} <a href="https://www.kultunaut.dk/" rel="noopener">KultuNaut</a>. {{UPDATED}} · <a href="#" class="cookie-valg">{{COOKIE}}</a></p>
 </footer>
 </div>
@@ -253,5 +255,6 @@ document.querySelectorAll(".tfilter").forEach(f => f.addEventListener("click", e
   f.nextElementSibling.querySelectorAll("li").forEach(li => li.classList.toggle("hid", !!b.dataset.t && li.dataset.town !== b.dataset.t));
 }));
 </script>
+{{NEWSJS}}
 </body>
 </html>

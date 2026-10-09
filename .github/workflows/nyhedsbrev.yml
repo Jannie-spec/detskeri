@@ -1,0 +1,32 @@
+# Ugentligt nyhedsbrev: torsdag formiddag (efter morgenens opdatering) sendes én mail pr. Brevo-liste.
+# Kræver hemmeligheden BREVO_API_KEY (Settings → Secrets and variables → Actions). Uden den sendes intet.
+# data/nyhedsbrev.json husker, hvilke uger der er sendt, så en ekstra kørsel ikke sender igen.
+name: Nyhedsbrev
+on:
+  schedule:
+    - cron: "45 8 * * 4"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: nyhedsbrev
+  cancel-in-progress: false
+jobs:
+  send:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - name: Send
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: python tools/nyhedsbrev.py --send
+      - name: Gem hvad der er sendt
+        run: |
+          git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
+          git add data/nyhedsbrev.json 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -m "Nyhedsbrev $(date +%F)"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done

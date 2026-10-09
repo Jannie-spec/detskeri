@@ -7,7 +7,7 @@ Ud:    site/  (GitHub Pages)
 """
 import json, html, datetime, pathlib, re, shutil, sys
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent / "tools"))
-import tegning
+import tegning, tilmeld
 from zoneinfo import ZoneInfo
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -435,6 +435,7 @@ def main():
                    .replace("{{JSONLD}}", jsonld(g, days, later)).replace("{{UPDATED}}", f'{L("Opdateret")} {upd}.')
                    .replace("{{SRC}}", L("Arrangementer fra")).replace("{{TODAY}}", L("I dag")).replace("{{TOMORROW}}", L("I morgen"))
                    .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
+                   .replace("{{NEWS}}", tilmeld.box(g["slug"], LANG)).replace("{{NEWSCSS}}", tilmeld.assets()[0]).replace("{{NEWSJS}}", tilmeld.assets()[1])
                    .replace("{{VALGDAG}}", L("Vælg dag")).replace("{{OGLOCALE}}", {"da": "da_DK", "en": "en_GB", "de": "de_DE", "sv": "sv_SE"}[LANG]))
             out = re.sub(r"<title>.*?</title>", lambda _m: "<title>" + E(seo_title(g)) + "</title>", out, count=1)
             dst = site / path; dst.mkdir(parents=True, exist_ok=True)
@@ -454,7 +455,8 @@ def main():
         out = ((ROOT / "forside.html").read_text(encoding="utf-8").replace("{{LANG}}", LANG).replace("{{TITLE}}", E(ttl))
                .replace("{{H2}}", E(L("Hvad sker der i dag?"))).replace("{{LEAD}}", E(L("Se dagens arrangementer, film og spisesteder med åbent i hver by.")))
                .replace("{{CARDS}}", "".join(cards)).replace("{{TOWN}}", tegning.svg("bornholm")).replace("{{LANGS}}", langs).replace("{{HREFLANG}}", hreflang).replace("{{CANON}}", BASE + LANG_PRE[LANG])
-               .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg")))
+               .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
+               .replace("{{NEWS}}", tilmeld.box("bornholm", LANG)).replace("{{NEWSCSS}}", tilmeld.assets()[0]).replace("{{NEWSJS}}", tilmeld.assets()[1]))
         dst = site / LANG_PRE[LANG]; dst.mkdir(parents=True, exist_ok=True)
         (dst / "index.html").write_text(out, encoding="utf-8")
         sitemap.append(BASE + LANG_PRE[LANG])
