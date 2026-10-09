@@ -5,7 +5,7 @@ Formularen sender direkte til Brevo (sibforms). Listerne i Brevo:
 LIVE styrer, om boksen vises på siden. DOI = Brevo sender en bekræftelsesmail (dobbelt opt-in)."""
 import html
 
-LIVE = False          # sæt True, når Brevo-kontoen er aktiveret og dobbelt opt-in er slået til
+LIVE = True           # dobbelt opt-in slået til i Brevo 9/10
 DOI = True            # teksten efter tilmelding: "tjek din mail" (True) eller "du er tilmeldt" (False)
 ACTION = ("https://7dd9bd3f.sibforms.com/serve/MUIFAL1aatqD4WwYCobN5j4T_i8IGq2GKOvrQW93gEcBMHdCpYr23ZQAevsFQr7bIIzDzqHO8rMX9vzdLrrouAhSiqc1LmMy5yTcH5_"
           "ZqTKVCtOHqWYQhVc_RCBn2tDd-vHVTScPIS74sQbF_AyV29TenlHx6SwRUWE6qQYCc4RDNAy_5rXE9E4pyOrz8jZ78_Fn67AmcIBV9WLHfw==")
@@ -86,3 +86,21 @@ def box(slug, lang):
 def assets():
     """CSS + script, der kun skal med, når boksen vises."""
     return (f"<style>{CSS}</style>", JS) if LIVE else ("", "")
+
+TAK = {"da": ("Tak – du er tilmeldt", "Du får ugens program hver torsdag. Du kan altid afmelde dig via linket nederst i mailen.", "Se hvad der sker i dag"),
+       "en": ("Thank you – you're subscribed", "You'll get the week's programme every Thursday (in Danish). Unsubscribe any time from the link in the email.", "See what's on today"),
+       "de": ("Danke – Sie sind angemeldet", "Sie bekommen das Wochenprogramm jeden Donnerstag (auf Dänisch). Abmelden jederzeit über den Link in der E-Mail.", "Was ist heute los"),
+       "sv": ("Tack – du prenumererar nu", "Du får veckans program varje torsdag (på danska). Avsluta när som helst via länken i mejlet.", "Se vad som händer i dag")}
+
+def tak_page():
+    """Siden Brevo sender folk til, når de har bekræftet (detskeri.dk/tak/). Alle fire sprog på én side; ikke i søgemaskiner."""
+    blocks = "".join(f'<section lang="{l}"><h1>{E(a)}</h1><p>{E(b)}</p><a class="btn" href="/{"" if l == "da" else l + "/"}">{E(c)}</a></section>' for l, (a, b, c) in TAK.items())
+    return f"""<!doctype html><html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tak – detskeri.dk</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600;700&display=swap">
+<style>body{{margin:0;background:#e5e9e1;color:#302f2f;font:400 17px/1.5 Figtree,system-ui,sans-serif}}main{{max-width:640px;margin:0 auto;padding:40px 16px 60px}}
+.brand{{font:400 1.05rem Georgia,serif;color:#302f2f;text-decoration:none}}section{{background:#fff;border-radius:22px;padding:22px 20px;margin:18px 0}}
+section:not(:first-of-type){{background:rgba(255,255,255,.55)}}section:not(:first-of-type) h1{{font-size:1.3rem}}
+h1{{font:400 clamp(1.8rem,6vw,2.4rem)/1.1 "Young Serif",Georgia,serif;margin:0 0 8px}}p{{margin:0 0 14px}}
+.btn{{display:inline-block;background:#b4533a;color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:999px}}</style></head>
+<body><main><a class="brand" href="/">detskeri.dk</a>{blocks}</main></body></html>"""

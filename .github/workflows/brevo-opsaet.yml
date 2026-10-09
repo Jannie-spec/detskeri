@@ -1,0 +1,20 @@
+# Engangs-opsætning i Brevo (bekræftelsesmail på dansk + prøvebrev). Kører når tools/brevo_opsaet.py ændres, eller manuelt.
+name: Brevo opsætning
+on:
+  push:
+    branches: [main]
+    paths: [tools/brevo_opsaet.py, .github/workflows/brevo-opsaet.yml]
+  workflow_dispatch: {}
+permissions:
+  contents: read
+jobs:
+  opsaet:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: python tools/brevo_opsaet.py
