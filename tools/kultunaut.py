@@ -38,6 +38,9 @@ def parse_one(nr, genre, title, when, town):
     m = re.match(rf"{D}(?:\s+til\s+{D})?(.*)$", w.strip(), re.I)
     if not m: return None
     d1, mo1, y1, d2, mo2, y2, rest = m.groups()
+    if not (y2 or y1):      # intet årstal: nærmeste kommende forekomst
+        t = datetime.date.today(); mo = MON[(mo2 or mo1).lower()[:3]]
+        y1 = str(t.year + (1 if mo < t.month else 0))
     y_end = int(y2 or y1); mo_end = MON[(mo2 or mo1).lower()[:3]]
     end = datetime.date(y_end, mo_end, int(d2)) if d2 else None
     mo_s = MON[(mo1 or mo2).lower()[:3]]; y_s = int(y1 or y2)
@@ -64,7 +67,10 @@ def parse(rows, today=None):
     last = (today + datetime.timedelta(days=DAYS_AHEAD)).isoformat(); t0 = today.isoformat()
     out, seen = [], set()
     for r in rows:
-        ev = parse_one(*r)
+        try:
+            ev = parse_one(*r)
+        except Exception as e:
+            print("Sprang over:", r[3][:60], e, file=sys.stderr); continue
         if not ev or (ev.get("to") or ev["d"]) < t0 or ev["d"] > last: continue
         k = (ev["d"], ev.get("t"), ev["title"], ev["where"])
         if k in seen: continue
