@@ -232,6 +232,11 @@ def load():
             p["file"] = f.stem
             places[f.stem + ":" + p["id"]] = p
     tr = json.loads((ROOT / "data" / "tr.json").read_text(encoding="utf-8"))
+    tf = ROOT / "data" / "tider.json"
+    tider = json.loads(tf.read_text(encoding="utf-8")) if tf.exists() else {}
+    for k, p in places.items():
+        if tider.get(k, {}).get("changed"):
+            p["sure"] = False          # stedets side er ændret siden sidste gennemgang
     return ev, places, tr
 
 def in_guide(e, g):
