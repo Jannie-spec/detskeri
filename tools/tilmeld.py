@@ -67,6 +67,7 @@ document.querySelectorAll("form.news").forEach(f => f.addEventListener("submit",
   if (!f.querySelector(".nl input:checked")) { m.textContent = f.dataset.pick; return; }
   if (!em.checkValidity()) { m.textContent = f.dataset.bad; return; }
   f.classList.add("open"); b.disabled = true;
+  try { localStorage.setItem("nlang", document.documentElement.lang || "da"); } catch (x) {}
   try { await fetch(f.action, { method: "POST", body: new FormData(f), mode: "no-cors" }); f.querySelector(".nrow").remove(); f.querySelector(".more").remove(); m.textContent = f.dataset.ok; }
   catch (x) { b.disabled = false; m.textContent = f.dataset.err; }
 }));
@@ -102,15 +103,21 @@ TAK = {"da": ("Tak – du er tilmeldt", "Du får ugens program hver torsdag. Du 
        "de": ("Danke – Sie sind angemeldet", "Sie bekommen das Wochenprogramm jeden Donnerstag (auf Dänisch). Abmelden jederzeit über den Link in der E-Mail.", "Was ist heute los"),
        "sv": ("Tack – du prenumererar nu", "Du får veckans program varje torsdag (på danska). Avsluta när som helst via länken i mejlet.", "Se vad som händer i dag")}
 
-def tak_page():
-    """Siden Brevo sender folk til, når de har bekræftet (detskeri.dk/tak/). Alle fire sprog på én side; ikke i søgemaskiner."""
-    blocks = "".join(f'<section lang="{l}"><h1>{E(a)}</h1><p>{E(b)}</p><a class="btn" href="/{"" if l == "da" else l + "/"}">{E(c)}</a></section>' for l, (a, b, c) in TAK.items())
-    return f"""<!doctype html><html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Tak – detskeri.dk</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
+def tak_page(lang):
+    """Takkesiden (/tak/, /en/tak/ …). Brevo sender altid til /tak/; den danske side skifter selv til det sprog,
+    man tilmeldte sig på (husket i browseren ved tilmelding), ellers browserens sprog."""
+    h, b, c = TAK[lang]
+    home = "/" if lang == "da" else f"/{lang}/"
+    redirect = ""
+    if lang == "da":
+        redirect = """<script>(function(){var l=null;try{l=localStorage.getItem("nlang")}catch(e){}
+if(!l){l=(navigator.language||"da").slice(0,2)}
+if(l==="en"||l==="de"||l==="sv")location.replace("/"+l+"/tak/");})();</script>"""
+    return f"""<!doctype html><html lang="{lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+{redirect}<title>{E(h)} – detskeri.dk</title><meta name="robots" content="noindex"><link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;600;700&display=swap">
 <style>body{{margin:0;background:#e5e9e1;color:#302f2f;font:400 17px/1.5 Figtree,system-ui,sans-serif}}main{{max-width:640px;margin:0 auto;padding:40px 16px 60px}}
-.brand{{font:400 1.05rem Georgia,serif;color:#302f2f;text-decoration:none}}section{{background:#fff;border-radius:22px;padding:22px 20px;margin:18px 0}}
-section:not(:first-of-type){{background:rgba(255,255,255,.55)}}section:not(:first-of-type) h1{{font-size:1.3rem}}
-h1{{font:400 clamp(1.8rem,6vw,2.4rem)/1.1 "Young Serif",Georgia,serif;margin:0 0 8px}}p{{margin:0 0 14px}}
+.brand{{font:400 1.05rem Georgia,serif;color:#302f2f;text-decoration:none}}section{{background:#fff;border-radius:22px;padding:26px 22px;margin:18px 0}}
+h1{{font:400 clamp(1.9rem,6vw,2.6rem)/1.1 "Young Serif",Georgia,serif;margin:0 0 10px}}p{{margin:0 0 16px}}
 .btn{{display:inline-block;background:#b4533a;color:#fff;text-decoration:none;font-weight:700;padding:10px 18px;border-radius:999px}}</style></head>
-<body><main><a class="brand" href="/">detskeri.dk</a>{blocks}</main></body></html>"""
+<body><main><a class="brand" href="{home}">detskeri.dk</a><section><h1>{E(h)}</h1><p>{E(b)}</p><a class="btn" href="{home}">{E(c)}</a></section></main></body></html>"""

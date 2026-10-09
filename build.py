@@ -468,7 +468,9 @@ def main():
         dst = site / path; dst.mkdir(parents=True, exist_ok=True)
         (dst / "index.html").write_text(tilfoej.page(LANG, up, up + LANG_PRE[LANG], langs, hreflang, BASE + path), encoding="utf-8")
         sitemap.append(BASE + path)
-    (site / "tak").mkdir(exist_ok=True); (site / "tak" / "index.html").write_text(tilmeld.tak_page(), encoding="utf-8")
+    for l in LANGS:
+        d = site / LANG_PRE[l] / "tak"; d.mkdir(parents=True, exist_ok=True)
+        (d / "index.html").write_text(tilmeld.tak_page(l), encoding="utf-8")
     LANG = "da"
     for f in (ROOT / "static").glob("*"):
         shutil.copy(f, site / f.name)
