@@ -1,3 +1,14 @@
+Sprang over: Fre. 4. og lør. 5. dec. 2026 Fre-lør kl. 11-17, Hjorths fabr 'NoneType' object has no attribute 'lower'
+Sprang over: Fre. 16. og lør. 17. okt. 2026 Fre-lør, Svanekegaarden 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 28. og søn. 29. nov. 2026 kl. 11-16, Svanekegaarden 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 5. og søn. 6. dec. 2026 kl. 11-16, Svanekegaarden 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 12. og søn. 13. dec. 2026 kl. 11-16, Svanekegaarden 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 19. og søn. 20. dec. 2026 kl. 11-16, Svanekegaarden 'NoneType' object has no attribute 'lower'
+Sprang over: Ons. 14. og tor. 15. okt. 2026 kl. 19-23, Smedjen - Street F 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 5. og søn. 6. dec. 2026 Lør-søn kl. 11-17, Smedjen - St 'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 12. og søn. 13. dec. 2026 Lør-søn kl. 11-17, Smedjen -  'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 19. og søn. 20. dec. 2026 Lør-søn kl. 11-17, Smedjen -  'NoneType' object has no attribute 'lower'
+Sprang over: Lør. 28. og søn. 29. nov. 2026 Kl.10:00-15:00, Klemensker Ha 'NoneType' object has no attribute 'lower'
 Rønne 403
 Aakirkeby 358
 Nexø 98
@@ -7,16 +18,4 @@ Gudhjem 105
 Allinge 117
 Klemensker 44
 Hasle 28
-Traceback (most recent call last):
-  File "/home/runner/work/detskeri/detskeri/tools/kultunaut.py", line 146, in <module>
-    main()
-  File "/home/runner/work/detskeri/detskeri/tools/kultunaut.py", line 133, in main
-    events = parse(rows, today)
-             ^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/detskeri/detskeri/tools/kultunaut.py", line 67, in parse
-    ev = parse_one(*r)
-         ^^^^^^^^^^^^^
-  File "/home/runner/work/detskeri/detskeri/tools/kultunaut.py", line 41, in parse_one
-    y_end = int(y2 or y1); mo_end = MON[(mo2 or mo1).lower()[:3]]
-            ^^^^^^^^^^^^^
-TypeError: int() argument must be a string, a bytes-like object or a real number, not 'NoneType'
+Arrangementer: 1270
