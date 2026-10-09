@@ -44,15 +44,21 @@ jobs:
         continue-on-error: true
         run: |
           pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null
-          python tools/kultunaut.py
+          set -o pipefail
+          python tools/kultunaut.py 2>&1 | tee data/hent.log
       - name: Byg
         if: steps.v.outputs.hent != 'skip'
         run: python build.py
+      - name: Gem log
+        if: steps.v.outputs.hent == '1' && steps.h.outcome != 'success'
+        run: |
+          git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
+          git add data/hent.log && git commit -m "Log $(date +%F) (hentning fejlede)" && git push || true
       - name: Gem data
         if: steps.v.outputs.hent == '1' && steps.h.outcome == 'success'
         run: |
           git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
-          git add data/events.json data/reg.json 2>/dev/null || true
+          git add data/events.json data/reg.json data/hent.log 2>/dev/null || true
           D=$(TZ=Europe/Copenhagen date +%F)
           if ! git diff --cached --quiet; then git commit -m "Data $D" && git push; elif [ "${{ github.event_name }}" = "schedule" ]; then git commit --allow-empty -m "Data $D (uændret)" && git push; fi
       - uses: actions/configure-pages@v5
