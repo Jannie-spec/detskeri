@@ -399,6 +399,11 @@ def guide_nav(g, depth):
     out.append(f'<a href="{GUDHJEM}{LANG_PRE[LANG]}" rel="noopener">Gudhjem ↗</a>')
     return "".join(out)
 
+EXT_A = re.compile(r'<a (?![^>]*\btarget=)([^>]*\bhref="https?://(?!detskeri\.dk)[^"]*"[^>]*)>')
+def newwin(html_):
+    """Links ud af detskeri.dk åbner i et nyt vindue."""
+    return EXT_A.sub(lambda m: '<a target="_blank" ' + (m.group(1) if "noopener" in m.group(1) else m.group(1) + ' rel="noopener"') + '>', html_)
+
 def main():
     global LANG, DTR
     evdata, places, DTR = load()
@@ -439,7 +444,7 @@ def main():
                    .replace("{{VALGDAG}}", L("Vælg dag")).replace("{{OGLOCALE}}", {"da": "da_DK", "en": "en_GB", "de": "de_DE", "sv": "sv_SE"}[LANG]))
             out = re.sub(r"<title>.*?</title>", lambda _m: "<title>" + E(seo_title(g)) + "</title>", out, count=1)
             dst = site / path; dst.mkdir(parents=True, exist_ok=True)
-            (dst / "index.html").write_text(out, encoding="utf-8")
+            (dst / "index.html").write_text(newwin(out), encoding="utf-8")
             sitemap.append(BASE + path)
     # forsiden: én side pr. sprog, der viser vej til guiderne
     for LANG in LANGS:
@@ -458,7 +463,7 @@ def main():
                .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
                .replace("{{ADDURL}}", "../" * depth + LANG_PRE[LANG] + "tilfoej/").replace("{{ADD}}", tilfoej.link_text(LANG)).replace("{{NEWS}}", tilmeld.box("bornholm", LANG)).replace("{{NEWSCSS}}", tilmeld.assets()[0]).replace("{{NEWSJS}}", tilmeld.assets()[1]))
         dst = site / LANG_PRE[LANG]; dst.mkdir(parents=True, exist_ok=True)
-        (dst / "index.html").write_text(out, encoding="utf-8")
+        (dst / "index.html").write_text(newwin(out), encoding="utf-8")
         sitemap.append(BASE + LANG_PRE[LANG])
     # "Tilføj dit arrangement"
     for LANG in LANGS:

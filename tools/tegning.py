@@ -143,6 +143,44 @@ def museum(x, gy):
 def chimney(x, gy, h=150):
     return f'<path d="M{x - 9} {gy} L{x - 6} {gy - h} L{x + 6} {gy - h} L{x + 9} {gy}Z" fill="{C["stone"]}"/><rect x="{x - 7}" y="{gy - h}" width="14" height="10" fill="{C["red"]}"/>'
 
+def bighouse(x, gy, w=110, h=44, wall="ochre", roof="red", rows=2):
+    """Stort købmands-/bryggerihus med to rækker vinduer."""
+    o = f'<rect x="{x}" y="{gy - h}" width="{w}" height="{h}" fill="{C[wall]}"/>'
+    o += f'<path d="M{x - 5} {gy - h + 2} L{x + 12} {gy - h - 24} L{x + w - 12} {gy - h - 24} L{x + w + 5} {gy - h + 2}Z" fill="{C[roof]}"/>'
+    n = max(2, int(w / 24))
+    for r_ in range(rows):
+        for i in range(n):
+            o += win(x + 10 + i * (w - 20) / max(1, n - 1) - 5, gy - h + 8 + r_ * 18, 9, 10)
+    return o
+
+def theatre(x, gy):
+    """Klassicistisk hvid bygning med trekantgavl og søjler (Rønne Theater)."""
+    o = f'<rect x="{x}" y="{gy - 50}" width="90" height="50" fill="{C["white"]}"/>'
+    o += f'<path d="M{x - 4} {gy - 50} L{x + 45} {gy - 74} L{x + 94} {gy - 50}Z" fill="{C["sand"]}"/>'
+    o += "".join(f'<rect x="{x + 12 + i * 20}" y="{gy - 44}" width="6" height="44" fill="{C["stone"]}"/>' for i in range(4))
+    return o
+
+def pakhus(x, gy, w=130, h=34, wall="red"):
+    """Langt pakhus ved havnen med porte."""
+    o = f'<rect x="{x}" y="{gy - h}" width="{w}" height="{h}" fill="{C[wall]}"/>'
+    o += f'<path d="M{x - 3} {gy - h + 2} L{x + 8} {gy - h - 14} L{x + w - 8} {gy - h - 14} L{x + w + 3} {gy - h + 2}Z" fill="{C["roof"]}"/>'
+    o += "".join(f'<rect x="{x + 14 + i * 34}" y="{gy - 20}" width="14" height="20" fill="{C["dark"]}" opacity=".7"/>' for i in range(int((w - 14) / 34)))
+    return o
+
+def hotel(x, gy, w=150):
+    """Langt hvidt badehotel med rødt tag og mange vinduer."""
+    o = f'<rect x="{x}" y="{gy - 46}" width="{w}" height="46" fill="{C["white"]}"/>'
+    o += f'<path d="M{x - 5} {gy - 44} L{x + 10} {gy - 64} L{x + w - 10} {gy - 64} L{x + w + 5} {gy - 44}Z" fill="{C["red"]}"/>'
+    for r_ in range(2):
+        o += "".join(win(x + 10 + i * 18, gy - 38 + r_ * 18, 8, 9) for i in range(int((w - 14) / 18)))
+    return o
+
+def brickchimney(x, gy, h=110):
+    return f'<path d="M{x - 8} {gy} L{x - 5} {gy - h} L{x + 5} {gy - h} L{x + 8} {gy}Z" fill="{C["brick"]}"/><rect x="{x - 6}" y="{gy - h}" width="12" height="6" fill="{C["dark"]}"/>'
+
+def fishboat(x, y, color="deep"):
+    return boat(x, y, color, sail=False)
+
 def trees(x0, x1, gy, seed=3):
     r = random.Random(seed); o = ""
     x = x0
@@ -192,15 +230,21 @@ def roenne():
     gy = 286
     land = ground([(0, 270), (300, 266), (700, 270), (1200, 266)], "hill2")
     b = land; f = ""
+    b += houses(10, 150, gy - 22, 14)                                # Nørrekås, bagerste række
     b += houses(20, 200, gy, 11)                                     # Nørrekås
     f += boat(140, SEA - 4, "deep", sail=False)
+    b += houses(210, 300, gy - 20, 15)
     b += church(330, gy - 6, "white", "red", "spire", 1.05)          # Sankt Nicolai Kirke
-    b += lighthouse_sq(440, gy - 2, 70, "white")                     # Rønne Fyr
-    b += houses(470, 640, gy, 12)
+    b += lighthouse_sq(478, gy - 2, 70, "white")                     # Rønne Fyr
+    b += theatre(506, gy - 16)                                       # Rønne Theater
+    b += houses(600, 660, gy, 12)
     f += mole(560, 900)
     f += ferry(640, SEA - 12, 1.25)                                  # færgehavnen
+    b += pakhus(660, gy, 140)                                        # havnens pakhuse
     b += crane(900, gy)
+    b += silos(830, gy, 2)
     b += chimney(1000, gy, 160)                                      # kraftværket
+    b += pakhus(940, gy, 50, 30, "stone")
     b += houses(1040, 1080, gy, 13)
     b += kastellet(1130, gy - 2)                                     # Kastellet
     return frame(b, f) + WAVES
@@ -210,13 +254,15 @@ def svaneke():
     land = ground([(0, 284), (120, 262), (260, 250), (420, 262), (560, 276), (720, 270), (880, 250), (1040, 262), (1200, 276)], "hill2",
                   f'<path d="M0 {SEA + 6} C40 288 100 282 150 {SEA + 6}Z" fill="{C["rock"]}"/>')
     b = land; f = ""
+    b += houses(60, 140, 262, 26)
     b += church(170, 254, "red", "red", "octagon", 1.0, towerwall="stone")   # Svaneke Kirke
     b += lighthouse_sq(330, 266, 92)                                         # Svaneke Fyr
     b += houses(240, 300, 250, 23, tall=True)
     b += houses(380, 560, 268, 21); b += houses(420, 540, 240, 24)
-    b += houses(640, 760, 266, 25)
+    b += bighouse(560, 254, 74, 40, "ochre", "red")                          # Svaneke Bryghus ved torvet
+    b += houses(640, 760, 266, 25); b += houses(650, 750, 242, 27)
     f += mole(560, 760)
-    f += boat(610, SEA - 4, "red")
+    f += boat(610, SEA - 4, "red"); f += fishboat(690, SEA - 2, "deep")
     b += halftimber(770, 272, 110, 38)
     b += watertower(920, 252, 156)                                           # Utzons vandtårn
     b += stubmill(1010, 256)
@@ -229,13 +275,14 @@ def allinge():
     b = ground([(0, 280), (200, 274), (400, 262), (600, 272), (760, 276), (900, 280), (1200, 280)], "hill2")
     b += knoll(860, 1200, 290, 150)                                          # Hammeren
     b += smokehouse(40, gy, 4)                                               # Allinge Røgeri
+    b += houses(170, 330, 258, 34)
     f += mole(190, 330)
-    f += boat(230, SEA - 4, "deep", sail=False)
+    f += boat(230, SEA - 4, "deep", sail=False); f += boat(280, SEA - 2, "red")
     b += houses(330, 420, 270, 31)
     b += church(440, 262, "yellow", "red", "spire", 0.95)                    # Allinge Kirke
-    b += houses(580, 640, 274, 32)
+    b += houses(560, 640, 274, 32); b += houses(580, 660, 252, 35)
     b += f'<path d="M640 {SEA + 4} C680 270 760 266 800 {SEA + 4}Z" fill="{C["rock"]}"/>'     # Madsebakke
-    b += houses(800, 900, 280, 33)                                           # Sandvig
+    b += hotel(805, 278, 110)                                                # Sandvig med badehotellerne
     b += lighthouse_sq(1010, 152, 64, "stone")                               # Hammer Fyr
     b += ruin(1130, 210, 0.7)                                                # Hammershus (silhuet)
     return frame(b, f) + WAVES
@@ -247,11 +294,14 @@ def nexoe():
                f'<path d="M0 {SEA + 6} L0 292 C80 290 170 294 240 {SEA + 6}Z" fill="#eadfc6"/>')
     b += trees(900, 1200, 210, 7)                                            # Paradisbakkerne
     b += f'<path d="M820 290 C900 220 1040 196 1200 206 L1200 290Z" fill="{C["hill2"]}"/>'
+    b += houses(150, 300, gy - 20, 42)
     b += church(330, gy - 4, "white", "red", "copper", 1.05)                 # Nexø Kirke
     b += museum(470, gy)                                                     # Nexø Museum
+    b += houses(250, 320, gy, 43)
     b += houses(560, 640, gy, 41)
     f += mole(600, 900)
-    f += boat(650, SEA - 4, "deep", sail=False); f += boat(730, SEA - 2, "red", sail=False)
+    f += boat(650, SEA - 4, "deep", sail=False); f += boat(730, SEA - 2, "red", sail=False); f += fishboat(800, SEA - 4, "deep")
+    b += pakhus(640, gy, 150, 30)                                            # fiskehavnens pakhuse
     b += crane(820, gy)
     b += silos(900, gy, 3)
     return frame(b, f) + WAVES
@@ -264,10 +314,13 @@ def hasle():
     b += church(870, 212, "white", "red", "pyramid", 0.7)                    # Ruts Kirke på bakken
     b += trees(1040, 1200, 276, 9)                                           # Hasle Lystskov
     b += trees(20, 160, 282, 5)
+    b += brickchimney(140, gy, 120)                                          # Hasle Klinkerfabrik
+    b += pakhus(90, gy, 80, 30, "brick")
     b += church(380, gy - 2, "white", "red", "pyramid", 1.0)                 # Hasle Kirke
-    b += houses(180, 330, gy, 51); b += houses(520, 600, gy, 52)
+    b += houses(180, 330, gy, 51); b += houses(200, 330, gy - 24, 53)
+    b += houses(520, 600, gy, 52); b += houses(500, 680, gy - 22, 54)
     f += mole(600, 820)
-    f += boat(660, SEA - 4, "red")
+    f += boat(660, SEA - 4, "red"); f += fishboat(740, SEA - 2, "deep")
     b += smokehouse(980, gy - 4, 3, 70)                                      # Hasle Røgeri (syd for havnen)
     return frame(b, f) + WAVES
 
@@ -275,17 +328,21 @@ def bornholm():
     f = ""
     b = ground([(0, 284), (140, 280), (260, 230), (360, 236), (460, 268), (560, 250), (700, 262), (820, 270), (960, 266), (1080, 286), (1200, 292)], "hill2",
                f'<path d="M1020 {SEA + 6} C1060 290 1140 288 1200 290 L1200 {SEA + 6}Z" fill="#eadfc6"/>')
+    b += houses(100, 180, 280, 63)
     b += church(70, 282, "white", "red", "spire", 0.7)                       # Rønne
     f += ferry(30, SEA - 6, 0.6)
     b += f'<path d="M180 {SEA + 6} C200 250 240 232 300 228 C340 226 360 240 380 {SEA + 6}Z" fill="{C["rock"]}"/>'
     b += ruin(290, 232, 0.75)                                                # Hammershus
+    b += trees(380, 440, 262, 12)                                            # Almindingen
     b += houses(430, 520, 262, 61)
     b += dutchmill(540, 252, 0.8)                                            # Gudhjem Mølle
     b += roundchurch(660, 264, 0.75)                                         # Østerlars rundkirke
     b += f'<path d="M760 {SEA - 2} q20 -16 46 -4 q14 6 8 {6}Z" fill="{C["rock"]}"/>'      # Christiansø
+    b += lighthouse_sq(784, SEA - 14, 34, "white")                          # fyret på Christiansø
     b += watertower(890, 268, 120)                                           # Svaneke vandtårn
     b += houses(930, 1010, 270, 62)
     b += lighthouse_tall(1120, 290, 180)                                     # Dueodde Fyr
+    f += boat(560, SEA + 10, "red")
     return frame(b, f, sunx=770) + WAVES
 
 SCENES = {"bornholm": bornholm, "roenne": roenne, "svaneke": svaneke, "allinge": allinge, "nexoe": nexoe, "hasle": hasle}

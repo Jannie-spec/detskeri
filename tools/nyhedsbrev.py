@@ -17,7 +17,7 @@ STATE = ROOT / "data" / "nyhedsbrev.json"
 GUDHJEM = {"slug": "gudhjem", "name": "Gudhjem", "towns": ["Gudhjem"], "url": "https://detskerigudhjem.dk/"}   # egen side: detskerigudhjem.dk
 PER_DAY = {"bornholm": 30}            # højst så mange pr. dag i øbrevet; resten ligger på siden
 E = lambda s: html.escape(str(s or ""), quote=True)
-C = {"bg": "#f3f5f0", "ink": "#302f2f", "muted": "#5f625e", "brick": "#b4533a", "line": "#dde3d9", "sage": "#e5e9e1", "deep": "#3f6670"}
+C = {"coral": "#e37b5b", "bg": "#f3f5f0", "ink": "#302f2f", "muted": "#5f625e", "brick": "#b4533a", "line": "#dde3d9", "sage": "#e5e9e1", "deep": "#3f6670"}
 
 def items(g, events, d):
     many = g["towns"] is None
@@ -27,50 +27,69 @@ def items(g, events, d):
         k = build.kind_of(e)
         if k == "film" or (many and k == "kirke"): continue
         t = build.hm(e["t"]) + ("–" + build.hm(e["t2"]) if e.get("t2") else "") if e.get("t") else "Hele dagen"
-        out.append({"t": t, "s": e.get("t") or "99", "title": e["title"], "where": e.get("where", ""), "town": e.get("town", "") if many else "",
+        out.append({"k": k, "t": t, "s": e.get("t") or "99", "title": e["title"], "where": e.get("where", ""), "town": e.get("town", "") if many else "",
                     "url": e.get("rurl") or e["url"], "reg": build.REGTXT.get(e.get("reg"), "")})
     out.sort(key=lambda x: (x["s"], x["title"]))
     return out
 
+KIND = {"musik": ("Musik", "#f6e3da", "#b4533a"), "teater": ("Teater", "#f3dfe0", "#9c4a55"), "born": ("Børn", "#fbe9c9", "#a5701c"),
+        "foredrag": ("Foredrag", "#e4ebe9", "#3f6670"), "kunst": ("Kunst", "#f3dfe0", "#9c4a55"), "mad": ("Mad", "#f6e3da", "#b4533a"),
+        "sport": ("Sport", "#dfe9e4", "#3f6a55"), "kirke": ("Kirke", "#efe9df", "#8a6d45"), "andet": ("", "", "")}
+SERIF = "Georgia,'Times New Roman',serif"
+
 def render(g, events, start):
-    wd, _, mon = build.DAYNAMES["da"]
+    wd, wds, mon = build.DAYNAMES["da"]
     end = start + datetime.timedelta(days=6)
     url = (g.get("url") or build.BASE + g["path"]) + "?utm_source=nyhedsbrev&utm_medium=email"
+    img = f"{build.BASE}mail-{g['slug']}.png"
     ttl = build.title_of(g)
-    rows, total = [], 0
+    days, total = [], 0
     for i in range(7):
         d = start + datetime.timedelta(days=i)
         its = items(g, events, d); total += len(its)
         cap = PER_DAY.get(g["slug"], 999)
-        rows.append(f'<tr><td style="padding:22px 0 6px;font:400 20px/1.2 Georgia,serif;color:{C["ink"]};border-bottom:2px solid {C["brick"]}">'
-                    f'{wd[d.weekday()].capitalize()} {d.day}. {mon[d.month - 1]}</td></tr>')
-        if not its:
-            rows.append(f'<tr><td style="padding:10px 0;color:{C["muted"]};font-size:15px">Intet i kalenderen endnu.</td></tr>')
+        rows = []
         for x in its[:cap]:
             meta = ", ".join(p for p in (x["where"], x["town"]) if p)
-            reg = f' <span style="font-size:12px;font-weight:bold;color:{C["brick"]}">· {E(x["reg"])}</span>' if x["reg"] else ""
-            rows.append(f'<tr><td style="padding:9px 0;border-bottom:1px solid {C["line"]}"><table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>'
-                        f'<td width="96" valign="top" style="font-size:14px;color:{C["muted"]};padding-top:2px">{E(x["t"])}</td>'
-                        f'<td valign="top" style="font-size:16px;line-height:1.35"><a href="{E(x["url"])}" style="color:{C["ink"]};font-weight:bold;text-decoration:none">{E(x["title"])}</a>{reg}'
-                        f'<br><span style="font-size:14px;color:{C["muted"]}">{E(meta)}</span></td></tr></table></td></tr>')
+            lab, bg, fg = KIND.get(x["k"], KIND["andet"])
+            pill = f'<span style="display:inline-block;background:{bg};color:{fg};font-size:11px;font-weight:bold;border-radius:999px;padding:2px 8px;margin-right:6px">{E(lab)}</span>' if lab else ""
+            reg = f'<br><span style="font-size:12px;font-weight:bold;color:{C["brick"]}">{E(x["reg"])}</span>' if x["reg"] else ""
+            rows.append(f'<tr><td width="74" valign="top" style="padding:10px 0;border-top:1px solid {C["line"]};font-size:14px;color:{C["muted"]}">{E(x["t"])}</td>'
+                        f'<td valign="top" style="padding:10px 0;border-top:1px solid {C["line"]};font-size:16px;line-height:1.35">'
+                        f'<a href="{E(x["url"])}" style="color:{C["ink"]};font-weight:bold;text-decoration:none">{E(x["title"])}</a>'
+                        f'<br><span style="font-size:13px;color:{C["muted"]}">{pill}{E(meta)}</span>{reg}</td></tr>')
+        if not its:
+            rows.append(f'<tr><td colspan="2" style="padding:10px 0;border-top:1px solid {C["line"]};color:{C["muted"]};font-size:15px">Intet i kalenderen endnu – kig forbi siden, der kommer løbende mere til.</td></tr>')
         if len(its) > cap:
-            rows.append(f'<tr><td style="padding:10px 0;font-size:14px"><a href="{E(url)}" style="color:{C["brick"]}">+ {len(its) - cap} mere på detskeri.dk</a></td></tr>')
-    period = f"{start.day}. {mon[start.month - 1]}" + f" – {end.day}. {mon[end.month - 1]}"
-    pre = f"{total} arrangementer {build.g_in(g)} {period}."
+            rows.append(f'<tr><td colspan="2" style="padding:10px 0;border-top:1px solid {C["line"]};font-size:14px"><a href="{E(url)}" style="color:{C["brick"]};font-weight:bold">+ {len(its) - cap} mere på detskeri.dk</a></td></tr>')
+        leaf = (f'<table role="presentation" cellpadding="0" cellspacing="0" width="58" style="border:1px solid {C["line"]};border-radius:10px;background:{C["bg"]};text-align:center">'
+                f'<tr><td style="background:{C["coral"] if i else C["brick"]};color:#fff;font-size:12px;font-weight:bold;padding:3px 0;border-radius:9px 9px 0 0">{wds[d.weekday()].capitalize()}</td></tr>'
+                f'<tr><td style="font:400 26px/1.1 {SERIF};padding-top:3px;color:{C["ink"]}">{d.day}</td></tr>'
+                f'<tr><td style="font-size:12px;color:{C["muted"]};padding-bottom:4px">{mon[d.month - 1][:3]}</td></tr></table>')
+        days.append(f'<tr><td style="padding:0 0 14px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:18px">'
+                    f'<tr><td style="padding:18px 18px 6px"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td valign="top">{leaf}</td>'
+                    f'<td valign="middle" style="padding-left:14px"><div style="font:400 24px/1.1 {SERIF};color:{C["ink"]}">{wd[d.weekday()].capitalize()}</div>'
+                    f'<div style="font-size:14px;color:{C["muted"]};margin-top:2px">{d.day}. {mon[d.month - 1]} · {len(its)} {"arrangement" if len(its) == 1 else "arrangementer"}</div></td></tr></table></td></tr>'
+                    f'<tr><td style="padding:4px 18px 10px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{"".join(rows)}</table></td></tr></table></td></tr>')
+    period = f"{start.day}. {mon[start.month - 1]} – {end.day}. {mon[end.month - 1]}"
+    pre = f"{total} arrangementer {build.g_in(g)} {period}. God fornøjelse!"
     body = f"""<!doctype html><html lang="da"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{E(ttl)}</title></head>
 <body style="margin:0;background:{C['bg']};font-family:Helvetica,Arial,sans-serif;color:{C['ink']}">
 <div style="display:none;max-height:0;overflow:hidden">{E(pre)}</div>
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{C['bg']}"><tr><td align="center" style="padding:20px 12px">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border-radius:18px">
-<tr><td style="background:{C['sage']};border-radius:18px 18px 0 0;padding:26px 24px 20px">
-<div style="font:400 15px Georgia,serif;color:{C['muted']}">detskeri.dk · ugens program</div>
-<div style="font:400 32px/1.05 Georgia,serif;color:{C['ink']};margin-top:8px">{E(ttl)}</div>
-<div style="font-size:15px;color:{C['muted']};margin-top:8px">{E(period)} · {total} arrangementer</div></td></tr>
-<tr><td style="padding:4px 24px 10px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{''.join(rows)}</table></td></tr>
-<tr><td style="padding:18px 24px 26px" align="center"><a href="{E(url)}" style="display:inline-block;background:{C['brick']};color:#ffffff;text-decoration:none;font-weight:bold;padding:12px 22px;border-radius:999px">Se det hele – også film og spisesteder</a></td></tr>
-<tr><td style="padding:0 24px 24px;font-size:12px;line-height:1.5;color:{C['muted']}">Arrangementer fra KultuNaut. Tider kan ændre sig – tjek arrangørens side før du tager af sted.<br>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:{C['bg']}"><tr><td align="center" style="padding:16px 10px">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px">
+<tr><td style="background:{C['sage']};border-radius:20px 20px 0 0;padding:26px 24px 6px">
+<div style="font:400 15px {SERIF};color:{C['ink']}">detskeri.dk</div>
+<div style="font:400 38px/1.02 {SERIF};color:{C['ink']};margin-top:14px">{E(ttl[: len(ttl) - len(build.g_in(g))].strip())}<br>{E(build.g_in(g))}</div>
+<div style="font-size:15px;color:#4a4d49;margin-top:12px">Ugens program {E(period)} – {total} arrangementer. God fornøjelse!</div></td></tr>
+<tr><td style="background:{C['sage']};line-height:0;font-size:0"><a href="{E(url)}"><img src="{img}" width="600" alt="" style="display:block;width:100%;max-width:600px;height:auto;border:0"></a></td></tr>
+<tr><td style="background:{C['bg']};padding:16px 0 0"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">{''.join(days)}</table></td></tr>
+<tr><td style="padding:8px 24px 22px" align="center"><a href="{E(url)}" style="display:inline-block;background:{C['brick']};color:#ffffff;text-decoration:none;font-weight:bold;padding:13px 24px;border-radius:999px">Se det hele – også film og spisesteder</a></td></tr>
+<tr><td style="padding:0 24px 26px;font-size:12px;line-height:1.55;color:{C['muted']}" align="center">Arrangementer fra KultuNaut. Tider kan ændre sig – tjek arrangørens side, før du tager af sted.<br>
+Holder du selv et arrangement? <a href="{build.BASE}tilfoej/" style="color:{C['brick']}">Fortæl os om det</a>.<br>
 Du får denne mail, fordi du har tilmeldt dig på detskeri.dk. <a href="{{{{ unsubscribe }}}}" style="color:{C['muted']}">Afmeld</a></td></tr>
 </table></td></tr></table></body></html>"""
+    body = body.replace('<a href="', '<a target="_blank" href="')
     subject = f"{ttl[0].upper() + ttl[1:]} {period}"
     return subject, body, total
 
