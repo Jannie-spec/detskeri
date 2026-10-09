@@ -32,14 +32,14 @@ def main():
     if not key: print("BREVO_API_KEY mangler"); return
     api = lambda m, p, d=None: nyhedsbrev.api(m, p, key, d)
     api("PUT", f"/smtp/templates/{DOI_TEMPLATE}", {"sender": nyhedsbrev.SENDER, "subject": "Bekræft din tilmelding til Det sker på Bornholm",
-                                                   "htmlContent": DOI_HTML, "isActive": True})
+                                                   "htmlContent": DOI_HTML, "isActive": True, "replyTo": nyhedsbrev.REPLY_TO})
     print("Bekræftelsesmail opdateret")
     build.LANG = "da"
     events = build.all_events(json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"])
     g = build.GUIDES[0]
     s, b, n = nyhedsbrev.render(g, events, datetime.datetime.now(build.TZ).date())
     b = b.replace("{{ unsubscribe }}", "https://detskeri.dk/")      # prøven sendes uden for en liste
-    api("POST", "/smtp/email", {"sender": nyhedsbrev.SENDER, "to": [{"email": PROEVE}], "subject": "PRØVE: " + s, "htmlContent": b})
+    api("POST", "/smtp/email", {"sender": nyhedsbrev.SENDER, "to": [{"email": PROEVE}], "subject": "PRØVE: " + s, "htmlContent": b, "replyTo": {"email": nyhedsbrev.REPLY_TO}})
     print("Prøvebrev sendt:", s, n, "arrangementer")
 
 if __name__ == "__main__":

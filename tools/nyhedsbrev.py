@@ -13,6 +13,7 @@ import build, tilmeld
 
 API = "https://api.brevo.com/v3"
 SENDER = {"name": "Det sker på Bornholm", "email": "nyhedsbrev@detskeri.dk"}
+REPLY_TO = "jannie@hotelklippen.dk"      # svar på nyhedsbrevet lander her (afsenderadressen har ingen postkasse)
 STATE = ROOT / "data" / "nyhedsbrev.json"
 GUDHJEM = {"slug": "gudhjem", "name": "Gudhjem", "towns": ["Gudhjem"], "url": "https://detskerigudhjem.dk/"}   # egen side: detskerigudhjem.dk
 PER_DAY = {"bornholm": 30}            # højst så mange pr. dag i øbrevet; resten ligger på siden
@@ -130,7 +131,7 @@ def main():
         s, b, n = render(g, events, start)
         if n == 0: print(g["slug"], "ingen arrangementer – springes over"); continue
         c = api("POST", "/emailCampaigns", key, {"name": f"Det sker – {g['name']} – {week}", "subject": s, "sender": SENDER,
-                                                   "htmlContent": b, "recipients": {"listIds": [lid]}, "inlineImageActivation": False})
+                                                   "htmlContent": b, "recipients": {"listIds": [lid]}, "inlineImageActivation": False, "replyTo": REPLY_TO})
         api("POST", f"/emailCampaigns/{c['id']}/sendNow", key)
         state[g["slug"]] = week
         STATE.write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")

@@ -20,3 +20,17 @@ with sync_playwright() as p:
 for f in OUT.glob("mail-*.png"):
     Image.open(f).convert("RGB").resize((1200, 380), Image.LANCZOS).save(f, optimize=True)
 print("ok")
+
+# Delebilleder til Facebook m.m. (static/del-<by>.png, 1200×630): titel øverst, tegningen nederst
+TITLES = {"bornholm": "Det sker<br>på Bornholm", "roenne": "Det sker<br>i Rønne", "svaneke": "Det sker<br>i Svaneke", "allinge": "Det sker<br>i Allinge",
+          "nexoe": "Det sker<br>i Nexø", "hasle": "Det sker<br>i Hasle"}
+with sync_playwright() as p:
+    b = p.chromium.launch(); pg = b.new_page(viewport={"width": 1200, "height": 630})
+    for slug, t in TITLES.items():
+        svg = tegning.svg(slug).replace('class="town"', 'style="position:absolute;left:0;bottom:0;width:1200px;height:380px"')
+        pg.set_content(f"""<body style="margin:0;width:1200px;height:630px;background:#e5e9e1;position:relative;overflow:hidden">
+<div style="position:absolute;left:64px;top:38px;font:400 84px/1 Georgia,'DejaVu Serif',serif;color:#302f2f">{t}</div>
+<div style="position:absolute;right:56px;top:52px;font:700 27px 'DejaVu Sans',Arial,sans-serif;color:#5f625e">detskeri.dk</div>{svg}</body>""")
+        pg.screenshot(path=str(OUT / f"del-{slug}.png"))
+    b.close()
+print("delebilleder ok")
