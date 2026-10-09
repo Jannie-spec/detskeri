@@ -88,6 +88,7 @@ U = {
     "Vælg dag": ["Choose day", "Tag wählen", "Välj dag"],
     "Hvad sker der i dag?": ["What's on today?", "Was ist heute los?", "Vad händer i dag?"],
     "Se dagens arrangementer, film og spisesteder med åbent i hver by.": ["See today's events, films and open restaurants in each town.", "Veranstaltungen, Filme und geöffnete Restaurants von heute in jedem Ort.", "Se dagens evenemang, film och öppna matställen i varje ort."],
+    "Cookie-valg": ["Cookie settings", "Cookie-Einstellungen", "Cookieval"],
     "i dag og de næste dage": ["today and the next few days", "heute und in den nächsten Tagen", "i dag och de närmaste dagarna"],
     "arrangementer i dag": ["events today", "Veranstaltungen heute", "evenemang i dag"],
 }
@@ -358,7 +359,7 @@ def main():
                    .replace("{{GUIDES}}", guide_nav(g, depth)).replace("{{NAV}}", nav).replace("{{DAYS}}", body)
                    .replace("{{JSONLD}}", jsonld(g, days, later)).replace("{{UPDATED}}", f'{L("Opdateret")} {upd}.')
                    .replace("{{SRC}}", L("Arrangementer fra")).replace("{{TODAY}}", L("I dag")).replace("{{TOMORROW}}", L("I morgen"))
-                   .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth)
+                   .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
                    .replace("{{VALGDAG}}", L("Vælg dag")).replace("{{OGLOCALE}}", {"da": "da_DK", "en": "en_GB", "de": "de_DE", "sv": "sv_SE"}[LANG]))
             dst = site / path; dst.mkdir(parents=True, exist_ok=True)
             (dst / "index.html").write_text(out, encoding="utf-8")
@@ -377,7 +378,7 @@ def main():
         out = ((ROOT / "forside.html").read_text(encoding="utf-8").replace("{{LANG}}", LANG).replace("{{TITLE}}", E(ttl))
                .replace("{{H2}}", E(L("Hvad sker der i dag?"))).replace("{{LEAD}}", E(L("Se dagens arrangementer, film og spisesteder med åbent i hver by.")))
                .replace("{{CARDS}}", "".join(cards)).replace("{{LANGS}}", langs).replace("{{HREFLANG}}", hreflang).replace("{{CANON}}", BASE + LANG_PRE[LANG])
-               .replace("{{UP}}", "../" * depth))
+               .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg")))
         dst = site / LANG_PRE[LANG]; dst.mkdir(parents=True, exist_ok=True)
         (dst / "index.html").write_text(out, encoding="utf-8")
         sitemap.append(BASE + LANG_PRE[LANG])
