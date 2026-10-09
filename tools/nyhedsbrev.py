@@ -1,4 +1,4 @@
-"""Ugentligt nyhedsbrev: én mail pr. Brevo-liste (hele Bornholm + fem byer) med de næste syv dages arrangementer.
+"""Ugentligt nyhedsbrev: én mail pr. Brevo-liste (hele Bornholm, fem byer og Gudhjem) med de næste syv dages arrangementer.
 
     python tools/nyhedsbrev.py --preview out/   # skriver HTML-filerne, sender intet
     python tools/nyhedsbrev.py --send            # opretter og sender kampagnerne via Brevo (kræver BREVO_API_KEY)
@@ -14,6 +14,7 @@ import build, tilmeld
 API = "https://api.brevo.com/v3"
 SENDER = {"name": "Det sker på Bornholm", "email": "nyhedsbrev@detskeri.dk"}
 STATE = ROOT / "data" / "nyhedsbrev.json"
+GUDHJEM = {"slug": "gudhjem", "name": "Gudhjem", "towns": ["Gudhjem"], "url": "https://detskerigudhjem.dk/"}   # egen side: detskerigudhjem.dk
 PER_DAY = {"bornholm": 30}            # højst så mange pr. dag i øbrevet; resten ligger på siden
 E = lambda s: html.escape(str(s or ""), quote=True)
 C = {"bg": "#f3f5f0", "ink": "#302f2f", "muted": "#5f625e", "brick": "#b4533a", "line": "#dde3d9", "sage": "#e5e9e1", "deep": "#3f6670"}
@@ -34,7 +35,7 @@ def items(g, events, d):
 def render(g, events, start):
     wd, _, mon = build.DAYNAMES["da"]
     end = start + datetime.timedelta(days=6)
-    url = build.BASE + g["path"] + "?utm_source=nyhedsbrev&utm_medium=email"
+    url = (g.get("url") or build.BASE + g["path"]) + "?utm_source=nyhedsbrev&utm_medium=email"
     ttl = build.title_of(g)
     rows, total = [], 0
     for i in range(7):
@@ -90,7 +91,7 @@ def main():
     start = datetime.datetime.now(build.TZ).date()
     week = f"{start.isocalendar()[0]}-W{start.isocalendar()[1]:02d}"
     lists = dict(tilmeld.LISTS)
-    guides = [g for g in build.GUIDES if g["slug"] in lists]
+    guides = [g for g in build.GUIDES + [GUDHJEM] if g["slug"] in lists]
     if "--preview" in args:
         out = pathlib.Path(args[args.index("--preview") + 1]); out.mkdir(parents=True, exist_ok=True)
         for g in guides:

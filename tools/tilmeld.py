@@ -1,7 +1,7 @@
 """Tilmeldingsboks til det ugentlige nyhedsbrev (Brevo-formular "Det sker – tilmelding").
 
 Formularen sender direkte til Brevo (sibforms). Listerne i Brevo:
-  3 hele Bornholm · 4 Rønne · 5 Svaneke · 6 Allinge · 7 Nexø · 8 Hasle
+  3 hele Bornholm · 4 Rønne · 5 Svaneke · 6 Allinge · 7 Nexø · 8 Hasle · 9 Gudhjem
 LIVE styrer, om boksen vises på siden. DOI = Brevo sender en bekræftelsesmail (dobbelt opt-in)."""
 import html
 
@@ -10,9 +10,9 @@ DOI = True            # teksten efter tilmelding: "tjek din mail" (True) eller "
 ACTION = ("https://7dd9bd3f.sibforms.com/serve/MUIFAL1aatqD4WwYCobN5j4T_i8IGq2GKOvrQW93gEcBMHdCpYr23ZQAevsFQr7bIIzDzqHO8rMX9vzdLrrouAhSiqc1LmMy5yTcH5_"
           "ZqTKVCtOHqWYQhVc_RCBn2tDd-vHVTScPIS74sQbF_AyV29TenlHx6SwRUWE6qQYCc4RDNAy_5rXE9E4pyOrz8jZ78_Fn67AmcIBV9WLHfw==")
 FIELD = "lists_28[]"
-LISTS = [("bornholm", 3), ("roenne", 4), ("svaneke", 5), ("allinge", 6), ("nexoe", 7), ("hasle", 8)]
+LISTS = [("bornholm", 3), ("roenne", 4), ("svaneke", 5), ("allinge", 6), ("nexoe", 7), ("hasle", 8), ("gudhjem", 9)]
 NAMES = {"bornholm": {"da": "Hele Bornholm", "en": "All of Bornholm", "de": "Ganz Bornholm", "sv": "Hela Bornholm"},
-         "roenne": "Rønne", "svaneke": "Svaneke", "allinge": "Allinge", "nexoe": "Nexø", "hasle": "Hasle"}
+         "roenne": "Rønne", "svaneke": "Svaneke", "allinge": "Allinge", "nexoe": "Nexø", "hasle": "Hasle", "gudhjem": "Gudhjem"}
 T = {
     "da": ["Få ugens program på mail", "Hver torsdag: hvad der sker de næste syv dage. Vælg hele Bornholm eller de byer, du vil følge.",
            "Din e-mail", "Tilmeld", "Vælg mindst én.", "Skriv en gyldig e-mail.",
