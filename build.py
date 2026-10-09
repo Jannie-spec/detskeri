@@ -223,6 +223,33 @@ def link(text, url):
     return f'<a href="{E(url)}" rel="noopener">{E(text)}</a>' if url else E(text)
 
 # ---------- data ----------
+EGNE_SRC = "https://therns.dk/app/gudhjem.json"
+def _norm(t): return re.sub(r"[^a-zæøå0-9]", "", t.lower())
+def egne():
+    """Klippens egne arrangementer (fra gæsteappens data) i samme form som KultuNaut-arrangementerne. Vises først – uden afsender."""
+    cache = ROOT / "data" / "egne.json"
+    try:
+        import urllib.request
+        with urllib.request.urlopen(EGNE_SRC, timeout=20) as r:
+            raw = json.loads(r.read().decode())
+        cache.write_text(json.dumps({"events": raw.get("events", [])}, ensure_ascii=False, indent=1), encoding="utf-8")
+    except Exception as e:
+        print("Egne arrangementer: bruger gemt kopi", e, file=sys.stderr)
+    raw = json.loads(cache.read_text(encoding="utf-8")) if cache.exists() else {"events": []}
+    out = []
+    for i, e in enumerate(raw.get("events", [])):
+        ev = {"id": f"egen{i}", "d": e["date"], "title": e["title"], "where": e.get("where", ""), "town": "Gudhjem", "url": e.get("url") or "", "own": 1}
+        if e.get("to") and e["to"] != e["date"]: ev["to"] = e["to"]
+        if e.get("time"): ev["t"] = e["time"].replace(".", ":")
+        out.append(ev)
+    return out
+
+def all_events(events):
+    """KultuNaut + egne; dubletter (samme dag og titel) fjernes fra KultuNaut-delen."""
+    own = egne()
+    keys = {(e["d"], _norm(e["title"])) for e in own}
+    return own + [e for e in events if (e["d"], _norm(e["title"])) not in keys]
+
 def load():
     ev = json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))
     places = {}
@@ -263,8 +290,8 @@ def build_day(g, events, places, d):
             tt, s, end = L("Hele dagen"), -1, None
         where = e.get("where", "") + ((", " + e["town"]) if many and e["town"].lower() not in e.get("where", "").lower() else "")
         items.append({"s": s, "time": tt, "title": L(e["title"]), "where": where, "url": e.get("rurl") or e.get("url"), "end": end,
-                      "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "town": e["town"]})
-    items.sort(key=lambda x: (x["s"], x["title"]))
+                      "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "town": e["town"], "own": bool(e.get("own"))})
+    items.sort(key=lambda x: (not x["own"], x["s"], x["title"]))
     food, unknown = [], []
     for p in places.values():
         if p["file"] not in g["places"] or p.get("cat") not in ("mad", "is"): continue
@@ -329,8 +356,8 @@ def build_later(g, events, today):
         tt = (hm(e["t"]) + (("–" + hm(e["t2"])) if e.get("t2") else "")) if e.get("t") else ""
         where = e.get("where", "") + ((", " + e["town"]) if many and e["town"].lower() not in e.get("where", "").lower() else "")
         rows.append({"d": d1, "to": d2, "time": tt, "title": L(e["title"]), "where": where, "url": e.get("rurl") or e.get("url"),
-                     "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "long": bool(e.get("long")), "k": max(d1, start)})
-    rows.sort(key=lambda r: (r["k"], not r["long"], r["time"], r["title"]))
+                     "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "long": bool(e.get("long")), "k": max(d1, start), "own": bool(e.get("own"))})
+    rows.sort(key=lambda r: (r["k"], not r["own"], not r["long"], r["time"], r["title"]))
     months = []
     for r in rows:
         key = (r["k"].year, r["k"].month)
@@ -407,7 +434,7 @@ def newwin(html_):
 def main():
     global LANG, DTR
     evdata, places, DTR = load()
-    events = evdata["events"]
+    events = all_events(evdata["events"])
     today = datetime.datetime.now(TZ).date()
     tpl0 = (ROOT / "template.html").read_text(encoding="utf-8")
     site = ROOT / "site"

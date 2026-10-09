@@ -27,9 +27,9 @@ def items(g, events, d):
         k = build.kind_of(e)
         if k == "film" or (many and k == "kirke"): continue
         t = build.hm(e["t"]) + ("–" + build.hm(e["t2"]) if e.get("t2") else "") if e.get("t") else "Hele dagen"
-        out.append({"k": k, "t": t, "s": e.get("t") or "99", "title": e["title"], "where": e.get("where", ""), "town": e.get("town", "") if many else "",
+        out.append({"own": bool(e.get("own")), "k": k, "t": t, "s": e.get("t") or "99", "title": e["title"], "where": e.get("where", ""), "town": e.get("town", "") if many else "",
                     "url": e.get("rurl") or e["url"], "reg": build.REGTXT.get(e.get("reg"), "")})
-    out.sort(key=lambda x: (x["s"], x["title"]))
+    out.sort(key=lambda x: (not x["own"], x["s"], x["title"]))
     return out
 
 KIND = {"musik": ("Musik", "#f6e3da", "#b4533a"), "teater": ("Teater", "#f3dfe0", "#9c4a55"), "born": ("Børn", "#fbe9c9", "#a5701c"),
@@ -106,7 +106,7 @@ def api(method, path, key, data=None):
 def main():
     args = sys.argv[1:]
     build.LANG = "da"
-    events = json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"]
+    events = build.all_events(json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"])
     start = datetime.datetime.now(build.TZ).date()
     week = f"{start.isocalendar()[0]}-W{start.isocalendar()[1]:02d}"
     lists = dict(tilmeld.LISTS)

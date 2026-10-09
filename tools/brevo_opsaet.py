@@ -35,7 +35,7 @@ def main():
                                                    "htmlContent": DOI_HTML, "isActive": True})
     print("Bekræftelsesmail opdateret")
     build.LANG = "da"
-    events = json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"]
+    events = build.all_events(json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"])
     g = build.GUIDES[0]
     s, b, n = nyhedsbrev.render(g, events, datetime.datetime.now(build.TZ).date())
     b = b.replace("{{ unsubscribe }}", "https://detskeri.dk/")      # prøven sendes uden for en liste
