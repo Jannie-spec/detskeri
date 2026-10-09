@@ -1,4 +1,4 @@
-"""Engangs-opsætning i Brevo via API (køres af .github/workflows/brevo-opsaet.yml med BREVO_API_KEY).
+"""Opsætning i Brevo via API (køres af .github/workflows/brevo-opsaet.yml med BREVO_API_KEY).
 
 1) Bekræftelsesmailen (dobbelt opt-in, skabelon 1): dansk tekst med kort engelsk/tysk/svensk linje, afsender nyhedsbrev@detskeri.dk.
 2) Sender et prøve-nyhedsbrev (hele Bornholm) til PROEVE, så det kan ses i en rigtig indbakke."""
