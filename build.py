@@ -295,7 +295,7 @@ def render_day(g, x, i):
         h.append(f'<p class="quiet">{L("Ingen arrangementer i kalenderen endnu.")}</p>')
     if x["food"] or x["unknown"]:
         h.append(f'<details class="food"><summary>{icon("mad")}<span>{L("Spisesteder, barer og is, der har åbent")} <b>{len(x["food"])}</b></span></summary>'
-                 f'<p class="fwarn">{L("Åbningstiderne er vores bedste bud ud fra stedernes egne sider, men de kan ændre sig – især uden for sæsonen. Tjek altid stedet, før du går.")}</p><ul>')
+                 '<ul>')
         last = None
         for f in x["food"]:
             if many and f["town"] != last:
