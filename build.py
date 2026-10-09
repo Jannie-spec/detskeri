@@ -137,6 +137,11 @@ U = {
         "The island calendar: concerts, films, theatre, church, things for children and restaurants that are open in every town – in one place, updated every morning.",
         "Der Kalender der Insel: Konzerte, Filme, Theater, Kirche, Kinderaktivitäten und geöffnete Restaurants in allen Orten – an einem Ort, jeden Morgen aktualisiert.",
         "Öns kalender: konserter, film, teater, kyrka, barnaktiviteter och matställen som har öppet i alla orter – samlat på ett ställe och uppdaterat varje morgon."],
+    "Åbningstiderne er vores bedste bud ud fra stedernes egne sider, men de kan ændre sig – især uden for sæsonen. Tjek altid stedet, før du går.": [
+        "Opening hours are our best guess based on the venues' own websites, but they can change – especially outside the season. Always check before you go.",
+        "Die Öffnungszeiten sind unsere beste Einschätzung nach den Websites der Lokale, können sich aber ändern – besonders außerhalb der Saison. Bitte vorher prüfen.",
+        "Öppettiderna är vår bästa bedömning utifrån ställenas egna webbplatser, men de kan ändras – särskilt utanför säsongen. Kolla alltid innan du går."],
+    "tid usikker": ["time uncertain", "Zeit unsicher", "osäker tid"],
     "Opdateret": ["Updated", "Aktualisiert", "Uppdaterad"],
     "Arrangementer fra": ["Events from", "Veranstaltungen von", "Evenemang från"],
     "Åbningstider er hentet fra stedernes egne sider og kan ændre sig – tjek altid stedet, før du går.": [
@@ -260,7 +265,7 @@ def build_day(g, events, places, d):
         if p["file"] not in g["places"] or p.get("cat") not in ("mad", "is"): continue
         sl = slots_on(p, d)
         if sl:
-            food.append({"name": p["name"], "hours": span(sl), "cat": p["cat"], "desc": pdesc(p), "url": p.get("url"), "town": p.get("town", "")})
+            food.append({"name": p["name"], "hours": span(sl), "cat": p["cat"], "desc": pdesc(p), "url": p.get("url"), "town": p.get("town", ""), "sure": p.get("sure", True)})
         elif not p.get("hours") and not p.get("seasons") and not (p.get("closedMonths") and d.month in p["closedMonths"]):
             unknown.append({"name": p["name"], "url": p.get("url"), "town": p.get("town", ""), "desc": pdesc(p)})
     food.sort(key=lambda f: (f["town"] if many else "", f["cat"] != "mad", f["name"]))
@@ -289,16 +294,18 @@ def render_day(g, x, i):
     else:
         h.append(f'<p class="quiet">{L("Ingen arrangementer i kalenderen endnu.")}</p>')
     if x["food"] or x["unknown"]:
-        h.append(f'<details class="food"><summary>{icon("mad")}<span>{L("Spisesteder, barer og is, der har åbent")} <b>{len(x["food"])}</b></span></summary><ul>')
+        h.append(f'<details class="food"><summary>{icon("mad")}<span>{L("Spisesteder, barer og is, der har åbent")} <b>{len(x["food"])}</b></span></summary>'
+                 f'<p class="fwarn">{L("Åbningstiderne er vores bedste bud ud fra stedernes egne sider, men de kan ændre sig – især uden for sæsonen. Tjek altid stedet, før du går.")}</p><ul>')
         last = None
         for f in x["food"]:
             if many and f["town"] != last:
                 h.append(f'<li class="fhead">{E(f["town"])}</li>'); last = f["town"]
-            h.append(f'<li><span class="what"><b>{link(f["name"], f["url"])}</b><small>{E(f["desc"])}</small></span><span class="t">{E(f["hours"])}</span></li>')
+            unsure = f' <span class="unsure">{L("tid usikker")}</span>' if not f.get("sure", True) else ""
+            h.append(f'<li><span class="what"><b>{link(f["name"], f["url"])}{unsure}</b><small>{E(f["desc"])}</small></span><span class="t">{E(f["hours"])}</span></li>')
         h.append("</ul>")
         if x["unknown"]:
             h.append(f'<p class="unk"><b>{L("Tjek selv åbningstiden")}:</b> ' + ", ".join(link(u["name"], u["url"]) + (f' ({E(u["town"])})' if many else "") for u in x["unknown"]) + "</p>")
-        h.append(f'<p class="fnote">{L("Åbningstider er hentet fra stedernes egne sider og kan ændre sig – tjek altid stedet, før du går.")}</p></details>')
+        h.append('</details>')
     h.append("</section>")
     return "\n".join(h)
 
