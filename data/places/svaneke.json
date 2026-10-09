@@ -1,0 +1,236 @@
+[
+ {
+  "id": "svbryg",
+  "cat": "mad",
+  "name": "Svaneke Bryghus",
+  "lat": 55.13603, "lng": 15.14038,
+  "url": "https://www.svanekebryghus.dk/restaurant",
+  "addr": "Svaneke Torv 5",
+  "desc": "Byens bryghus på torvet med lokal mad og øl brygget i kobberkedlerne – åbent hele året.",
+  "desc_en": "The town's brewpub on the square, serving local food and beer brewed in copper kettles – open all year.",
+  "desc_de": "Die Brauereigaststätte am Marktplatz mit regionaler Küche und Bier aus den Kupferkesseln – ganzjährig geöffnet.",
+  "desc_sv": "Stadens bryggeri vid torget med lokal mat och öl bryggd i kopparkittlarna – öppet året runt.",
+  "label": "Alle dage fra 11 (søn fra 9.30 m. brunch) · køkken 12–16 & 17–20.30 · hele året",
+  "hours": {
+   "0": [["09:30","20:30"]],
+   "1": [["11:00","20:30"]],
+   "2": [["11:00","20:30"]],
+   "3": [["11:00","20:30"]],
+   "4": [["11:00","20:30"]],
+   "5": [["11:00","20:30"]],
+   "6": [["11:00","20:30"]]
+  },
+  "src": ["https://www.svanekebryghus.dk/restaurant", "https://www.svanekebryghus.dk/en/contact"],
+  "sure": true
+ },
+ {
+  "id": "svismej",
+  "cat": "is",
+  "name": "Bornholms Ismejeri & Kaffebar",
+  "lat": 55.13546, "lng": 15.14312,
+  "url": "https://www.bornholms-ismejeri.dk/",
+  "addr": "Postgade 3",
+  "desc": "Økologisk is lavet på bornholmsk mælk, serveret i ismejeriets egen kaffebar.",
+  "desc_en": "Organic ice cream made from Bornholm milk, served in the dairy's own coffee bar.",
+  "desc_de": "Bio-Eis aus Bornholmer Milch, serviert in der hauseigenen Kaffeebar der Eismeierei.",
+  "desc_sv": "Ekologisk glass gjord på bornholmsk mjölk, serverad i glassmejeriets eget kaffebar.",
+  "label": "Alle dage 11–17 · påske–efterårsferien",
+  "seasons": [
+   {"from": "04-02", "to": "10-18", "hours": {
+    "0": [["11:00","17:00"]], "1": [["11:00","17:00"]], "2": [["11:00","17:00"]], "3": [["11:00","17:00"]],
+    "4": [["11:00","17:00"]], "5": [["11:00","17:00"]], "6": [["11:00","17:00"]]
+   }}
+  ],
+  "src": ["https://www.bornholms-ismejeri.dk/"],
+  "sure": true
+ },
+ {
+  "id": "bsfisk",
+  "cat": "mad",
+  "name": "B's Fiskeværksted",
+  "lat": 55.13686, "lng": 15.1453,
+  "url": "https://fiskevaerkstedet.dk/",
+  "addr": "Gruset 2",
+  "desc": "Fiskerestaurant yderst på havnen med frisk fisk, bornholmske råvarer og udsigt over bådene.",
+  "desc_en": "Fish restaurant at the end of the harbour with fresh fish, Bornholm produce and views of the boats.",
+  "desc_de": "Fischrestaurant ganz vorne am Hafen mit frischem Fisch, Bornholmer Zutaten und Blick auf die Boote.",
+  "desc_sv": "Fiskrestaurang längst ut på hamnen med färsk fisk, bornholmska råvaror och utsikt över båtarna.",
+  "label": "Alle dage 12–20.30 · april–oktober",
+  "seasons": [
+   {"from": "04-01", "to": "10-31", "hours": {
+    "0": [["12:00","20:30"]], "1": [["12:00","20:30"]], "2": [["12:00","20:30"]], "3": [["12:00","20:30"]],
+    "4": [["12:00","20:30"]], "5": [["12:00","20:30"]], "6": [["12:00","20:30"]]
+   }}
+  ],
+  "src": ["https://fiskevaerkstedet.dk/kontakt-os.aspx", "https://fiskevaerkstedet.dk/"],
+  "sure": true
+ },
+ {
+  "id": "siemsens",
+  "cat": "mad",
+  "name": "Restaurant Siemsens Gaard",
+  "lat": 55.13613, "lng": 15.14337,
+  "url": "https://siemsens.dk/restaurant-bar-siemsens-gaard-svaneke/",
+  "addr": "Havnebryggen 9",
+  "desc": "Hotelrestaurant i en gammel købmandsgård ved havnen med aftenmenu og udsigt over Østersøen.",
+  "desc_en": "Hotel restaurant in an old merchant's house by the harbour, with an evening menu and Baltic Sea views.",
+  "desc_de": "Hotelrestaurant in einem alten Kaufmannshof am Hafen mit Abendkarte und Blick auf die Ostsee.",
+  "desc_sv": "Hotellrestaurang i en gammal köpmansgård vid hamnen med kvällsmeny och utsikt över Östersjön.",
+  "label": "Ons–fre 17–23 (køkken 17–20.30) · 15. aug–18. okt",
+  "seasons": [
+   {"from": "08-15", "to": "10-18", "hours": {
+    "3": [["17:00","23:00"]], "4": [["17:00","23:00"]], "5": [["17:00","23:00"]]
+   }}
+  ],
+  "src": ["https://siemsens.dk/restaurant-bar-siemsens-gaard-svaneke/"],
+  "sure": true
+ },
+ {
+  "id": "aarsrog",
+  "cat": "mad",
+  "name": "Aarsdale Røgeri & Bistro",
+  "lat": 55.10752, "lng": 15.14366,
+  "url": "https://www.aarsdalerogeri.dk/",
+  "addr": "Gaden 2, Årsdale",
+  "desc": "Røgeri i Årsdale lidt syd for Svaneke med røgvarer om dagen og bistro om aftenen ved vandet.",
+  "desc_en": "Smokehouse in Årsdale just south of Svaneke, with smoked fish by day and a bistro by the sea in the evening.",
+  "desc_de": "Räucherei in Årsdale südlich von Svaneke – tagsüber Räucherfisch, abends Bistro direkt am Meer.",
+  "desc_sv": "Rökeri i Årsdale strax söder om Svaneke med rökt fisk på dagen och bistro vid vattnet på kvällen.",
+  "label": "Efterårsferie 9.–18. okt: alle dage 11.30–23 · herefter ikke fastlagt",
+  "seasons": [
+   {"from": "06-05", "to": "08-16", "hours": {
+    "0": [["11:30","23:00"]], "1": [["11:30","23:00"]], "2": [["11:30","23:00"]], "3": [["11:30","23:00"]],
+    "4": [["11:30","23:00"]], "5": [["11:30","23:00"]], "6": [["11:30","23:00"]]
+   }},
+   {"from": "08-17", "to": "10-05", "hours": {
+    "0": [["11:30","23:00"]], "1": [["11:30","15:00"]], "5": [["17:30","23:00"]], "6": [["11:30","23:00"]]
+   }},
+   {"from": "10-09", "to": "10-18", "hours": {
+    "0": [["11:30","23:00"]], "1": [["11:30","23:00"]], "2": [["11:30","23:00"]], "3": [["11:30","23:00"]],
+    "4": [["11:30","23:00"]], "5": [["11:30","23:00"]], "6": [["11:30","23:00"]]
+   }}
+  ],
+  "src": ["https://www.aarsdalerogeri.dk/copy-of-forside-test"],
+  "sure": true
+ },
+ {
+  "id": "delbar",
+  "cat": "mad",
+  "name": "Delbar",
+  "lat": 55.13637, "lng": 15.14113,
+  "url": "https://www.delbar.dk/",
+  "addr": "Svaneke Torv 8",
+  "desc": "Hyggelig bar på torvet med små sæsonretter til deling, naturvin og cocktails.",
+  "desc_en": "Cosy bar on the square with seasonal small plates for sharing, natural wine and cocktails.",
+  "desc_de": "Gemütliche Bar am Marktplatz mit saisonalen Gerichten zum Teilen, Naturwein und Cocktails.",
+  "desc_sv": "Mysig bar vid torget med små säsongsrätter att dela, naturvin och cocktails.",
+  "label": "Alle dage 17–22.30",
+  "hours": {
+   "0": [["17:00","22:30"]], "1": [["17:00","22:30"]], "2": [["17:00","22:30"]], "3": [["17:00","22:30"]],
+   "4": [["17:00","22:30"]], "5": [["17:00","22:30"]], "6": [["17:00","22:30"]]
+  },
+  "src": ["https://www.delbar.dk/", "https://www.visitdenmark.com/denmark/explore/delbar-gdk1156946"],
+  "sure": false
+ },
+ {
+  "id": "pakhuset",
+  "cat": "mad",
+  "name": "Restaurant Pakhuset",
+  "lat": 55.13632, "lng": 15.14192,
+  "url": "https://www.restaurantpakhuset.dk/",
+  "addr": "Brænderigænget 3",
+  "desc": "Familievenlig restaurant i et gammelt rødt pakhus med bøffer, fisk og smørrebrød.",
+  "desc_en": "Family-friendly restaurant in an old red warehouse serving steaks, fish and open sandwiches.",
+  "desc_de": "Familienfreundliches Restaurant in einem alten roten Packhaus mit Steaks, Fisch und Smørrebrød.",
+  "desc_sv": "Familjevänlig restaurang i ett gammalt rött packhus med biffar, fisk och smørrebrød.",
+  "label": "Efterårsferie: fre–lør 11.30–16.30 & 17–20, søn–tors 17–20 · sæsonåbent",
+  "seasons": [
+   {"from": "10-09", "to": "10-23", "hours": {
+    "0": [["17:00","20:00"]], "1": [["17:00","20:00"]], "2": [["17:00","20:00"]], "3": [["17:00","20:00"]],
+    "4": [["17:00","20:00"]], "5": [["11:30","16:30"],["17:00","20:00"]], "6": [["11:30","16:30"],["17:00","20:00"]]
+   }}
+  ],
+  "src": ["https://www.visitdenmark.com/denmark/explore/pakhuset-i-svaneke-gdk614616", "https://www.restaurantpakhuset.dk/", "https://bornibyen.dk/places/9967-restaurant-pakhuset-svaneke"],
+  "sure": false
+ },
+ {
+  "id": "hjornet",
+  "cat": "mad",
+  "name": "Restaurant Hjørnet",
+  "lat": 55.13676, "lng": 15.14416,
+  "url": "https://www.hjornet.dk/",
+  "addr": "Storegade 1B",
+  "desc": "Bistro, vinbar og lille patisseri med moderne bornholmsk sæsonmad og udsigt over Østersøen.",
+  "desc_en": "Bistro, wine bar and micro pâtisserie with modern seasonal Bornholm food and Baltic Sea views.",
+  "desc_de": "Bistro, Weinbar und kleine Patisserie mit moderner, saisonaler Bornholmer Küche und Ostseeblick.",
+  "desc_sv": "Bistro, vinbar och litet konditori med modern bornholmsk säsongsmat och utsikt över Östersjön.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://www.hjornet.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/restaurant-hjornet-gdk1156786"],
+  "sure": false
+ },
+ {
+  "id": "svrog",
+  "cat": "mad",
+  "name": "Svaneke Røgeri",
+  "lat": 55.13966, "lng": 15.1431,
+  "url": "https://svanekeroegeri.dk/",
+  "addr": "Fiskergade 12",
+  "desc": "Klassisk røgeri ved vandet med røget sild, makrel, laks og ål – og retten Solstrejf over Svaneke.",
+  "desc_en": "Classic seaside smokehouse with smoked herring, mackerel, salmon and eel.",
+  "desc_de": "Klassische Räucherei am Wasser mit geräuchertem Hering, Makrele, Lachs und Aal.",
+  "desc_sv": "Klassiskt rökeri vid vattnet med rökt sill, makrill, lax och ål.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://svanekeroegeri.dk/home/aabningtider.html"],
+  "sure": false
+ },
+ {
+  "id": "svbrod",
+  "cat": "mad",
+  "name": "Svaneke Brød",
+  "lat": 55.13707, "lng": 15.14375,
+  "url": "https://www.facebook.com/Svaneke-br%C3%B8d-839507942732463/",
+  "addr": "Søndergade 2",
+  "desc": "Økologisk surdejsbageri tæt på havnen med kaffebar – kendt for tebirkes og Svaneke-snurren.",
+  "desc_en": "Organic sourdough bakery near the harbour with a coffee bar – known for its tebirkes and Svaneke twist.",
+  "desc_de": "Bio-Sauerteigbäckerei nahe dem Hafen mit Kaffeebar – bekannt für Tebirkes und den Svaneke-Twist.",
+  "desc_sv": "Ekologiskt surdegsbageri nära hamnen med kaffebar – känt för tebirkes och Svaneke-snurran.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://www.visitdenmark.com/denmark/plan-your-trip/svaneke-bread-gdk1154515"],
+  "sure": false
+ },
+ {
+  "id": "sydost",
+  "cat": "mad",
+  "name": "Syd-Øst for Paradis",
+  "lat": 55.13128, "lng": 15.15178,
+  "url": "https://www.facebook.com/sydoestforparadis/",
+  "addr": "Skovgade 34 (Hullehavn)",
+  "desc": "Lille café mellem klipperne ved Hullehavn med kaffe, tapas, cava og havudsigt – sommer med livemusik.",
+  "desc_en": "Small café among the rocks at Hullehavn with coffee, tapas, cava and sea views – live music in summer.",
+  "desc_de": "Kleines Café zwischen den Felsen bei Hullehavn mit Kaffee, Tapas, Cava und Meerblick – im Sommer Livemusik.",
+  "desc_sv": "Litet kafé bland klipporna vid Hullehavn med kaffe, tapas, cava och havsutsikt – livemusik på sommaren.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://www.visitdenmark.com/denmark/plan-your-trip/sydost-for-paradis-gdk1155381"],
+  "sure": false
+ },
+ {
+  "id": "madvig",
+  "cat": "mad",
+  "name": "Madvig – Pub og Lounge",
+  "lat": 55.13583, "lng": 15.14145,
+  "url": "https://www.facebook.com/madvigpuboglounge/",
+  "addr": "Postgade 25",
+  "desc": "Hyggelig pub og lounge med Svaneke-øl, vin, drinks og kaffe.",
+  "desc_en": "Cosy pub and lounge serving Svaneke beer, wine, spirits and coffee.",
+  "desc_de": "Gemütliche Pub und Lounge mit Svaneke-Bier, Wein, Spirituosen und Kaffee.",
+  "desc_sv": "Mysig pub och lounge med Svaneke-öl, vin, drinkar och kaffe.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://www.visitdenmark.com/denmark/explore/madvig-pub-og-lounge-gdk1154854"],
+  "sure": false
+ }
+]

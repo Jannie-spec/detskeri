@@ -1,0 +1,140 @@
+[
+ {
+  "id": "hasrog", "cat": "mad", "name": "Hasle Røgeri",
+  "lat": 55.1798, "lng": 14.7033,
+  "url": "https://hasleroegeri.dk/", "addr": "Søndre Bæk 20",
+  "desc": "Over 100 år gammelt røgeri ved vandet med fiskebuffet og frisk røget fisk til at tage med.",
+  "desc_en": "Smokehouse by the sea, over 100 years old, with a fish buffet and freshly smoked fish to take away.",
+  "desc_de": "Über 100 Jahre alte Räucherei am Wasser mit Fischbuffet und frisch geräuchertem Fisch zum Mitnehmen.",
+  "desc_sv": "Över 100 år gammalt rökeri vid vattnet med fiskbuffé och nyrökt fisk att ta med.",
+  "label": "Til 9/10: 10–17 · 10.–16/10: 10–21 · 17/10: 10–15 · 18/10 lukket · 19/10–1/11: 10–16 (køkken lukker 1 time før)",
+  "seasons": [
+   {"from": "03-28", "to": "06-14", "hours": {"0": [["10:00","17:00"]], "1": [["10:00","17:00"]], "2": [["10:00","17:00"]], "3": [["10:00","17:00"]], "4": [["10:00","17:00"]], "5": [["10:00","17:00"]], "6": [["10:00","17:00"]]}},
+   {"from": "06-15", "to": "07-11", "hours": {"0": [["10:00","21:00"]], "1": [["10:00","21:00"]], "2": [["10:00","21:00"]], "3": [["10:00","21:00"]], "4": [["10:00","21:00"]], "5": [["10:00","21:00"]], "6": [["10:00","21:00"]]}},
+   {"from": "07-12", "to": "07-25", "hours": {"0": [["10:00","22:00"]], "1": [["10:00","22:00"]], "2": [["10:00","22:00"]], "3": [["10:00","22:00"]], "4": [["10:00","22:00"]], "5": [["10:00","22:00"]], "6": [["10:00","22:00"]]}},
+   {"from": "07-26", "to": "09-05", "hours": {"0": [["10:00","21:00"]], "1": [["10:00","21:00"]], "2": [["10:00","21:00"]], "3": [["10:00","21:00"]], "4": [["10:00","21:00"]], "5": [["10:00","21:00"]], "6": [["10:00","21:00"]]}},
+   {"from": "09-06", "to": "10-09", "hours": {"0": [["10:00","17:00"]], "1": [["10:00","17:00"]], "2": [["10:00","17:00"]], "3": [["10:00","17:00"]], "4": [["10:00","17:00"]], "5": [["10:00","17:00"]], "6": [["10:00","17:00"]]}},
+   {"from": "10-10", "to": "10-16", "hours": {"0": [["10:00","21:00"]], "1": [["10:00","21:00"]], "2": [["10:00","21:00"]], "3": [["10:00","21:00"]], "4": [["10:00","21:00"]], "5": [["10:00","21:00"]], "6": [["10:00","21:00"]]}},
+   {"from": "10-17", "to": "10-17", "hours": {"6": [["10:00","15:00"]]}},
+   {"from": "10-19", "to": "11-01", "hours": {"0": [["10:00","16:00"]], "1": [["10:00","16:00"]], "2": [["10:00","16:00"]], "3": [["10:00","16:00"]], "4": [["10:00","16:00"]], "5": [["10:00","16:00"]], "6": [["10:00","16:00"]]}}
+  ],
+  "closedMonths": [12, 1, 2],
+  "src": ["https://hasleroegeri.dk/new-page"], "sure": true
+ },
+ {
+  "id": "hasgrill", "cat": "mad", "name": "Hasle Havnegrill",
+  "lat": 55.18752, "lng": 14.70445,
+  "url": "https://haslehavnegrill.dk/", "addr": "Havnen 25",
+  "desc": "Grill og pizza ved havnen med udendørs siddepladser og isbod.",
+  "desc_en": "Harbour grill and pizza place with outdoor seating and an ice cream counter.",
+  "desc_de": "Grill und Pizza am Hafen mit Sitzplätzen im Freien und Eisstand.",
+  "desc_sv": "Grill och pizza vid hamnen med uteservering och glasskiosk.",
+  "label": "Tor–søn 11–19 · fra 19/10: tor 16–19, fre–søn 11–19 (køkken til 18.45)",
+  "seasons": [
+   {"from": "09-01", "to": "10-18", "hours": {"0": [["11:00","19:00"]], "4": [["11:00","19:00"]], "5": [["11:00","19:00"]], "6": [["11:00","19:00"]]}},
+   {"from": "10-19", "to": "11-01", "hours": {"0": [["11:00","19:00"]], "4": [["16:00","19:00"]], "5": [["11:00","19:00"]], "6": [["11:00","19:00"]]}}
+  ],
+  "src": ["https://haslehavnegrill.dk/aabnigstider/"], "sure": true
+ },
+ {
+  "id": "olhuzed", "cat": "mad", "name": "Ølhuzed",
+  "lat": 55.18400, "lng": 14.70573,
+  "url": "https://oelhuzed.dk/", "addr": "Storegade 57",
+  "desc": "Hyggelig ølbar med bornholmske og danske øl på hanen og snacks til.",
+  "desc_en": "Cosy beer bar with Bornholm and Danish beers on tap and snacks to match.",
+  "desc_de": "Gemütliche Bierbar mit Bieren aus Bornholm und Dänemark vom Fass und passenden Snacks.",
+  "desc_sv": "Mysig ölbar med öl från Bornholm och Danmark på fat och snacks till.",
+  "label": "Tor 14–20, fre–lør 14–22 · uge 42: man–tor 14–20, fre–lør 14–22",
+  "seasons": [
+   {"from": "01-01", "to": "10-11", "hours": {"4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}},
+   {"from": "10-12", "to": "10-17", "hours": {"1": [["14:00","20:00"]], "2": [["14:00","20:00"]], "3": [["14:00","20:00"]], "4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}},
+   {"from": "10-18", "to": "12-31", "hours": {"4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}}
+  ],
+  "src": ["https://oelhuzed.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/olhuzed-gdk1154705"], "sure": true
+ },
+ {
+  "id": "solskin", "cat": "mad", "name": "Café Solskin (Hasle Camping)",
+  "lat": 55.17873, "lng": 14.70714,
+  "url": "https://www.haslecamping.dk/index.php/haslecamping/cafe-restaurant-pizzaria/cafe-solskin", "addr": "Fælledvej 30",
+  "desc": "Pizzeria og café på Hasle Camping; i oktober pizza og grillkylling.",
+  "desc_en": "Pizzeria and café at Hasle Camping; in October pizza and rotisserie chicken.",
+  "desc_de": "Pizzeria und Café auf dem Campingplatz Hasle; im Oktober Pizza und Grillhähnchen.",
+  "desc_sv": "Pizzeria och kafé på Hasle Camping; i oktober pizza och grillad kyckling.",
+  "label": "Alle dage 16–20 til og med 18/10",
+  "seasons": [
+   {"from": "05-01", "to": "05-31", "hours": {"0": [["16:00","20:00"]], "5": [["16:00","20:00"]], "6": [["16:00","20:00"]]}},
+   {"from": "06-01", "to": "07-12", "hours": {"0": [["11:00","21:00"]], "1": [["11:00","21:00"]], "2": [["11:00","21:00"]], "3": [["11:00","21:00"]], "4": [["11:00","21:00"]], "5": [["11:00","21:00"]], "6": [["11:00","21:00"]]}},
+   {"from": "07-13", "to": "08-16", "hours": {"0": [["11:00","22:00"]], "1": [["11:00","22:00"]], "2": [["11:00","22:00"]], "3": [["11:00","22:00"]], "4": [["11:00","22:00"]], "5": [["11:00","22:00"]], "6": [["11:00","22:00"]]}},
+   {"from": "08-17", "to": "08-31", "hours": {"0": [["11:00","20:00"]], "1": [["11:00","20:00"]], "2": [["11:00","20:00"]], "3": [["11:00","20:00"]], "4": [["11:00","20:00"]], "5": [["11:00","20:00"]], "6": [["11:00","20:00"]]}},
+   {"from": "09-01", "to": "10-18", "hours": {"0": [["16:00","20:00"]], "1": [["16:00","20:00"]], "2": [["16:00","20:00"]], "3": [["16:00","20:00"]], "4": [["16:00","20:00"]], "5": [["16:00","20:00"]], "6": [["16:00","20:00"]]}}
+  ],
+  "src": ["https://www.haslecamping.dk/index.php/haslecamping/pladsen/aabningstider"], "sure": true
+ },
+ {
+  "id": "kysten", "cat": "mad", "name": "Restaurant Kysten",
+  "lat": 55.18524, "lng": 14.70420,
+  "url": "https://hotelkysten.dk/restaurant-bornholm/", "addr": "Vestergade 65",
+  "desc": "Hotelrestaurant ved havnen med terrasse og udsigt til solnedgangen; bordbestilling ønskes.",
+  "desc_en": "Hotel restaurant by the harbour with a terrace and sunset views; booking requested.",
+  "desc_de": "Hotelrestaurant am Hafen mit Terrasse und Blick auf den Sonnenuntergang; Reservierung erwünscht.",
+  "desc_sv": "Hotellrestaurang vid hamnen med terrass och utsikt över solnedgången; bordsbokning önskas.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://hotelkysten.dk/restaurant-bornholm/"], "sure": false
+ },
+ {
+  "id": "emajoka", "cat": "mad", "name": "Emajoka",
+  "lat": 55.1854, "lng": 14.7038,
+  "url": "https://www.facebook.com/cafeemajoka/", "addr": "Havnen 8",
+  "desc": "Café og restaurant ved havnen med loungeterrasse og kunsthåndværk.",
+  "desc_en": "Harbourside café and restaurant with a lounge terrace and local crafts.",
+  "desc_de": "Café und Restaurant am Hafen mit Lounge-Terrasse und Kunsthandwerk.",
+  "desc_sv": "Kafé och restaurang vid hamnen med loungeterrass och konsthantverk.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://www.kultunaut.dk/perl/sted/type-nynaut/nr-2066040"], "sure": false
+ },
+ {
+  "id": "kabyssen", "cat": "mad", "name": "Kabyssen",
+  "lat": 55.1853, "lng": 14.7022,
+  "url": "http://kabyssen.nu/velkommen", "addr": "Vesthavnsvej 30",
+  "desc": "Café i et rødt fiskerhus yderst på molen med burgere, sandwich og egen lille sandstrand.",
+  "desc_en": "Café in a red fisherman's house at the end of the pier with burgers, sandwiches and its own small beach.",
+  "desc_de": "Café in einem roten Fischerhaus am Ende der Mole mit Burgern, Sandwiches und eigenem kleinem Sandstrand.",
+  "desc_sv": "Kafé i ett rött fiskarhus längst ut på piren med burgare, smörgåsar och en egen liten sandstrand.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://bookbornholm.com/en/hasle", "https://www.kultunaut.dk/perl/sted/type-nynaut/nr-2144476"], "sure": false
+ },
+ {
+  "id": "lunchvang", "cat": "mad", "name": "LUNCH (Vang Havn)",
+  "lat": 55.2485, "lng": 14.73818,
+  "url": "https://lunch-bornholm.dk/restauranten/", "addr": "Vang 62, Vang",
+  "desc": "Frokostrestaurant ved Vang Havn med havudsigt, fra folkene bag Le Port.",
+  "desc_en": "Lunch restaurant at Vang harbour with sea views, from the people behind Le Port.",
+  "desc_de": "Mittagsrestaurant am Hafen von Vang mit Meerblick, von den Machern von Le Port.",
+  "desc_sv": "Lunchrestaurang vid Vang hamn med havsutsikt, från folket bakom Le Port.",
+  "label": "Okt: tir–lør 12–16 · advent (28/11–20/12): lør–søn 12–16",
+  "seasons": [
+   {"from": "04-02", "to": "06-20", "hours": {"2": [["11:30","17:00"]], "3": [["11:30","17:00"]], "4": [["11:30","17:00"]], "5": [["11:30","17:00"]], "6": [["11:30","17:00"]]}},
+   {"from": "08-10", "to": "09-28", "hours": {"2": [["11:30","17:00"]], "3": [["11:30","17:00"]], "4": [["11:30","17:00"]], "5": [["11:30","17:00"]], "6": [["11:30","17:00"]]}},
+   {"from": "10-01", "to": "10-31", "hours": {"2": [["12:00","16:00"]], "3": [["12:00","16:00"]], "4": [["12:00","16:00"]], "5": [["12:00","16:00"]], "6": [["12:00","16:00"]]}},
+   {"from": "11-28", "to": "12-20", "hours": {"0": [["12:00","16:00"]], "6": [["12:00","16:00"]]}}
+  ],
+  "src": ["https://lunch-bornholm.dk/restauranten/", "https://leport.dk/"], "sure": true
+ },
+ {
+  "id": "solvang", "cat": "mad", "name": "Café Solvang",
+  "lat": 55.2485, "lng": 14.73694,
+  "url": "https://cafesolvang.dk/", "addr": "Vang 95, Vang",
+  "desc": "Lille café i Vang med kaffe, kage og fiskeburger – godt stop på turen mod Hammeren.",
+  "desc_en": "Small café in Vang with coffee, cake and fish burgers – a good stop on the way to Hammeren.",
+  "desc_de": "Kleines Café in Vang mit Kaffee, Kuchen und Fischburgern – ein guter Halt auf dem Weg nach Hammeren.",
+  "desc_sv": "Litet kafé i Vang med kaffe, kaka och fiskburgare – bra stopp på vägen mot Hammeren.",
+  "label": "Okt: fre–søn 11–18 (køkken 12–16)",
+  "seasons": [
+   {"from": "10-01", "to": "10-31", "hours": {"0": [["11:00","18:00"]], "5": [["11:00","18:00"]], "6": [["11:00","18:00"]]}}
+  ],
+  "src": ["https://cafesolvang.dk/"], "sure": false
+ }
+]

@@ -1,0 +1,65 @@
+# Bygger detskeri.dk hver morgen kl. 8 (dansk tid) og lægger siden på GitHub Pages.
+# Henter først arrangementer fra KultuNaut. Fejler hentningen, bygges siden med gårsdagens data.
+# GitHub kører i UTC: hver halve time 06–09 UTC. Vagten springer over før kl. 8 dansk tid og når dagens opdatering er lavet.
+name: Byg og udgiv
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "0,30 6-9 * * *"
+    - cron: "5 10 * * *"     # ved middagstid – fanger rettelser i løbet af dagen
+  workflow_dispatch: {}
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  byg:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v5
+        with: { fetch-depth: 30 }
+      - id: v
+        name: Vagt
+        run: |
+          H=$(TZ=Europe/Copenhagen date +%H); D=$(TZ=Europe/Copenhagen date +%F)
+          if [ "${{ github.event_name }}" != "schedule" ]; then echo hent=1 >> $GITHUB_OUTPUT; exit 0; fi
+          if [ "$(date -u +%H%M)" = "1005" ] || [ "$(date -u +%H)" = "10" ]; then echo hent=0 >> $GITHUB_OUTPUT; exit 0; fi
+          if [ "$H" -lt 8 ]; then echo "Før kl. 8 dansk tid"; echo hent=skip >> $GITHUB_OUTPUT; exit 0; fi
+          if git log --since="$D 00:00" --format=%s | grep -q "^Data $D"; then echo "Allerede opdateret i dag"; echo hent=skip >> $GITHUB_OUTPUT; exit 0; fi
+          echo hent=1 >> $GITHUB_OUTPUT
+      - uses: actions/setup-python@v6
+        if: steps.v.outputs.hent != 'skip'
+        with: { python-version: "3.12" }
+      - name: Hent arrangementer
+        id: h
+        if: steps.v.outputs.hent == '1'
+        continue-on-error: true
+        run: |
+          pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null
+          python tools/kultunaut.py
+      - name: Byg
+        if: steps.v.outputs.hent != 'skip'
+        run: python build.py
+      - name: Gem data
+        if: steps.v.outputs.hent == '1' && steps.h.outcome == 'success'
+        run: |
+          git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
+          git add data/events.json data/reg.json 2>/dev/null || true
+          D=$(TZ=Europe/Copenhagen date +%F)
+          if ! git diff --cached --quiet; then git commit -m "Data $D" && git push; elif [ "${{ github.event_name }}" = "schedule" ]; then git commit --allow-empty -m "Data $D (uændret)" && git push; fi
+      - uses: actions/configure-pages@v5
+        if: steps.v.outputs.hent != 'skip'
+      - uses: actions/upload-pages-artifact@v4
+        if: steps.v.outputs.hent != 'skip'
+        with: { path: site }
+      - id: deploy
+        if: steps.v.outputs.hent != 'skip'
+        uses: actions/deploy-pages@v4

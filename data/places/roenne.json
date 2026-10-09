@@ -1,0 +1,259 @@
+[
+ {
+  "id": "rpak", "cat": "mad", "name": "Restaurant Det Røde Pakhus",
+  "lat": 55.10133, "lng": 14.69732,
+  "url": "https://www.roedepakhus.dk/", "addr": "Snellemark 30",
+  "desc": "Hyggelig restaurant i et gammelt pakhus med sæsonmenu af fisk, kød og grønt – byens højst ratede.",
+  "desc_en": "Cosy restaurant in an old warehouse with a seasonal menu of fish, meat and vegetables – the town's top-rated.",
+  "desc_de": "Gemütliches Restaurant in einem alten Packhaus mit saisonaler Karte aus Fisch, Fleisch und Gemüse – das bestbewertete der Stadt.",
+  "desc_sv": "Mysig restaurang i ett gammalt packhus med säsongsmeny av fisk, kött och grönt – stadens högst rankade.",
+  "label": "Tirs–lør 12–14.30 + 18–20.30 · søn 12–14.30 + 17.30–20.30 · lukket man.",
+  "hours": {
+   "0": [["12:00","14:30"],["17:30","20:30"]],
+   "2": [["12:00","14:30"],["18:00","20:30"]],
+   "3": [["12:00","14:30"],["18:00","20:30"]],
+   "4": [["12:00","14:30"],["18:00","20:30"]],
+   "5": [["12:00","14:30"],["18:00","20:30"]],
+   "6": [["12:00","14:30"],["18:00","20:30"]]
+  },
+  "src": ["https://www.roedepakhus.dk/"], "sure": true
+ },
+ {
+  "id": "gust", "cat": "mad", "name": "Café Gustav",
+  "lat": 55.10235, "lng": 14.69893,
+  "url": "https://www.cafegustav.dk/", "addr": "Store Torv 8",
+  "desc": "Klassisk café på Store Torv med brunch, frokost og aftensmad hele året.",
+  "desc_en": "Classic café on Store Torv serving brunch, lunch and dinner all year round.",
+  "desc_de": "Klassisches Café am Store Torv mit Brunch, Mittag- und Abendessen das ganze Jahr.",
+  "desc_sv": "Klassiskt kafé vid Store Torv med brunch, lunch och middag året runt.",
+  "label": "Alle dage fra 10 · køkken til 20.30 (fre–lør 21)",
+  "hours": {
+   "0": [["10:00","20:30"]], "1": [["10:00","20:30"]], "2": [["10:00","20:30"]],
+   "3": [["10:00","20:30"]], "4": [["10:00","20:30"]],
+   "5": [["10:00","21:00"]], "6": [["10:00","21:00"]]
+  },
+  "src": ["https://www.cafegustav.dk/aabningstider"], "sure": true
+ },
+ {
+  "id": "texa", "cat": "mad", "name": "Texas",
+  "lat": 55.10374, "lng": 14.6995,
+  "url": "https://texas-bornholm.dk/", "addr": "Store Torvegade 14",
+  "desc": "Amerikansk steakhouse på gågaden med bøffer, burgere og spareribs – åbent hele året.",
+  "desc_en": "American steakhouse on the pedestrian street with steaks, burgers and ribs – open all year.",
+  "desc_de": "Amerikanisches Steakhouse in der Fußgängerzone mit Steaks, Burgern und Spareribs – ganzjährig geöffnet.",
+  "desc_sv": "Amerikanskt steakhouse på gågatan med biffar, burgare och revbensspjäll – öppet året runt.",
+  "label": "Alle dage 12–21",
+  "hours": {
+   "0": [["12:00","21:00"]], "1": [["12:00","21:00"]], "2": [["12:00","21:00"]],
+   "3": [["12:00","21:00"]], "4": [["12:00","21:00"]], "5": [["12:00","21:00"]], "6": [["12:00","21:00"]]
+  },
+  "src": ["https://texas-bornholm.dk/", "https://open2day.dk/bornholm/mad-og-drikke"], "sure": true
+ },
+ {
+  "id": "majo", "cat": "mad", "name": "Majolica",
+  "lat": 55.10077, "lng": 14.70119,
+  "url": "https://www.majolica.dk/", "addr": "Lille Torv 7",
+  "desc": "Café og bar i den gamle keramikfabrik på Lille Torv – hjemmelavet cafémad, bornholmsk øl og brødudsalg fra morgenstunden.",
+  "desc_en": "Café and bar in the old ceramics factory on Lille Torv – homemade café food, Bornholm beer and bread from early morning.",
+  "desc_de": "Café und Bar in der alten Keramikfabrik am Lille Torv – hausgemachte Café-Gerichte, Bornholmer Bier und Brotverkauf ab dem Morgen.",
+  "desc_sv": "Kafé och bar i den gamla keramikfabriken vid Lille Torv – hemlagad kafémat, bornholmsk öl och brödförsäljning från morgonen.",
+  "label": "Man–tors + søn 9.30–22.30 · fre–lør 9.30–24",
+  "hours": {
+   "0": [["09:30","22:30"]], "1": [["09:30","22:30"]], "2": [["09:30","22:30"]],
+   "3": [["09:30","22:30"]], "4": [["09:30","22:30"]],
+   "5": [["09:30","23:59"]], "6": [["09:30","23:59"]]
+  },
+  "src": ["https://www.majolica.dk/abningstider"], "sure": true
+ },
+ {
+  "id": "skaf", "cat": "mad", "name": "Skafferiet i Rønne",
+  "lat": 55.1045, "lng": 14.69974,
+  "url": "https://skafferietironne.dk/", "addr": "Store Torvegade 29",
+  "desc": "Café og restaurant på Laksetorvet med hjemlig dansk mad med et moderne twist – smørrebrød, frokosttårn og aftensretter.",
+  "desc_en": "Café and restaurant on Laksetorvet serving homely Danish food with a modern twist – open sandwiches, lunch towers and dinner.",
+  "desc_de": "Café und Restaurant am Laksetorvet mit dänischer Hausmannskost mit modernem Twist – Smørrebrød, Lunch-Etagere und Abendgerichte.",
+  "desc_sv": "Kafé och restaurang vid Laksetorvet med hemlagad dansk mat med modern twist – smørrebrød, lunchtorn och middagsrätter.",
+  "label": "Man + ons–søn 12–21.30 · lukket tirs.",
+  "hours": {
+   "0": [["12:00","21:30"]], "1": [["12:00","21:30"]], "3": [["12:00","21:30"]],
+   "4": [["12:00","21:30"]], "5": [["12:00","21:30"]], "6": [["12:00","21:30"]]
+  },
+  "src": ["https://skafferietironne.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/skafferiet-i-ronne-gdk1155386"], "sure": true
+ },
+ {
+  "id": "post", "cat": "mad", "name": "Postens Spisehuz",
+  "lat": 55.1011, "lng": 14.7015,
+  "url": "https://postensspisehuz.dk/", "addr": "Lille Torv 18",
+  "desc": "Traditionelt dansk køkken i Det Gamle Posthus – smørrebrød til frokost og dagens ret om aftenen.",
+  "desc_en": "Traditional Danish cooking in the old post office – open sandwiches for lunch and a daily special in the evening.",
+  "desc_de": "Traditionelle dänische Küche im alten Postgebäude – mittags Smørrebrød, abends Tagesgericht.",
+  "desc_sv": "Traditionellt danskt kök i det gamla posthuset – smørrebrød till lunch och dagens rätt på kvällen.",
+  "label": "Frokost alle dage 11–16 · aften tirs–lør 17–21 · lukket 23/12–3/1",
+  "seasons": [
+   {"from": "01-04", "to": "12-22", "hours": {
+    "0": [["11:00","16:00"]],
+    "1": [["11:00","16:00"]],
+    "2": [["11:00","16:00"],["17:00","21:00"]],
+    "3": [["11:00","16:00"],["17:00","21:00"]],
+    "4": [["11:00","16:00"],["17:00","21:00"]],
+    "5": [["11:00","16:00"],["17:00","21:00"]],
+    "6": [["11:00","16:00"],["17:00","21:00"]]
+   }}
+  ],
+  "src": ["https://postensspisehuz.dk/"], "sure": true
+ },
+ {
+  "id": "casa", "cat": "mad", "name": "Casa Mia",
+  "lat": 55.10188, "lng": 14.698,
+  "url": "https://casamia-bornholm.dk/", "addr": "Antoniestræde 3",
+  "desc": "Rønnes ældste italienske restaurant – familiedrevet med pizza og pasta, også take away.",
+  "desc_en": "Rønne's oldest Italian restaurant – family-run, pizza and pasta, takeaway too.",
+  "desc_de": "Rønnes ältestes italienisches Restaurant – familiengeführt, Pizza und Pasta, auch zum Mitnehmen.",
+  "desc_sv": "Rønnes äldsta italienska restaurang – familjedriven med pizza och pasta, även take away.",
+  "label": "Tirs–søn 16.30–21 · lukket man.",
+  "hours": {
+   "0": [["16:30","21:00"]], "2": [["16:30","21:00"]], "3": [["16:30","21:00"]],
+   "4": [["16:30","21:00"]], "5": [["16:30","21:00"]], "6": [["16:30","21:00"]]
+  },
+  "src": ["https://casamia-bornholm.dk/"], "sure": true
+ },
+ {
+  "id": "thai", "cat": "mad", "name": "Restaurant ThaiMark",
+  "lat": 55.10121, "lng": 14.6919,
+  "url": "https://thaimark.dk/", "addr": "Munch Petersens Vej 1 (Hotel Rønne H)",
+  "desc": "Højt anmeldt thairestaurant i stueetagen på Hotel Rønne H tæt ved havnen.",
+  "desc_en": "Highly rated Thai restaurant on the ground floor of Hotel Rønne H near the harbour.",
+  "desc_de": "Hoch bewertetes Thai-Restaurant im Erdgeschoss des Hotel Rønne H nahe dem Hafen.",
+  "desc_sv": "Högt rankad thairestaurang i bottenvåningen på Hotel Rønne H nära hamnen.",
+  "label": "Ons–søn 17–21 (køkken til 20)",
+  "hours": {
+   "0": [["17:00","21:00"]], "3": [["17:00","21:00"]], "4": [["17:00","21:00"]],
+   "5": [["17:00","21:00"]], "6": [["17:00","21:00"]]
+  },
+  "src": ["https://thaimark.dk/"], "sure": true
+ },
+ {
+  "id": "gkok", "cat": "mad", "name": "G's Køkken & Café (Griffen)",
+  "lat": 55.10769, "lng": 14.70077,
+  "url": "https://bornholmhotels.dk/griffen-spa-hotel/restaurant-fest/", "addr": "Nordre Kystvej 34",
+  "desc": "Hotelrestaurant på Griffen Spahotel ved vandet – café om eftermiddagen, grill og byg-selv-menu om aftenen.",
+  "desc_en": "Waterfront hotel restaurant at Griffen Spa Hotel – café in the afternoon, grill and build-your-own menu in the evening.",
+  "desc_de": "Hotelrestaurant im Griffen Spahotel am Wasser – nachmittags Café, abends Grill und Menü nach Wahl.",
+  "desc_sv": "Hotellrestaurang på Griffen Spahotel vid vattnet – kafé på eftermiddagen, grill och bygg-själv-meny på kvällen.",
+  "label": "Alle dage: café 12–17 · køkken 17–21",
+  "hours": {
+   "0": [["12:00","21:00"]], "1": [["12:00","21:00"]], "2": [["12:00","21:00"]],
+   "3": [["12:00","21:00"]], "4": [["12:00","21:00"]], "5": [["12:00","21:00"]], "6": [["12:00","21:00"]]
+  },
+  "src": ["https://bornholmhotels.dk/griffen-spa-hotel/restaurant-fest/"], "sure": true
+ },
+ {
+  "id": "strg", "cat": "mad", "name": "Strøgets Spisehuz",
+  "lat": 55.10506, "lng": 14.70036,
+  "url": "https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne", "addr": "Store Torvegade 39",
+  "desc": "Folkelig spisestue på gågaden med klassisk dansk mad – stegt rødspætte, bøf og sild til fornuftige priser.",
+  "desc_en": "Down-to-earth eatery on the pedestrian street with classic Danish food – fried plaice, steak and herring at fair prices.",
+  "desc_de": "Bodenständiges Speiselokal in der Fußgängerzone mit klassisch dänischer Küche – Scholle, Steak und Hering zu fairen Preisen.",
+  "desc_sv": "Folklig matsal på gågatan med klassisk dansk mat – stekt rödspätta, biff och sill till rimliga priser.",
+  "label": "Tirs–søn fra 17 (fre–lør til 21) · lukket man.",
+  "hours": {
+   "0": [["17:00","20:00"]], "2": [["17:00","20:00"]], "3": [["17:00","20:00"]],
+   "4": [["17:00","20:00"]], "5": [["17:00","21:00"]], "6": [["17:00","21:00"]]
+  },
+  "src": ["https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne", "https://www.tripadvisor.com/Restaurant_Review-g189514-d2215399-Reviews-Strogets_Spisehus-Roenne_Bornholm.html"], "sure": false
+ },
+ {
+  "id": "munt", "cat": "mad", "name": "Café-Munter",
+  "lat": 55.10275, "lng": 14.69942,
+  "url": "https://www.cafe-munter.dk/", "addr": "Store Torv 2",
+  "desc": "Café midt på Store Torv med smørrebrød, burgere, brunch og aftensretter.",
+  "desc_en": "Café right on Store Torv with open sandwiches, burgers, brunch and dinner dishes.",
+  "desc_de": "Café mitten am Store Torv mit Smørrebrød, Burgern, Brunch und Abendgerichten.",
+  "desc_sv": "Kafé mitt på Store Torv med smørrebrød, burgare, brunch och middagsrätter.",
+  "label": "Alle dage fra 10 · køkken til 20 (fre–lør 20.30)",
+  "hours": {
+   "0": [["10:00","20:00"]], "1": [["10:00","20:00"]], "2": [["10:00","20:00"]],
+   "3": [["10:00","20:00"]], "4": [["10:00","20:00"]],
+   "5": [["10:00","20:30"]], "6": [["10:00","20:30"]]
+  },
+  "src": ["https://www.cafe-munter.dk/find_os.php"], "sure": false
+ },
+ {
+  "id": "brun", "cat": "mad", "name": "Brunshøj Bistro & Vinbar",
+  "lat": 55.103, "lng": 14.7003,
+  "url": "https://bbistro.dk/", "addr": "Nørregade 2",
+  "desc": "Fransk inspireret bistro og vinbar i den gamle Rådhuskro ved Store Torv.",
+  "desc_en": "French-inspired bistro and wine bar in the old Rådhuskro by Store Torv.",
+  "desc_de": "Französisch inspiriertes Bistro mit Weinbar im alten Rådhuskro am Store Torv.",
+  "desc_sv": "Franskinspirerad bistro och vinbar i gamla Rådhuskroen vid Store Torv.",
+  "label": "Ons–tors + søn 12–22 · fre–lør 12–24 · lukket man–tirs",
+  "hours": {
+   "0": [["12:00","22:00"]], "3": [["12:00","22:00"]], "4": [["12:00","22:00"]],
+   "5": [["12:00","23:59"]], "6": [["12:00","23:59"]]
+  },
+  "src": ["https://bbistro.dk/"], "sure": false
+ },
+ {
+  "id": "omal", "cat": "mad", "name": "O'Malley",
+  "lat": 55.10296, "lng": 14.69935,
+  "url": "https://www.tripadvisor.com/Restaurant_Review-g189514-d13954329-Reviews-O_Malley-Roenne_Bornholm.html", "addr": "Store Torvegade 2",
+  "desc": "Irsk pub ved Store Torv med stort øludvalg og enkel pubmad.",
+  "desc_en": "Irish pub by Store Torv with a big beer selection and simple pub food.",
+  "desc_de": "Irish Pub am Store Torv mit großer Bierauswahl und einfachem Pub-Essen.",
+  "desc_sv": "Irländsk pub vid Store Torv med stort ölutbud och enkel pubmat.",
+  "label": "Man–tors 11–24 · fre–lør 11–02.30 · lukket søn.",
+  "hours": {
+   "1": [["11:00","23:59"]], "2": [["11:00","23:59"]], "3": [["11:00","23:59"]],
+   "4": [["11:00","23:59"]], "5": [["11:00","02:30"]], "6": [["11:00","02:30"]]
+  },
+  "src": ["https://www.tripadvisor.com/Restaurant_Review-g189514-d13954329-Reviews-O_Malley-Roenne_Bornholm.html", "https://evendo.com/locations/denmark/bornholm/bar/o-malley"], "sure": false
+ },
+ {
+  "id": "smov", "cat": "mad", "name": "Bar' Smovs",
+  "lat": 55.10202, "lng": 14.69951,
+  "url": "https://www.bornholminfo.com/visit/holidays-on-bornholm/bar-smovs-gdk1154635", "addr": "Store Torv 5",
+  "desc": "Ny vin- og spisebar på Store Torv (fra holdet bag Det Røde Pakhus) med små deleretter – åbnede september 2026.",
+  "desc_en": "New wine and food bar on Store Torv (from the team behind Det Røde Pakhus) with small sharing plates – opened September 2026.",
+  "desc_de": "Neue Wein- und Essensbar am Store Torv (vom Team hinter Det Røde Pakhus) mit kleinen Gerichten zum Teilen – eröffnet im September 2026.",
+  "desc_sv": "Ny vin- och matbar vid Store Torv (från teamet bakom Det Røde Pakhus) med små delrätter – öppnade september 2026.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://tidende.dk/erhverv/datoen-er-klar-spisebar-aabner-snart/170495"], "sure": false
+ },
+ {
+  "id": "kaas", "cat": "mad", "name": "Café Kaas",
+  "lat": 55.10382, "lng": 14.69173,
+  "url": "https://www.facebook.com/cafekaasbornholm/", "addr": "Bådehavnsvej 15",
+  "desc": "Café ved lystbådehavnen på Nørrekås med sandwiches, havudsigt og livemusik om sommeren.",
+  "desc_en": "Café at the Nørrekås marina with sandwiches, sea views and live music in summer.",
+  "desc_de": "Café am Yachthafen Nørrekås mit Sandwiches, Meerblick und Livemusik im Sommer.",
+  "desc_sv": "Kafé vid småbåtshamnen på Nørrekås med smörgåsar, havsutsikt och livemusik på sommaren.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://bornholm.info/en/cafe-kaas-2-2/"], "sure": false
+ },
+ {
+  "id": "gbar", "cat": "mad", "name": "Den Gamle Barber",
+  "lat": 55.1016, "lng": 14.6962,
+  "url": "https://www.facebook.com/p/Den-Gamle-Barber-61552779598257/", "addr": "Kirkepladsen 3A",
+  "desc": "Hyggelig kaffebar ved Sankt Nicolai Kirke med kaffe, cocktails, let cafémad og temaaftener.",
+  "desc_en": "Cosy coffee bar by St. Nicholas' Church with coffee, cocktails, light café food and theme nights.",
+  "desc_de": "Gemütliche Kaffeebar an der Nikolaikirche mit Kaffee, Cocktails, leichten Café-Gerichten und Themenabenden.",
+  "desc_sv": "Mysig kaffebar vid S:t Nicolai kyrka med kaffe, cocktails, lätt kafémat och temakvällar.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://tidende.dk/erhverv/her-er-det-nye-vaertspar-paa-roenne-cafe/164892"], "sure": false
+ },
+ {
+  "id": "nkis", "cat": "is", "name": "Nørrekås Ishus",
+  "lat": 55.1045, "lng": 14.6925,
+  "url": "https://www.facebook.com/norrekaasis/", "addr": "Nørrekåsgade 1",
+  "desc": "Ishus og kaffested ved Nørrekås Strand lige ved lystbådehavnen.",
+  "desc_en": "Ice cream parlour and coffee spot by Nørrekås beach next to the marina.",
+  "desc_de": "Eisdiele und Kaffeestand am Strand Nørrekås direkt am Yachthafen.",
+  "desc_sv": "Glassbar och kaffeställe vid Nørrekås strand intill småbåtshamnen.",
+  "label": "Se stedets side",
+  "hours": null,
+  "src": ["https://bookbornholm.com/en/roenne"], "sure": false
+ }
+]
