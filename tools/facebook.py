@@ -130,15 +130,21 @@ def main():
         return
     if "--check" in args:
         ok = 0
-        for p in PAGES:
+        only = args[args.index("--check") + 1] if len(args) > args.index("--check") + 1 else None
+        pages = [p for p in PAGES if not only or p["slug"] == only]
+        for p in pages:
             token = os.environ.get(p["secret"])
             if not token: print(p["name"], "– intet token"); continue
             try:
                 with urllib.request.urlopen(f"{GRAPH}/me?fields=name&access_token={urllib.parse.quote(token)}", timeout=30) as r:
-                    print(p["name"], "– token virker for siden:", json.loads(r.read().decode()).get("name")); ok += 1
+                    name = json.loads(r.read().decode()).get("name", "")
+                    if name.lower() == f"det sker {p['in']}".lower():
+                        print(p["name"], "– token virker for siden:", name); ok += 1
+                    else:
+                        print(p["name"], "– token hører til", repr(name), "og ikke til siden (brug sidens egen access_token fra me/accounts)")
             except urllib.error.HTTPError as e:
                 print(p["name"], "– token virker IKKE:", e.code, e.read().decode()[:200])
-        sys.exit(0 if ok == len(PAGES) else 1)
+        sys.exit(0 if ok == len(pages) else 1)
     if "--post" not in args: print(__doc__); return
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}
     for p in PAGES:

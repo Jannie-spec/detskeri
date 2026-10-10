@@ -26,11 +26,15 @@ jobs:
         with: { python-version: "3.12" }
       - name: Vis opslag
         run: python tools/facebook.py --preview
-      - name: Tjek forbindelsen
+      - name: Tjek Bornholm
         env:
           FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
+        run: python tools/facebook.py --check bornholm
+      - name: Tjek Gudhjem
+        if: always()
+        env:
           FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
-        run: python tools/facebook.py --check
+        run: python tools/facebook.py --check gudhjem
       - name: Slå op
         if: github.event_name == 'schedule' || inputs.slaa_op
         env:
