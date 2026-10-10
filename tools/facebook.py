@@ -2,6 +2,7 @@
 
     python tools/facebook.py --preview      # viser opslagene, slår intet op
     python tools/facebook.py --post         # slår op via Meta Graph API (kræver hemmelighederne nedenfor)
+    python tools/facebook.py --check        # tjekker kun, at tokens virker (viser sidenavnene)
 
 Hemmeligheder (GitHub → Settings → Secrets and variables → Actions):
     FB_PAGE_TOKEN_BORNHOLM   sideadgangstoken til "Det sker på Bornholm"
@@ -126,6 +127,16 @@ def main():
     if "--preview" in args:
         for p in PAGES:
             print(f"===== {p['name']} =====\n{compose(p, events, today)}\n")
+        return
+    if "--check" in args:
+        for p in PAGES:
+            token = os.environ.get(p["secret"])
+            if not token: print(p["name"], "– intet token"); continue
+            try:
+                with urllib.request.urlopen(f"{GRAPH}/me?fields=name&access_token={urllib.parse.quote(token)}", timeout=30) as r:
+                    print(p["name"], "– token virker for siden:", json.loads(r.read().decode()).get("name"))
+            except urllib.error.HTTPError as e:
+                print(p["name"], "– token virker IKKE:", e.code, e.read().decode()[:200])
         return
     if "--post" not in args: print(__doc__); return
     state = json.loads(STATE.read_text(encoding="utf-8")) if STATE.exists() else {}

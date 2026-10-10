@@ -5,7 +5,12 @@ name: Facebook
 on:
   schedule:
     - cron: "0 9 * * 4"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      slaa_op:
+        description: "Slå op nu? (nej = tjek kun, at forbindelsen virker)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -21,7 +26,13 @@ jobs:
         with: { python-version: "3.12" }
       - name: Vis opslag
         run: python tools/facebook.py --preview
+      - name: Tjek forbindelsen
+        env:
+          FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
+          FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
+        run: python tools/facebook.py --check
       - name: Slå op
+        if: github.event_name == 'schedule' || inputs.slaa_op
         env:
           FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
           FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
