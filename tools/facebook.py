@@ -28,6 +28,7 @@ PAGES = [
 NEWS = "Få ugens program på mail hver torsdag – gratis:\ndetskeri.dk"
 DAYS = ["MANDAG", "TIRSDAG", "ONSDAG", "TORSDAG", "FREDAG", "LØRDAG", "SØNDAG"]
 # hvad der helst skal med – film og gudstjenester springes over
+NOW = "00:00"        # klokkeslæt nu (sættes i main); dagens arrangementer, der er forbi, kommer ikke med
 RANK = {"musik": 0, "teater": 0, "mad": 1, "born": 1, "kunst": 2, "foredrag": 2, "sport": 3, "andet": 3}
 # own_ahead: Klippens egne arrangementer nævnes så mange dage frem (0 = kun når de er i weekenden)
 
@@ -82,6 +83,7 @@ def compose(p, events, today):
             if e["id"] in used or e.get("own") or e.get("long") or not build.in_guide(e, g) or not build.on_day(e, d): continue
             k = build.kind_of(e)
             if k in ("film", "kirke") or not e.get("t"): continue
+            if d == today and (e.get("t2") or e["t"]) <= NOW: continue      # allerede forbi i dag
             cand.append((RANK.get(k, 3), e.get("t", ""), e))
         cand.sort(key=lambda x: (x[0], x[1]))
         per_day[d] = [c[2] for c in cand]
@@ -121,8 +123,9 @@ def main():
     args = sys.argv[1:]
     build.LANG = "da"
     events = build.all_events(json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"])
-    today = datetime.datetime.now(build.TZ).date()
-    if "--dato" in args: today = datetime.date.fromisoformat(args[args.index("--dato") + 1])
+    global NOW
+    now = datetime.datetime.now(build.TZ); today = now.date(); NOW = now.strftime("%H:%M")
+    if "--dato" in args: today = datetime.date.fromisoformat(args[args.index("--dato") + 1]); NOW = "00:00"
     week = f"{today.isocalendar()[0]}-W{today.isocalendar()[1]:02d}"
     if "--preview" in args:
         for p in PAGES:
