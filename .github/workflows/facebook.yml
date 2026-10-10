@@ -1,0 +1,35 @@
+# Ugentligt Facebook-opslag på "Det sker på Bornholm" og "Det sker i Gudhjem": torsdag kl. ca. 11 dansk tid (efter nyhedsbrevet).
+# Kræver hemmelighederne FB_PAGE_TOKEN_BORNHOLM og FB_PAGE_TOKEN_GUDHJEM (Settings → Secrets and variables → Actions).
+# Uden dem slås intet op. data/facebook.json husker, hvilke uger der er slået op, så en ekstra kørsel ikke poster igen.
+name: Facebook
+on:
+  schedule:
+    - cron: "0 9 * * 4"
+  workflow_dispatch: {}
+permissions:
+  contents: write
+concurrency:
+  group: facebook
+  cancel-in-progress: false
+jobs:
+  slaa-op:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with: { python-version: "3.12" }
+      - name: Vis opslag
+        run: python tools/facebook.py --preview
+      - name: Slå op
+        env:
+          FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
+          FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
+        run: python tools/facebook.py --post
+      - name: Gem hvad der er slået op
+        run: |
+          git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
+          git add data/facebook.json 2>/dev/null || exit 0
+          git diff --cached --quiet && exit 0
+          git commit -m "Facebook $(date +%F)"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
