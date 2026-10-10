@@ -139,7 +139,13 @@ def main():
                 with urllib.request.urlopen(f"{GRAPH}/me?fields=name&access_token={urllib.parse.quote(token)}", timeout=30) as r:
                     name = json.loads(r.read().decode()).get("name", "")
                     if name.lower() == f"det sker {p['in']}".lower():
-                        print(p["name"], "– token virker for siden:", name); ok += 1
+                        q = urllib.parse.quote(token)
+                        with urllib.request.urlopen(f"{GRAPH}/debug_token?input_token={q}&access_token={q}", timeout=30) as r2:
+                            exp = json.loads(r2.read().decode()).get("data", {}).get("expires_at", -1)
+                        if exp == 0:
+                            print(p["name"], "– token virker for siden og udløber aldrig:", name); ok += 1
+                        else:
+                            print(p["name"], "– token virker, men UDLØBER", exp, "– lav det fra en forlænget (Extend) nøgle")
                     else:
                         print(p["name"], "– token hører til", repr(name), "og ikke til siden (brug sidens egen access_token fra me/accounts)")
             except urllib.error.HTTPError as e:
