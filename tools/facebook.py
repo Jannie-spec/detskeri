@@ -17,7 +17,7 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 import build
 
-GRAPH = "https://graph.facebook.com/v21.0"
+GRAPH = "https://graph.facebook.com/v26.0"
 STATE = ROOT / "data" / "facebook.json"
 PAGES = [
     {"slug": "bornholm", "id": "61595319058631", "secret": "FB_PAGE_TOKEN_BORNHOLM", "name": "Bornholm", "in": "på Bornholm", "towns": None,
