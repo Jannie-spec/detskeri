@@ -72,10 +72,11 @@
   "checked": "2026-10-10"
  },
  "hasle:solvang": {
-  "hash": "d0944a7f83391cd9",
+  "hash": "18741a89cb020421",
   "url": "https://cafesolvang.dk/",
-  "text": "Køkkenet har åbent fra kl. 12-16, men vi serverer snacks, og drikkevarer til kl. 18.",
-  "checked": "2026-10-10"
+  "text": "Lørdag d. 10/10 åbent fra 11.00 - 16.00\nSøndag d. 11/10 åbent fra 11.00-16.00\nKøkkenet har åbent fra kl. 12-16, men vi serverer snacks, og drikkevarer til kl. 18.",
+  "checked": "2026-10-10",
+  "changed": "2026-10-10"
  },
  "nexoe:ngr": {
   "hash": "da29220fff6b4bda",
@@ -150,9 +151,9 @@
   "checked": "2026-10-10"
  },
  "roenne:strg": {
-  "hash": "a912cd0a0a4a9a9f",
+  "hash": "73f50080e07e3c8b",
   "url": "https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne",
-  "text": "Lukket Åbent Lør. fra 17:00 til 21:00 Se mere\nÅbent Åbent fra kl 12:00 til 20:15\nLukket Åbent Lør. fra 16:30 til 20:30\nÅbent Åbent fra kl 11:00 til 21:00\nÅbent Åbent fra kl 12:00 til 21:00\nÅbent Åbent fra kl 10:00 til 20:30\nÅbent Åbent fra kl 10:00 til 15:00\nLukket Åbent Lør. fra 16:30 til 21:00\nLukket Åbent Lør. fra 16:00 til 20:00\nÅbent Åbent fra kl 12:00 til 20:00\nÅbent Åbent fra kl 11:00 til 15:00\nLukket Åbent Lør. fra 17:00 til 20:00\nÅbent Åbent fra kl 10:00 til 18:00\nÅbent Åbent fra kl 11:00 til 20:30\nÅbent Åbent fra kl 11:00 til 20:00\nÅbent Åbent fra kl 11:00 til 17:00\nÅbent Åbent fra kl 10:00 til 17:00\nÅbent Åbent fra kl 12:00 til 19:00",
+  "text": "Lukket Åbent Lør. fra 17:00 til 21:00 Se mere",
   "checked": "2026-10-10",
   "changed": "2026-10-10"
  },
