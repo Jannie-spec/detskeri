@@ -241,6 +241,7 @@ def egne():
         ev = {"id": f"egen{i}", "d": e["date"], "title": e["title"], "where": e.get("where", ""), "town": "Gudhjem", "url": e.get("url") or "", "own": 1}
         if e.get("to") and e["to"] != e["date"]: ev["to"] = e["to"]
         if e.get("time"): ev["t"] = e["time"].replace(".", ":")
+        if e.get("text"): ev["text"] = e["text"]
         out.append(ev)
     return out
 
@@ -290,7 +291,8 @@ def build_day(g, events, places, d):
             tt, s, end = L("Hele dagen"), -1, None
         where = e.get("where", "") + ((", " + e["town"]) if many and e["town"].lower() not in e.get("where", "").lower() else "")
         items.append({"s": s, "time": tt, "title": L(e["title"]), "where": where, "url": e.get("rurl") or e.get("url"), "end": end,
-                      "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "town": e["town"], "own": bool(e.get("own"))})
+                      "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "town": e["town"], "own": bool(e.get("own")),
+                      "venue": e.get("where", ""), "text": e.get("text", "")})
     items.sort(key=lambda x: (not x["own"], x["s"], x["title"]))
     food, unknown = [], []
     for p in places.values():
@@ -356,7 +358,8 @@ def build_later(g, events, today):
         tt = (hm(e["t"]) + (("–" + hm(e["t2"])) if e.get("t2") else "")) if e.get("t") else ""
         where = e.get("where", "") + ((", " + e["town"]) if many and e["town"].lower() not in e.get("where", "").lower() else "")
         rows.append({"d": d1, "to": d2, "time": tt, "title": L(e["title"]), "where": where, "url": e.get("rurl") or e.get("url"),
-                     "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "long": bool(e.get("long")), "k": max(d1, start), "own": bool(e.get("own"))})
+                     "kind": k, "reg": L(REGTXT.get(e.get("reg"), "")), "long": bool(e.get("long")), "k": max(d1, start), "own": bool(e.get("own")),
+                     "town": e["town"], "venue": e.get("where", ""), "text": e.get("text", "")})
     rows.sort(key=lambda r: (r["k"], not r["own"], not r["long"], r["time"], r["title"]))
     months = []
     for r in rows:
@@ -396,23 +399,32 @@ def render_later(months, today):
     h.append('</section>')
     return "\n".join(h)
 
+KL = {"da": ("kl. ", ""), "en": ("", ""), "de": ("", " Uhr"), "sv": ("kl. ", "")}
+TOWN_SLUG = {g["towns"][0]: g["slug"] for g in GUIDES if g.get("towns") and len(g["towns"]) == 1}
+
 def jsonld(g, days, later):
     evs = [{"@type": "WebPage", "name": seo_title(g), "url": BASE + LANG_PRE[LANG] + g["path"], "inLanguage": LANG,
             "about": {"@type": "Place", "name": g["name"], "address": {"@type": "PostalAddress", "addressLocality": g["name"], "addressRegion": "Bornholm", "addressCountry": "DK"}},
             "isPartOf": {"@type": "WebSite", "name": "detskeri.dk", "url": BASE}}, breadcrumbs(g)]
-    def ev(name, start, where, town, url, endd=None):
-        return {"@type": "Event", "name": name, "startDate": start, **({"endDate": endd} if endd else {}), "eventStatus": "https://schema.org/EventScheduled",
+    def ev(it, start, endd=None):
+        # description: arrangørens egen tekst, ellers type · sted · by · tid ud fra de data, vi har
+        where, town = it["venue"], it["town"]
+        desc = it["text"] or " · ".join(x for x in (L(KIND_LABEL.get(it["kind"], "Arrangement")), where,
+                                                     town if town.lower() not in where.lower() else "",
+                                                     (KL[LANG][0] + it["time"] + KL[LANG][1]) if it["time"] else "") if x)
+        return {"@type": "Event", "name": it["title"], "startDate": start, **({"endDate": endd} if endd else {}), "eventStatus": "https://schema.org/EventScheduled",
                 "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
                 "location": {"@type": "Place", "name": where or town, "address": {"@type": "PostalAddress", "addressLocality": town, "addressCountry": "DK"}},
-                **({"url": url} if url else {})}
+                "description": desc, "image": BASE + f"del-{TOWN_SLUG.get(town, 'bornholm')}.png",
+                **({"url": it["url"]} if it["url"] else {})}
     for x in days:
         for it in x["items"]:
             if it["s"] < 0 or it["kind"] in ("film", "kirke"): continue
             st = datetime.datetime.combine(x["d"], datetime.time(it["s"] // 60, it["s"] % 60), TZ).isoformat()
-            evs.append(ev(it["title"], st, it["where"], it["town"], it["url"]))
+            evs.append(ev(it, st))
     for m in later:
         for r in m["rows"]:
-            evs.append(ev(r["title"], r["d"].isoformat(), r["where"], g["name"], r["url"], r["to"].isoformat() if r["to"] != r["d"] else None))
+            evs.append(ev(r, r["d"].isoformat(), r["to"].isoformat() if r["to"] != r["d"] else None))
     return json.dumps({"@context": "https://schema.org", "@graph": evs[:151]}, ensure_ascii=False).replace("</", "<\\/")
 
 def guide_nav(g, depth):
