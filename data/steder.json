@@ -1,0 +1,43 @@
+{
+ "sources": {
+  "bornholmertaarnet": {
+   "name": "Bornholmertårnet",
+   "url": "https://www.bornholmertaarnet.dk/",
+   "hash": "bf7c5995d4031b8b",
+   "ok": "2026-10-11",
+   "events": [
+    {
+     "id": "bornholmertaarnet-2026-10-10",
+     "d": "2026-10-10",
+     "title": "Bornholmertårnet: familiedage og rundvisning kl. 11 og 13",
+     "where": "Bornholmertårnet, Dueodde",
+     "town": "Nexø",
+     "url": "https://www.bornholmertaarnet.dk/efterarsferie/",
+     "src": "bornholmertaarnet",
+     "to": "2026-10-18",
+     "t": "10:00",
+     "t2": "16:00"
+    }
+   ]
+  },
+  "sandvighavn": {
+   "name": "Dideriks Veranda / Hotel Sandvig Havn",
+   "url": "https://www.hotelsandvighavn.com/team-1",
+   "hash": "58a41eeff633b59a",
+   "ok": "2026-10-11",
+   "events": [
+    {
+     "id": "sandvighavn-2026-10-10",
+     "d": "2026-10-10",
+     "title": "Halloween-spøgelsestur på Dideriks Veranda",
+     "where": "Dideriks Veranda, Hotel Sandvig Havn",
+     "town": "Allinge",
+     "url": "https://www.hotelsandvighavn.com/team-1",
+     "src": "sandvighavn",
+     "to": "2026-10-18"
+    }
+   ]
+  }
+ },
+ "generated": "2026-10-11T18:43"
+}

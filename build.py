@@ -250,11 +250,22 @@ def egne():
         out.append(ev)
     return out
 
+def steder():
+    """Arrangementer hentet direkte fra stedernes egne sider (tools/steder.py → data/steder.json), fx Bornholmertårnet og Dideriks Veranda."""
+    f = ROOT / "data" / "steder.json"
+    if not f.exists(): return []
+    out = []
+    for s in json.loads(f.read_text(encoding="utf-8")).get("sources", {}).values():
+        out += s.get("events", [])
+    return out
+
 def all_events(events):
-    """KultuNaut + egne; dubletter (samme dag og titel) fjernes fra KultuNaut-delen."""
+    """Egne + stedernes egne sider + KultuNaut; dubletter (samme dag og titel) fjernes, så hvert arrangement kun står én gang."""
     own = egne()
     keys = {(e["d"], _norm(e["title"])) for e in own}
-    return own + [e for e in events if (e["d"], _norm(e["title"])) not in keys]
+    direct = [e for e in steder() if (e["d"], _norm(e["title"])) not in keys]
+    keys |= {(e["d"], _norm(e["title"])) for e in direct}
+    return own + direct + [e for e in events if (e["d"], _norm(e["title"])) not in keys]
 
 def load():
     ev = json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))

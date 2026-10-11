@@ -46,6 +46,10 @@ jobs:
           pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null
           set -o pipefail
           python tools/kultunaut.py 2>&1 | tee data/hent.log
+      - name: Hent fra stedernes egne sider (Bornholmertårnet, Dideriks Veranda …)
+        if: steps.v.outputs.hent == '1'
+        continue-on-error: true
+        run: python tools/steder.py 2>&1 | tee -a data/hent.log
       - name: Tjek åbningstider (stille)
         if: steps.v.outputs.hent == '1'
         continue-on-error: true
@@ -62,7 +66,7 @@ jobs:
         if: steps.v.outputs.hent == '1' && steps.h.outcome == 'success'
         run: |
           git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
-          git add data/events.json data/reg.json data/hent.log data/tider.json data/egne.json 2>/dev/null || true
+          git add data/events.json data/reg.json data/hent.log data/tider.json data/egne.json data/steder.json 2>/dev/null || true
           D=$(TZ=Europe/Copenhagen date +%F)
           if ! git diff --cached --quiet; then git commit -m "Data $D" && git push; elif [ "${{ github.event_name }}" = "schedule" ]; then git commit --allow-empty -m "Data $D (uændret)" && git push; fi
       - uses: actions/configure-pages@v5
