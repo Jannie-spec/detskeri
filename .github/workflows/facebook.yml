@@ -1,10 +1,12 @@
-# Ugentligt Facebook-opslag på "Det sker på Bornholm" og "Det sker i Gudhjem": torsdag kl. ca. 11 dansk tid (efter nyhedsbrevet).
+# Dagligt Facebook-opslag på "Det sker på Bornholm" og "Det sker i Gudhjem": et billede med dagens program
+# (samme stil som nyhedsbrevet) + tekst, der sender folk til hjemmesiden og nyhedsbrevet. Ca. kl. 9.40 dansk tid,
+# efter morgenens opdatering af arrangementerne.
 # Kræver hemmelighederne FB_PAGE_TOKEN_BORNHOLM og FB_PAGE_TOKEN_GUDHJEM (Settings → Secrets and variables → Actions).
-# Uden dem slås intet op. data/facebook.json husker, hvilke uger der er slået op, så en ekstra kørsel ikke poster igen.
+# data/facebook.json husker, hvilke dage der er slået op, så en ekstra kørsel ikke poster igen.
 name: Facebook
 on:
   schedule:
-    - cron: "0 9 * * 4"
+    - cron: "40 7,8 * * *"      # GitHub kører i UTC: begge tider prøves, vagten nedenfor poster kun efter kl. 9 dansk tid
   workflow_dispatch:
     inputs:
       slaa_op:
@@ -19,29 +21,41 @@ concurrency:
 jobs:
   slaa-op:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
+      - id: v
+        name: Vagt
+        run: |
+          H=$(TZ=Europe/Copenhagen date +%H)
+          if [ "${{ github.event_name }}" = "schedule" ] && [ "$H" -lt 9 ]; then echo "Før kl. 9 dansk tid"; echo kør=0 >> $GITHUB_OUTPUT; else echo kør=1 >> $GITHUB_OUTPUT; fi
       - uses: actions/checkout@v5
+        if: steps.v.outputs.kør == '1'
       - uses: actions/setup-python@v6
+        if: steps.v.outputs.kør == '1'
         with: { python-version: "3.12" }
-      - name: Vis opslag
-        run: python tools/facebook.py --preview
       - name: Tjek Bornholm
+        if: steps.v.outputs.kør == '1'
         env:
           FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
         run: python tools/facebook.py --check bornholm
       - name: Tjek Gudhjem
-        if: always()
+        if: always() && steps.v.outputs.kør == '1'
         env:
           FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
         run: python tools/facebook.py --check gudhjem
+      - name: Installer browser (til billedet)
+        if: steps.v.outputs.kør == '1' && (github.event_name == 'schedule' || inputs.slaa_op)
+        run: pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null
       - name: Slå op
-        if: github.event_name == 'schedule' || inputs.slaa_op
+        if: steps.v.outputs.kør == '1' && (github.event_name == 'schedule' || inputs.slaa_op)
         env:
           FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
           FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
-        run: python tools/facebook.py --post
+        run: |
+          git pull -q || true
+          python tools/facebook.py --post
       - name: Gem hvad der er slået op
+        if: always() && steps.v.outputs.kør == '1'
         run: |
           git config user.name "detskeri.dk"; git config user.email "actions@users.noreply.github.com"
           git add data/facebook.json 2>/dev/null || exit 0
