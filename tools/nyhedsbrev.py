@@ -16,6 +16,7 @@ SENDER = {"name": "Det sker på Bornholm", "email": "nyhedsbrev@detskeri.dk"}
 REPLY_TO = "jannie@hotelklippen.dk"      # svar på nyhedsbrevet lander her (afsenderadressen har ingen postkasse)
 STATE = ROOT / "data" / "nyhedsbrev.json"
 GUDHJEM = {"slug": "gudhjem", "name": "Gudhjem", "towns": ["Gudhjem"], "url": "https://detskerigudhjem.dk/"}   # egen side: detskerigudhjem.dk
+FB_GUDHJEM = "https://www.facebook.com/profile.php?id=61595158205580"   # Facebook-siden "Det sker i Gudhjem"
 PER_DAY = {"bornholm": 30}            # højst så mange pr. dag i øbrevet; resten ligger på siden
 E = lambda s: html.escape(str(s or ""), quote=True)
 C = {"coral": "#e37b5b", "bg": "#f3f5f0", "ink": "#302f2f", "muted": "#5f625e", "brick": "#b4533a", "line": "#dde3d9", "sage": "#e5e9e1", "deep": "#3f6670"}
@@ -88,6 +89,7 @@ def render(g, events, start):
 <tr><td style="padding:8px 24px 22px" align="center"><a href="{E(url)}" style="display:inline-block;background:{C['brick']};color:#ffffff;text-decoration:none;font-weight:bold;padding:13px 24px;border-radius:999px">Se det hele – også film og spisesteder</a></td></tr>
 <tr><td style="padding:0 24px 26px;font-size:12px;line-height:1.55;color:{C['muted']}" align="center">Arrangementer fra KultuNaut. Tider kan ændre sig – tjek arrangørens side, før du tager af sted.<br>
 Holder du selv et arrangement? <a href="{build.BASE}tilfoej/" style="color:{C['brick']}">Fortæl os om det</a>.<br>
+Følg med hver dag: <a href="{FB_GUDHJEM if g['slug'] == 'gudhjem' else build.FB_BORNHOLM}" style="color:{C['brick']}">{'Det sker i Gudhjem' if g['slug'] == 'gudhjem' else 'Det sker på Bornholm'} på Facebook</a>.<br>
 Du får denne mail, fordi du har tilmeldt dig på detskeri.dk. <a href="{{{{ unsubscribe }}}}" style="color:{C['muted']}">Afmeld</a></td></tr>
 </table></td></tr></table></body></html>"""
     body = body.replace('<a href="', '<a target="_blank" href="')

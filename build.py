@@ -106,6 +106,10 @@ def breadcrumbs(g):
     items.append({"@type": "ListItem", "position": len(items) + 1, "name": g["name"], "item": BASE + LANG_PRE[LANG] + g["path"]})
     return {"@type": "BreadcrumbList", "itemListElement": items}
 
+FB_BORNHOLM = "https://www.facebook.com/profile.php?id=61595319058631"     # Facebook-siden "Det sker på Bornholm"
+def fb_link(style=""):
+    return f'<a href="{FB_BORNHOLM}" rel="noopener"{style}>{E(L("Følg os på Facebook"))}</a>'
+
 # ---------- sidens egne tekster: dansk → [en, de, sv] ----------
 U = {
     "Hele dagen": ["All day", "Ganztägig", "Hela dagen"],
@@ -153,6 +157,7 @@ U = {
     "Hvad sker der i dag?": ["What's on today?", "Was ist heute los?", "Vad händer i dag?"],
     "Se dagens arrangementer, film og spisesteder med åbent i hver by.": ["See today's events, films and open restaurants in each town.", "Veranstaltungen, Filme und geöffnete Restaurants von heute in jedem Ort.", "Se dagens evenemang, film och öppna matställen i varje ort."],
     "Cookie-valg": ["Cookie settings", "Cookie-Einstellungen", "Cookieval"],
+    "Følg os på Facebook": ["Follow us on Facebook", "Folge uns auf Facebook", "Följ oss på Facebook"],
     "i dag og de næste dage": ["today and the next few days", "heute und in den nächsten Tagen", "i dag och de närmaste dagarna"],
     "arrangementer i dag": ["events today", "Veranstaltungen heute", "evenemang i dag"],
 }
@@ -478,7 +483,7 @@ def main():
                    .replace("{{GUIDES}}", guide_nav(g, depth)).replace("{{TOWN}}", tegning.svg(g["slug"])).replace("{{NAV}}", nav).replace("{{DAYS}}", body)
                    .replace("{{JSONLD}}", jsonld(g, days, later)).replace("{{UPDATED}}", f'{L("Opdateret")} {upd}.')
                    .replace("{{SRC}}", L("Arrangementer fra")).replace("{{TODAY}}", L("I dag")).replace("{{TOMORROW}}", L("I morgen"))
-                   .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
+                   .replace("{{FIX}}", L("Mangler der noget, eller er en tid forkert? Skriv til")).replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg")).replace("{{FB}}", fb_link())
                    .replace("{{ADDURL}}", "../" * depth + LANG_PRE[LANG] + "tilfoej/").replace("{{ADD}}", tilfoej.link_text(LANG)).replace("{{NEWS}}", tilmeld.box(g["slug"], LANG)).replace("{{NEWSCSS}}", tilmeld.assets()[0]).replace("{{NEWSJS}}", tilmeld.assets()[1])
                    .replace("{{VALGDAG}}", L("Vælg dag")).replace("{{OGLOCALE}}", {"da": "da_DK", "en": "en_GB", "de": "de_DE", "sv": "sv_SE"}[LANG]))
             out = re.sub(r"<title>.*?</title>", lambda _m: "<title>" + E(seo_title(g)) + "</title>", out, count=1)
@@ -499,7 +504,7 @@ def main():
         out = ((ROOT / "forside.html").read_text(encoding="utf-8").replace("{{LANG}}", LANG).replace("{{TITLE}}", E(ttl))
                .replace("{{H2}}", E(L("Hvad sker der i dag?"))).replace("{{LEAD}}", E(L("Se dagens arrangementer, film og spisesteder med åbent i hver by.")))
                .replace("{{CARDS}}", "".join(cards)).replace("{{TOWN}}", tegning.svg("bornholm")).replace("{{LANGS}}", langs).replace("{{HREFLANG}}", hreflang).replace("{{CANON}}", BASE + LANG_PRE[LANG])
-               .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg"))
+               .replace("{{UP}}", "../" * depth).replace("{{COOKIE}}", L("Cookie-valg")).replace("{{FB}}", fb_link())
                .replace("{{ADDURL}}", "../" * depth + LANG_PRE[LANG] + "tilfoej/").replace("{{ADD}}", tilfoej.link_text(LANG)).replace("{{NEWS}}", tilmeld.box("bornholm", LANG)).replace("{{NEWSCSS}}", tilmeld.assets()[0]).replace("{{NEWSJS}}", tilmeld.assets()[1]))
         dst = site / LANG_PRE[LANG]; dst.mkdir(parents=True, exist_ok=True)
         (dst / "index.html").write_text(newwin(out), encoding="utf-8")
