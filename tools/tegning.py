@@ -73,8 +73,9 @@ def lighthouse_sq(x, gy, h=96, body="brick"):
 
 def lighthouse_tall(x, gy, h=190):
     o = f'<path d="M{x - 15} {gy} L{x - 9} {gy - h} L{x + 9} {gy - h} L{x + 15} {gy}Z" fill="{C["white"]}"/>'
-    o += f'<rect x="{x - 12}" y="{gy - h - 4}" width="24" height="5" fill="{C["dark"]}"/><rect x="{x - 7}" y="{gy - h - 20}" width="14" height="16" fill="{C["sol"]}"/>'
-    o += f'<path d="M{x - 9} {gy - h - 20} L{x} {gy - h - 30} L{x + 9} {gy - h - 20}Z" fill="{C["dark"]}"/>'
+    o += f'<rect x="{x - 15}" y="{gy - h - 5}" width="30" height="6" fill="{C["dark"]}"/><rect x="{x - 9}" y="{gy - h - 20}" width="18" height="15" fill="{C["dark"]}"/>'
+    o += f'<rect x="{x - 7}" y="{gy - h - 17}" width="14" height="6" fill="{C["sol"]}" opacity=".8"/>'
+    o += f'<path d="M{x - 11} {gy - h - 20} C{x - 8} {gy - h - 31} {x + 8} {gy - h - 31} {x + 11} {gy - h - 20}Z" fill="{C["dark"]}"/>'
     for i in range(1, 4):
         o += f'<rect x="{x - 2}" y="{gy - h * i / 4 - 6:.0f}" width="4" height="10" fill="{C["deep"]}"/>'
     return o
@@ -178,16 +179,25 @@ def hotel(x, gy, w=150):
 def brickchimney(x, gy, h=110):
     return f'<path d="M{x - 8} {gy} L{x - 5} {gy - h} L{x + 5} {gy - h} L{x + 8} {gy}Z" fill="{C["brick"]}"/><rect x="{x - 6}" y="{gy - h}" width="12" height="6" fill="{C["dark"]}"/>'
 
-def spytower(x, gy, h=200):
-    """Bornholmertårnet ved Dueodde: højt hvidt betontårn (koldkrigens lyttepost) med bred kabine og antennemast."""
-    o = f'<path d="M{x - 11} {gy} L{x - 7} {gy - h * .72:.0f} L{x + 7} {gy - h * .72:.0f} L{x + 11} {gy}Z" fill="{C["white"]}"/>'
-    ky = gy - h * .72
-    o += f'<rect x="{x - 24}" y="{ky - 34:.0f}" width="48" height="34" fill="{C["white"]}"/>'                       # kabinen
-    o += f'<rect x="{x - 26}" y="{ky - 36:.0f}" width="52" height="4" fill="{C["stone"]}"/><rect x="{x - 26}" y="{ky - 2:.0f}" width="52" height="4" fill="{C["stone"]}"/>'
-    o += f'<rect x="{x - 21}" y="{ky - 26:.0f}" width="42" height="9" fill="{C["deep"]}"/>'                          # vinduesbånd
-    o += f'<rect x="{x - 13}" y="{ky - 52:.0f}" width="26" height="16" fill="{C["white"]}"/><rect x="{x - 15}" y="{ky - 54:.0f}" width="30" height="3" fill="{C["stone"]}"/>'
-    o += f'<rect x="{x - 2}" y="{ky - 78:.0f}" width="4" height="26" fill="{C["grey"]}"/>'                          # mast
-    o += f'<rect x="{x - 2}" y="{ky - 78:.0f}" width="4" height="7" fill="{C["red"]}"/>'
+def spytower(x, gy, h=210):
+    """Bornholmertårnet ved Dueodde: smal, firkantet hvid betonsøjle (70 m), lodret række små vinduer,
+    små altaner på siden, fladt tag med rækværk og flag. Ved siden af står det lave, mørke stentårn."""
+    top = gy - h
+    o = f'<path d="M{x - 13} {gy} L{x - 11} {top} L{x + 11} {top} L{x + 13} {gy}Z" fill="{C["white"]}"/>'
+    o += f'<path d="M{x + 4} {gy} L{x + 4} {top} L{x + 11} {top} L{x + 13} {gy}Z" fill="#e9e6de"/>'          # skyggeside
+    for i in range(9):                                                                                          # vinduer
+        o += f'<rect x="{x - 8}" y="{top + 10 + i * 20}" width="5" height="9" fill="{C["deep"]}"/>'
+    for i in range(7):                                                                                          # altaner
+        o += f'<rect x="{x + 9}" y="{top + 18 + i * 22}" width="7" height="4" fill="{C["grey"]}"/>'
+    o += f'<rect x="{x - 12}" y="{top - 4}" width="24" height="2" fill="{C["grey"]}"/>'                        # rækværk
+    o += f'<rect x="{x - 1}" y="{top - 22}" width="2" height="22" fill="{C["grey"]}"/>'                        # flagstang
+    o += f'<path d="M{x + 1} {top - 22} L{x + 13} {top - 19} L{x + 1} {top - 15}Z" fill="{C["red"]}"/>'      # flag
+    # det gamle stentårn ved siden af
+    sx, sh = x + 30, 56
+    o += f'<rect x="{sx - 11}" y="{gy - sh}" width="22" height="{sh}" fill="#6f6a66"/>'
+    o += f'<rect x="{sx - 13}" y="{gy - sh - 4}" width="26" height="5" fill="#5a5552"/>'
+    o += f'<rect x="{sx - 9}" y="{gy - sh - 10}" width="18" height="6" fill="#5a5552"/>'
+    o += "".join(f'<rect x="{sx - 11}" y="{gy - sh + 12 + i * 14}" width="22" height="1.5" fill="#5a5552"/>' for i in range(3))
     return o
 
 def fishboat(x, y, color="deep"):
@@ -353,8 +363,8 @@ def bornholm():
     b += lighthouse_sq(784, SEA - 14, 34, "white")                          # fyret på Christiansø
     b += watertower(890, 268, 120)                                           # Svaneke vandtårn
     b += houses(930, 1010, 270, 62)
-    b += spytower(1062, 284, 180)                                            # Bornholmertårnet (Dueodde)
-    b += lighthouse_tall(1150, 290, 160)                                     # Dueodde Fyr
+    b += spytower(1040, 284, 210)                                            # Bornholmertårnet (Dueodde)
+    b += lighthouse_tall(1150, 290, 150)                                     # Dueodde Fyr
     f += boat(560, SEA + 10, "red")
     return frame(b, f, sunx=770) + WAVES
 
