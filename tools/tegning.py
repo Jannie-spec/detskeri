@@ -178,6 +178,18 @@ def hotel(x, gy, w=150):
 def brickchimney(x, gy, h=110):
     return f'<path d="M{x - 8} {gy} L{x - 5} {gy - h} L{x + 5} {gy - h} L{x + 8} {gy}Z" fill="{C["brick"]}"/><rect x="{x - 6}" y="{gy - h}" width="12" height="6" fill="{C["dark"]}"/>'
 
+def spytower(x, gy, h=200):
+    """Bornholmertårnet ved Dueodde: højt hvidt betontårn (koldkrigens lyttepost) med bred kabine og antennemast."""
+    o = f'<path d="M{x - 11} {gy} L{x - 7} {gy - h * .72:.0f} L{x + 7} {gy - h * .72:.0f} L{x + 11} {gy}Z" fill="{C["white"]}"/>'
+    ky = gy - h * .72
+    o += f'<rect x="{x - 24}" y="{ky - 34:.0f}" width="48" height="34" fill="{C["white"]}"/>'                       # kabinen
+    o += f'<rect x="{x - 26}" y="{ky - 36:.0f}" width="52" height="4" fill="{C["stone"]}"/><rect x="{x - 26}" y="{ky - 2:.0f}" width="52" height="4" fill="{C["stone"]}"/>'
+    o += f'<rect x="{x - 21}" y="{ky - 26:.0f}" width="42" height="9" fill="{C["deep"]}"/>'                          # vinduesbånd
+    o += f'<rect x="{x - 13}" y="{ky - 52:.0f}" width="26" height="16" fill="{C["white"]}"/><rect x="{x - 15}" y="{ky - 54:.0f}" width="30" height="3" fill="{C["stone"]}"/>'
+    o += f'<rect x="{x - 2}" y="{ky - 78:.0f}" width="4" height="26" fill="{C["grey"]}"/>'                          # mast
+    o += f'<rect x="{x - 2}" y="{ky - 78:.0f}" width="4" height="7" fill="{C["red"]}"/>'
+    return o
+
 def fishboat(x, y, color="deep"):
     return boat(x, y, color, sail=False)
 
@@ -341,7 +353,8 @@ def bornholm():
     b += lighthouse_sq(784, SEA - 14, 34, "white")                          # fyret på Christiansø
     b += watertower(890, 268, 120)                                           # Svaneke vandtårn
     b += houses(930, 1010, 270, 62)
-    b += lighthouse_tall(1120, 290, 180)                                     # Dueodde Fyr
+    b += spytower(1062, 284, 180)                                            # Bornholmertårnet (Dueodde)
+    b += lighthouse_tall(1150, 290, 160)                                     # Dueodde Fyr
     f += boat(560, SEA + 10, "red")
     return frame(b, f, sunx=770) + WAVES
 
