@@ -13,6 +13,10 @@ on:
         description: "Slå op nu? (nej = tjek kun, at forbindelsen virker)"
         type: boolean
         default: false
+      profilbilleder:
+        description: "Sæt sidernes profilbilleder (static/fb-profil-*.png)"
+        type: boolean
+        default: false
 permissions:
   contents: write
 concurrency:
@@ -43,6 +47,12 @@ jobs:
         env:
           FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
         run: python tools/facebook.py --check gudhjem
+      - name: Profilbilleder
+        if: steps.v.outputs.koer == '1' && inputs.profilbilleder
+        env:
+          FB_PAGE_TOKEN_BORNHOLM: ${{ secrets.FB_PAGE_TOKEN_BORNHOLM }}
+          FB_PAGE_TOKEN_GUDHJEM: ${{ secrets.FB_PAGE_TOKEN_GUDHJEM }}
+        run: python tools/facebook.py --profilbillede
       - name: Installer browser (til billedet)
         if: steps.v.outputs.koer == '1' && (github.event_name == 'schedule' || inputs.slaa_op)
         run: pip install -q playwright && python -m playwright install --with-deps chromium >/dev/null

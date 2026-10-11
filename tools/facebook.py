@@ -5,6 +5,7 @@ videre til hjemmesiden og nyhedsbrevet for at se længere frem.
     python tools/facebook.py --preview [mappe]   # skriver billeder + tekster (standard: out/facebook), slår intet op
     python tools/facebook.py --post              # slår dagens opslag op via Meta Graph API
     python tools/facebook.py --check [side]      # tjekker kun, at tokens virker og ikke udløber
+    python tools/facebook.py --profilbillede     # sætter sidernes profilbilleder (static/fb-profil-*.png via detskeri.dk)
     --dato ÅÅÅÅ-MM-DD                            # lav opslaget for en anden dag (til test)
 
 Hemmeligheder (GitHub → Settings → Secrets and variables → Actions):
@@ -147,9 +148,23 @@ def check(args):
             print(p["name"], "– token virker IKKE:", e.code, e.read().decode()[:200])
     sys.exit(0 if ok == len(pages) else 1)
 
+def profile():
+    """Sætter sidernes profilbillede til static/fb-profil-<side>.png (hentes fra detskeri.dk)."""
+    for p in PAGES:
+        token = os.environ.get(p["secret"])
+        if not token: print(p["name"], "– intet token"); continue
+        url = f"https://detskeri.dk/fb-profil-{p['slug']}.png"
+        data = urllib.parse.urlencode({"picture": url, "access_token": token}).encode()
+        try:
+            with urllib.request.urlopen(urllib.request.Request(f"{GRAPH}/me/picture", data=data, method="POST"), timeout=60) as r:
+                print(p["name"], "– profilbillede sat:", r.read().decode()[:200])
+        except urllib.error.HTTPError as e:
+            print(p["name"], "– profilbillede FEJLEDE:", e.code, e.read().decode()[:300]); sys.exit(1)
+
 def main():
     args = sys.argv[1:]
     if "--check" in args: return check(args)
+    if "--profilbillede" in args: return profile()
     build.LANG = "da"
     events = build.all_events(json.loads((ROOT / "data" / "events.json").read_text(encoding="utf-8"))["events"])
     d = datetime.datetime.now(build.TZ).date()
