@@ -30,10 +30,11 @@
   "checked": "2026-10-11"
  },
  "allinge:banken": {
-  "hash": "e05b9dd656da879a",
+  "hash": "23e41707afb61544",
   "url": "https://wanderlog.com/place/details/3084443/banken-bornholm",
-  "text": "Sunday: 10:00–18:00\nWednesday: 11:00–18:00\nThursday: 12:00–20:00\nFriday: 11:00–18:00\nSaturday: 10:00–18:00",
-  "checked": "2026-10-11"
+  "text": "Sunday: 10:00–17:00\nWednesday: 11:00–17:00\nThursday: 11:00–17:00\nFriday: 11:00–18:00\nSaturday: 11:00–17:00",
+  "checked": "2026-10-11",
+  "changed": "2026-10-11"
  },
  "allinge:restoe": {
   "hash": "7c6a528cb453d7d5",
@@ -152,9 +153,9 @@
   "checked": "2026-10-11"
  },
  "roenne:strg": {
-  "hash": "5c626bde63a84ca8",
+  "hash": "c41dd5911c5b32ca",
   "url": "https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne",
-  "text": "Lukket Åbent Søn. fra 17:00 til 20:00 Se mere\nÅbent Åbent fra kl 12:00 til 20:15\nLukket Åbent Søn. fra 16:30 til 20:30\nÅbent Åbent fra kl 11:00 til 20:00\nÅbent Åbent fra kl 12:00 til 21:00\nÅbent Åbent fra kl 10:00 til 20:30\nÅbent Åbent fra kl 10:00 til 15:00\nLukket Åbent Søn. fra 16:30 til 21:00\nLukket Åbent Søn. fra 16:00 til 20:00\nÅbent Åbent fra kl 12:00 til 20:00\nLukket Åbent Man. fra 10:00 til 18:00\nLukket Åbent Søn. fra 17:00 til 20:00\nÅbent Åbent fra kl 10:00 til 18:00\nÅbent Åbent fra kl 11:00 til 20:30\nÅbent Åbent fra kl 11:00 til 17:00\nÅbent Åbent fra kl 10:00 til 17:00\nÅbent Åbent fra kl 12:00 til 19:00",
+  "text": "Åbent Åbent fra kl 17:00 til 20:00 Se mere",
   "checked": "2026-10-11",
   "changed": "2026-10-11"
  },
