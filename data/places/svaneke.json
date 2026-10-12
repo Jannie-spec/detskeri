@@ -164,8 +164,8 @@
   "desc_en": "Bistro, wine bar and micro pâtisserie with modern seasonal Bornholm food and Baltic Sea views.",
   "desc_de": "Bistro, Weinbar und kleine Patisserie mit moderner, saisonaler Bornholmer Küche und Ostseeblick.",
   "desc_sv": "Bistro, vinbar och litet konditori med modern bornholmsk säsongsmat och utsikt över Östersjön.",
-  "label": "Se stedets side",
-  "hours": null,
+  "label": "18/9–18/10: man–tirs 17–22, fre 17–23, lør–søn 12–14 og 16–22",
+  "seasons": [{"from": "09-18", "to": "10-18", "hours": {"1": [["17:00", "22:00"]], "2": [["17:00", "22:00"]], "5": [["17:00", "23:00"]], "6": [["12:00", "14:00"], ["16:00", "22:00"]], "0": [["12:00", "14:00"], ["16:00", "22:00"]]}}],
   "src": ["https://www.hjornet.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/restaurant-hjornet-gdk1156786"],
   "sure": false
  },

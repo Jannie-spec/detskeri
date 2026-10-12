@@ -143,10 +143,10 @@
   "desc_en": "Cosy café in central Allinge with lunch, dinner, burgers and barista coffee – open all year.",
   "desc_de": "Gemütliches Café im Zentrum von Allinge mit Mittag- und Abendessen, Burgern und Barista-Kaffee – ganzjährig.",
   "desc_sv": "Mysigt café mitt i Allinge med lunch, middag, burgare och baristakaffe – öppet året runt.",
-  "label": "Se stedets side",
-  "hours": null,
-  "src": ["https://www.visitdenmark.com/denmark/plan-your-trip/cafe-drommen-gdk1160777"],
-  "sure": false
+  "label": "Alle dage 12.30–21 (køkken til 20) · hele året",
+  "hours": {"all": [["12:30", "21:00"]]},
+  "src": ["https://cafedroemmen.dk/"],
+  "sure": true
  },
  {
   "id": "banken",
@@ -179,10 +179,10 @@
   "desc_en": "Harbourside eatery open all day – hours change with the season.",
   "desc_de": "Lokal am Hafen, ganztägig geöffnet – Öffnungszeiten wechseln mit der Saison.",
   "desc_sv": "Matställe vid hamnen, öppet hela dagen – tiderna varierar med säsongen.",
-  "label": "Se stedets side",
-  "hours": null,
-  "src": ["https://bookbornholm.com/en/lunch-on-bornholm"],
-  "sure": false
+  "label": "Til og med uge 42: alle dage 11.30–19 · fra uge 44: fre–søn 11.30–19 · uge 43: se stedets side",
+  "seasons": [{"from": "01-01", "to": "04-30", "hours": {"0": [["11:30", "19:00"]], "5": [["11:30", "19:00"]], "6": [["11:30", "19:00"]]}}, {"from": "05-01", "to": "05-31", "hours": {"0": [["11:30", "19:00"]], "5": [["11:30", "19:00"]], "6": [["11:30", "19:00"]]}}, {"from": "06-01", "to": "06-30", "hours": {"all": [["11:30", "19:00"]]}}, {"from": "07-01", "to": "07-31", "hours": {"all": [["11:30", "20:00"]]}}, {"from": "08-01", "to": "10-18", "hours": {"all": [["11:30", "19:00"]]}}, {"from": "10-26", "to": "12-31", "hours": {"0": [["11:30", "19:00"]], "5": [["11:30", "19:00"]], "6": [["11:30", "19:00"]]}}],
+  "src": ["https://detgriser.dk/aabningstider/"],
+  "sure": true
  },
  {
   "id": "vilhelm",
@@ -233,9 +233,9 @@
   "desc_en": "Hotel restaurant and bar by the rocks in Sandvig.",
   "desc_de": "Hotelrestaurant und Bar an den Felsen von Sandvig.",
   "desc_sv": "Hotellrestaurang och bar vid klipporna i Sandvig.",
-  "label": "Se stedets side",
+  "label": "Restaurant okt.: ons–lør (efterårsferien alle dage) · nov–dec: ons–lør · se stedets side for tider",
   "hours": null,
-  "src": ["https://wanderlog.com/place/details/2689324", "https://www.visitdenmark.com/denmark/plan-your-trip/nordlandet-gdk1155390"],
+  "src": ["https://hotelnordlandet.com/da/aabningstider/"],
   "sure": false
  },
  {
@@ -305,9 +305,9 @@
   "desc_en": "Café in the Hammershus Visitor Centre with open sandwiches, salads, cake and views of the castle ruin.",
   "desc_de": "Café im Besucherzentrum Hammershus mit Smørrebrød, Salaten, Kuchen und Blick auf die Burgruine.",
   "desc_sv": "Café i Hammershus besökscenter med smørrebrød, sallader, kaka och utsikt över borgruinen.",
-  "label": "Se stedets side",
-  "hours": null,
-  "src": ["https://www.visitdenmark.com/denmark/plan-your-trip/brohuset-ved-hammershus-gdk1154748", "https://bornholm.info/en/brohusets-cafe/"],
+  "label": "Påske–1. nov.: alle dage 9–16 (caféen lukker 15.30)",
+  "seasons": [{"from": "04-01", "to": "10-31", "hours": {"all": [["09:00", "15:30"]]}}],
+  "src": ["https://brohusethammershus.dk/aabningstider/"],
   "sure": false
  },
  {
@@ -323,10 +323,10 @@
   "desc_en": "Gelato production and summer café in the old ice works on its own pier at Tejn harbour.",
   "desc_de": "Gelato-Manufaktur und Sommercafé im alten Eiswerk auf eigener Mole im Hafen von Tejn.",
   "desc_sv": "Gelatotillverkning och sommarcafé i det gamla isverket på egen pir i Tejns hamn.",
-  "label": "Sommersæson – se stedets side",
-  "hours": null,
-  "src": ["https://www.visitdenmark.com/denmark/plan-your-trip/isvaerketbornholm-gdk1154629", "https://bornholm.info/en/4-listige-steder-i-tejn/"],
-  "sure": false
+  "label": "Sæson 26/6–6/8: alle dage 12–17 · lukket resten af året",
+  "seasons": [{"from": "06-26", "to": "08-06", "hours": {"all": [["12:00", "17:00"]]}}],
+  "src": ["https://www.isvaerketbornholm.dk"],
+  "sure": true
  },
  {
   "id": "smedjen",
@@ -359,7 +359,7 @@
   "desc_en": "Hotel restaurant in Sandkås between Allinge and Tejn with sea views.",
   "desc_de": "Hotelrestaurant in Sandkås zwischen Allinge und Tejn mit Meerblick.",
   "desc_sv": "Hotellrestaurang i Sandkås mellan Allinge och Tejn med havsutsikt.",
-  "label": "Se stedets side",
+  "label": "Alle dage fra kl. 15 (drikkevarer), køkkenet åbner kl. 18",
   "hours": null,
   "src": ["https://hotelfriheden.dk/en/restaurant-oe-restauran-in-allinge-on-bornholm/"],
   "sure": false
