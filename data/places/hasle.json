@@ -44,10 +44,11 @@
   "desc_en": "Cosy beer bar with Bornholm and Danish beers on tap and snacks to match.",
   "desc_de": "Gemütliche Bierbar mit Bieren aus Bornholm und Dänemark vom Fass und passenden Snacks.",
   "desc_sv": "Mysig ölbar med öl från Bornholm och Danmark på fat och snacks till.",
-  "label": "Tor 14–20, fre–lør 14–22 · uge 42: man–tor 14–20, fre–lør 14–22",
+  "label": "Tor 14–20, fre–lør 14–22 · uge 42: man–tor 14–20, fre 14–22, lør 17/10 15–22",
   "seasons": [
    {"from": "01-01", "to": "10-11", "hours": {"4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}},
-   {"from": "10-12", "to": "10-17", "hours": {"1": [["14:00","20:00"]], "2": [["14:00","20:00"]], "3": [["14:00","20:00"]], "4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}},
+   {"from": "10-12", "to": "10-16", "hours": {"1": [["14:00","20:00"]], "2": [["14:00","20:00"]], "3": [["14:00","20:00"]], "4": [["14:00","20:00"]], "5": [["14:00","22:00"]]}},
+   {"from": "10-17", "to": "10-17", "hours": {"6": [["15:00","22:00"]]}},
    {"from": "10-18", "to": "12-31", "hours": {"4": [["14:00","20:00"]], "5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}}
   ],
   "src": ["https://oelhuzed.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/olhuzed-gdk1154705"], "sure": true
