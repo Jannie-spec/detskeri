@@ -151,10 +151,11 @@
   "checked": "2026-10-12"
  },
  "roenne:strg": {
-  "hash": "e1cade10e90e6e61",
+  "hash": "f16360629e40f260",
   "url": "https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne",
-  "text": "Lukket Åbent Tirs. fra 17:00 til 20:00 Se mere",
-  "checked": "2026-10-12"
+  "text": "Lukket Åbent Tirs. fra 17:00 til 20:00 Se mere\nLukket Åbent Man. fra 12:00 til 20:15\nLukket Åbent Man. fra 16:30 til 20:30\nLukket Åbent Man. fra 11:00 til 21:00\nLukket Åbent Man. fra 12:00 til 21:00\nÅbent Åbent fra kl 10:00 til 20:30\nÅbent Åbent fra kl 08:00 til 17:00\nLukket Åbent Tirs. fra 16:30 til 21:00\nLukket Åbent Man. fra 16:00 til 20:00\nLukket Åbent Tirs. fra 12:00 til 20:00\nÅbent Åbent fra kl 10:00 til 18:00\nLukket Åbent Man. fra 17:00 til 20:00\nLukket Åbent Man. fra 11:00 til 20:30\nLukket Åbent Man. fra 11:00 til 20:00\nLukket Åbent Man. fra 11:00 til 17:00\nÅbent Åbent fra kl 10:00 til 17:00\nLukket Åbent Fre. fra 17:00 til 20:00\nLukket Åbent Man. fra 12:00 til 19:00",
+  "checked": "2026-10-12",
+  "changed": "2026-10-12"
  },
  "roenne:munt": {
   "hash": "c0e49d3329c209da",
@@ -190,6 +191,24 @@
   "hash": "c5a0de265eade588",
   "url": "https://hasleroegeri.dk/new-page",
   "text": "Åbent alle dage kl. 10.00–21.00.\nFiskebuffeten er åben kl. 12.00–20.00.\nÅbent alle dage kl. 10.00–16.00, også lørdag og søndag.",
+  "checked": "2026-10-12"
+ },
+ "allinge:drommen": {
+  "hash": "e1407f128006c99d",
+  "url": "https://cafedroemmen.dk/",
+  "text": "Man – Søn: 12.30–21.00 (Køkkenet lukker kl. 20.00.)",
+  "checked": "2026-10-12"
+ },
+ "allinge:griser": {
+  "hash": "70664ebf17c10249",
+  "url": "https://detgriser.dk/aabningstider/",
+  "text": "Åbent alle dage kl. 11.30–19.00\nÅbent alle dage kl. 11.30–20.00\nKøkkenet er åbent kl. 11.30–15.30 / genåbner kl. 16.00–20.00",
+  "checked": "2026-10-12"
+ },
+ "allinge:brohuset": {
+  "hash": "b4c08b1ae74926b5",
+  "url": "https://brohusethammershus.dk/aabningstider/",
+  "text": "Besøgscenterets åbningstider : 9.00 – 16.00",
   "checked": "2026-10-12"
  }
 }
