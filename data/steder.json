@@ -4,7 +4,7 @@
    "name": "Bornholmertårnet",
    "url": "https://www.bornholmertaarnet.dk/",
    "hash": "42ba2162c73dd506",
-   "ok": "2026-10-12",
+   "ok": "2026-10-13",
    "events": [
     {
      "id": "bornholmertaarnet-2026-10-10",
@@ -24,7 +24,7 @@
    "name": "Dideriks Veranda / Hotel Sandvig Havn",
    "url": "https://www.hotelsandvighavn.com/team-1",
    "hash": "b3ffb53260809316",
-   "ok": "2026-10-12",
+   "ok": "2026-10-13",
    "events": [
     {
      "id": "sandvighavn-2026-10-10",
@@ -39,5 +39,5 @@
    ]
   }
  },
- "generated": "2026-10-12T08:00"
+ "generated": "2026-10-13T06:26"
 }
