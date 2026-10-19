@@ -6,15 +6,22 @@ Sprang over: Lør. 5. og søn. 6. dec. 2026 Lør-søn kl. 11-17, Smedjen - St 'N
 Sprang over: Lør. 12. og søn. 13. dec. 2026 Lør-søn kl. 11-17, Smedjen -  'NoneType' object has no attribute 'lower'
 Sprang over: Lør. 19. og søn. 20. dec. 2026 Lør-søn kl. 11-17, Smedjen -  'NoneType' object has no attribute 'lower'
 Sprang over: Lør. 28. og søn. 29. nov. 2026 Kl.10:00-15:00, Klemensker Ha 'NoneType' object has no attribute 'lower'
-Rønne 356
-Aakirkeby 343
-Nexø 83
-Svaneke 90
-Østermarie 6
-Gudhjem 106
-Allinge 94
+Rønne 358
+Aakirkeby 341
+Nexø 82
+Svaneke 84
+Østermarie 5
+Gudhjem 102
+Allinge 90
 Klemensker 41
-Hasle 24
-Arrangementer: 1127
-Bornholmertårnet: 1 arrangement(er)
-Dideriks Veranda / Hotel Sandvig Havn: 1 arrangement(er)
+Hasle 16
+Arrangementer: 1104
+Kunne ikke hente https://www.bornholmertaarnet.dk/ Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://www.bornholmertaarnet.dk/", waiting until "domcontentloaded"
+
+Kunne ikke hente https://www.bornholmertaarnet.dk/efterarsferie/ Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://www.bornholmertaarnet.dk/efterarsferie/", waiting until "domcontentloaded"
+
+Bornholmertårnet: kunne ikke hentes – bruger sidste gode resultat
