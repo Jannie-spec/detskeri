@@ -94,7 +94,7 @@
   "hash": "20a494b5d5201e68",
   "url": "https://cafeholmer.dk/en/",
   "text": "Man - Lør 11.00 - 20.30 (Køkkenet lukker 19.30) Søn 11.00 - 16.00 (Køkkenet lukker 15.00)\nMan – Lør 11.00 – 20.30 (Køkkenet lukker 19.30) Søn 11.00 – 16.00 (Køkkenet lukker 15.00)",
-  "checked": "2026-10-18"
+  "checked": "2026-10-19"
  },
  "nexoe:kjaerstrup": {
   "hash": "d62258f51686f394",
@@ -136,7 +136,7 @@
   "hash": "cce6b41b75f9ff30",
   "url": "https://casamia-bornholm.dk/",
   "text": "Vi har åbnet tirsdag til søndag fra kl. 16.30 til 21.00",
-  "checked": "2026-10-18"
+  "checked": "2026-10-19"
  },
  "roenne:thai": {
   "hash": "3334c46eec855611",
@@ -151,9 +151,9 @@
   "checked": "2026-10-19"
  },
  "roenne:strg": {
-  "hash": "6e5590ecbf2df763",
+  "hash": "e1cade10e90e6e61",
   "url": "https://www.dagensmenu.dk/strogets-spisehuz-r%C3%B8nne",
-  "text": "Lukket Åbent Tirs. fra 17:00 til 20:00 Se mere\nÅbent Man. fra 12:00 til 20:15\nÅbent Man. fra 16:30 til 20:30\nÅbent Man. fra 11:00 til 21:00\nÅbent Man. fra 12:00 til 21:00\nÅbent Man. fra 10:00 til 20:30\nÅbent fra kl 08:00 til 17:00\nÅbent Tirs. fra 16:30 til 21:00\nÅbent Man. fra 16:00 til 20:00\nÅbent Tirs. fra 12:00 til 20:00\nÅbent Man. fra 10:00 til 18:00\nÅbent Man. fra 17:00 til 20:00\nÅbent Man. fra 11:00 til 20:30\nÅbent Man. fra 11:00 til 20:00\nÅbent Man. fra 11:00 til 17:00\nÅbent Man. fra 10:00 til 17:00\nÅbent Fre. fra 17:00 til 20:00\nÅbent Man. fra 12:00 til 19:00",
+  "text": "Lukket Åbent Tirs. fra 17:00 til 20:00 Se mere",
   "checked": "2026-10-19",
   "changed": "2026-10-19"
  },
@@ -179,13 +179,13 @@
   "hash": "fddd210c6aae743b",
   "url": "https://siemsens.dk/restaurant-bar-siemsens-gaard-svaneke/",
   "text": "Køkkenet er åbent fra 17.00 til 20.30",
-  "checked": "2026-10-18"
+  "checked": "2026-10-19"
  },
  "svaneke:delbar": {
   "hash": "043bff48c5b680cf",
   "url": "https://www.delbar.dk/",
   "text": "Mandag 17.00 - 22.30\nTirsdag 17.00 - 22.30\nOnsdag 17.00 - 22.30\nTorsdag 17.00 - 22.30\nFredag 17.00 - 22.30\nLørdag 17.00 - 22.30\nSøndag 17.00 - 22.30",
-  "checked": "2026-10-18"
+  "checked": "2026-10-19"
  },
  "hasle:hasrog": {
   "hash": "345a3c2d97cf802e",
@@ -197,7 +197,7 @@
   "hash": "e1407f128006c99d",
   "url": "https://cafedroemmen.dk/",
   "text": "Man – Søn: 12.30–21.00 (Køkkenet lukker kl. 20.00.)",
-  "checked": "2026-10-18"
+  "checked": "2026-10-19"
  },
  "allinge:griser": {
   "hash": "70664ebf17c10249",
@@ -206,10 +206,11 @@
   "checked": "2026-10-19"
  },
  "allinge:brohuset": {
-  "hash": "b4c08b1ae74926b5",
+  "hash": "126bfc0169976519",
   "url": "https://brohusethammershus.dk/aabningstider/",
-  "text": "Besøgscenterets åbningstider : 9.00 – 16.00",
-  "checked": "2026-10-18"
+  "text": "Besøgscenterets åbningstider fra 19/10 – 1/11 kl. 10.00 – 16.00\nHerefter holder vi åbent lørdag-søndag til og med den 13 december, samt 27-30 december",
+  "checked": "2026-10-19",
+  "changed": "2026-10-19"
  },
  "nexoe:jennys": {
   "hash": "5f0370bf8147a07c",

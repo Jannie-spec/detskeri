@@ -5,20 +5,7 @@
    "url": "https://www.bornholmertaarnet.dk/",
    "hash": "42ba2162c73dd506",
    "ok": "2026-10-18",
-   "events": [
-    {
-     "id": "bornholmertaarnet-2026-10-10",
-     "d": "2026-10-10",
-     "title": "Bornholmertårnet: familiedage og rundvisning kl. 11 og 13",
-     "where": "Bornholmertårnet, Dueodde",
-     "town": "Nexø",
-     "url": "https://www.bornholmertaarnet.dk/efterarsferie/",
-     "src": "bornholmertaarnet",
-     "to": "2026-10-18",
-     "t": "10:00",
-     "t2": "16:00"
-    }
-   ]
+   "events": []
   },
   "sandvighavn": {
    "name": "Dideriks Veranda / Hotel Sandvig Havn",
@@ -28,5 +15,5 @@
    "events": []
   }
  },
- "generated": "2026-10-19T06:43"
+ "generated": "2026-10-19T06:59"
 }

@@ -16,12 +16,3 @@ Allinge 90
 Klemensker 41
 Hasle 16
 Arrangementer: 1104
-Kunne ikke hente https://www.bornholmertaarnet.dk/ Page.goto: Timeout 45000ms exceeded.
-Call log:
-  - navigating to "https://www.bornholmertaarnet.dk/", waiting until "domcontentloaded"
-
-Kunne ikke hente https://www.bornholmertaarnet.dk/efterarsferie/ Page.goto: Timeout 45000ms exceeded.
-Call log:
-  - navigating to "https://www.bornholmertaarnet.dk/efterarsferie/", waiting until "domcontentloaded"
-
-Bornholmertårnet: kunne ikke hentes – bruger sidste gode resultat
