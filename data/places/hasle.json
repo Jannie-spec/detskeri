@@ -7,7 +7,7 @@
   "desc_en": "Smokehouse by the sea, over 100 years old, with a fish buffet and freshly smoked fish to take away.",
   "desc_de": "Über 100 Jahre alte Räucherei am Wasser mit Fischbuffet und frisch geräuchertem Fisch zum Mitnehmen.",
   "desc_sv": "Över 100 år gammalt rökeri vid vattnet med fiskbuffé och nyrökt fisk att ta med.",
-  "label": "Til 9/10: 10–17 · 10.–16/10: 10–21 · 17/10: 10–15 · 18/10 lukket · 19/10–1/11: 10–16 (køkken lukker 1 time før)",
+  "label": "19/10–1/11: alle dage 10–16 (køkken lukker 1 time før)",
   "seasons": [
    {"from": "03-28", "to": "06-14", "hours": {"0": [["10:00","17:00"]], "1": [["10:00","17:00"]], "2": [["10:00","17:00"]], "3": [["10:00","17:00"]], "4": [["10:00","17:00"]], "5": [["10:00","17:00"]], "6": [["10:00","17:00"]]}},
    {"from": "06-15", "to": "07-11", "hours": {"0": [["10:00","21:00"]], "1": [["10:00","21:00"]], "2": [["10:00","21:00"]], "3": [["10:00","21:00"]], "4": [["10:00","21:00"]], "5": [["10:00","21:00"]], "6": [["10:00","21:00"]]}},
@@ -29,7 +29,7 @@
   "desc_en": "Harbour grill and pizza place with outdoor seating and an ice cream counter.",
   "desc_de": "Grill und Pizza am Hafen mit Sitzplätzen im Freien und Eisstand.",
   "desc_sv": "Grill och pizza vid hamnen med uteservering och glasskiosk.",
-  "label": "Tor–søn 11–19 · fra 19/10: tor 16–19, fre–søn 11–19 (køkken til 18.45)",
+  "label": "Fra 19/10: tor 16–19, fre–søn 11–19 (køkken til 18.45)",
   "seasons": [
    {"from": "09-01", "to": "10-18", "hours": {"0": [["11:00","19:00"]], "4": [["11:00","19:00"]], "5": [["11:00","19:00"]], "6": [["11:00","19:00"]]}},
    {"from": "10-19", "to": "11-01", "hours": {"0": [["11:00","19:00"]], "4": [["16:00","19:00"]], "5": [["11:00","19:00"]], "6": [["11:00","19:00"]]}}
