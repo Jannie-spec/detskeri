@@ -57,14 +57,12 @@
   "desc_en": "Restaurant in the old 1905 post office serving local Bornholm produce and a 3-course menu.",
   "desc_de": "Restaurant im alten Postamt von 1905 mit Bornholmer Zutaten und 3-Gänge-Menü.",
   "desc_sv": "Restaurang i det gamla posthuset från 1905 med bornholmska råvaror och trerättersmeny.",
-  "label": "Ons–søn fra 17.30 · lukket man–tir",
-  "hours": {
-   "0": [["17:30", "21:00"]],
-   "3": [["17:30", "21:00"]],
-   "4": [["17:30", "21:00"]],
-   "5": [["17:30", "21:00"]],
-   "6": [["17:30", "21:00"]]
-  },
+  "label": "Ons–lør fra 17.30 (søn kun take away) · 1.–10. nov.: tor–lør, kun 3-retters menu · ferielukket 11/11–3/12",
+  "seasons": [
+   {"from": "01-01", "to": "10-31", "hours": {"3": [["17:30","21:00"]], "4": [["17:30","21:00"]], "5": [["17:30","21:00"]], "6": [["17:30","21:00"]]}},
+   {"from": "11-01", "to": "11-10", "hours": {"4": [["17:30","21:00"]], "5": [["17:30","21:00"]], "6": [["17:30","21:00"]]}},
+   {"from": "12-04", "to": "12-31", "hours": {"3": [["17:30","21:00"]], "4": [["17:30","21:00"]], "5": [["17:30","21:00"]], "6": [["17:30","21:00"]]}}
+  ],
   "src": ["https://www.detgamleposthusallinge.dk/restauranten/aabningstider.aspx"],
   "sure": true
  },
@@ -143,8 +141,8 @@
   "desc_en": "Cosy café in central Allinge with lunch, dinner, burgers and barista coffee – open all year.",
   "desc_de": "Gemütliches Café im Zentrum von Allinge mit Mittag- und Abendessen, Burgern und Barista-Kaffee – ganzjährig.",
   "desc_sv": "Mysigt café mitt i Allinge med lunch, middag, burgare och baristakaffe – öppet året runt.",
-  "label": "Alle dage 12.30–21 (køkken til 20) · hele året",
-  "hours": {"all": [["12:30", "21:00"]]},
+  "label": "Alle dage 16.30–21 (køkken til 20) · hele året",
+  "hours": {"all": [["16:30", "21:00"]]},
   "src": ["https://cafedroemmen.dk/"],
   "sure": true
  },
@@ -305,8 +303,13 @@
   "desc_en": "Café in the Hammershus Visitor Centre with open sandwiches, salads, cake and views of the castle ruin.",
   "desc_de": "Café im Besucherzentrum Hammershus mit Smørrebrød, Salaten, Kuchen und Blick auf die Burgruine.",
   "desc_sv": "Café i Hammershus besökscenter med smørrebrød, sallader, kaka och utsikt över borgruinen.",
-  "label": "Påske–1. nov.: alle dage 9–16 (caféen lukker 15.30)",
-  "seasons": [{"from": "04-01", "to": "10-31", "hours": {"all": [["09:00", "15:30"]]}}],
+  "label": "Til 1. nov.: alle dage 10–16 (caféen lukker 15.30) · derefter lør–søn til 13. dec. samt 27.–30. dec.",
+  "seasons": [
+   {"from": "04-01", "to": "10-18", "hours": {"all": [["09:00","15:30"]]}},
+   {"from": "10-19", "to": "11-01", "hours": {"all": [["10:00","15:30"]]}},
+   {"from": "11-02", "to": "12-13", "hours": {"0": [["10:00","15:30"]], "6": [["10:00","15:30"]]}},
+   {"from": "12-27", "to": "12-30", "hours": {"all": [["10:00","15:30"]]}}
+  ],
   "src": ["https://brohusethammershus.dk/aabningstider/"],
   "sure": false
  },
