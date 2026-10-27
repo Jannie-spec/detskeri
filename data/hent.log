@@ -12,13 +12,22 @@ Sprang over: Fre. 13. og lør. 14. nov. 2026 Fre-lør kl. 14-22, Ølhuzed Ap 'No
 Sprang over: Fre. 20. og lør. 21. nov. 2026 Fre-lør kl. 14-22, Ølhuzed Ap 'NoneType' object has no attribute 'lower'
 Sprang over: Fre. 27. og lør. 28. nov. 2026 Fre-lør kl. 14-22, Ølhuzed Ap 'NoneType' object has no attribute 'lower'
 Sprang over: Fre. 4. og lør. 5. dec. 2026 Fre-lør kl. 14-22, Ølhuzed ApS 'NoneType' object has no attribute 'lower'
-Rønne 365
+Rønne 367
 Aakirkeby 324
 Nexø 80
 Svaneke 74
-Østermarie 4
-Gudhjem 93
-Allinge 86
-Klemensker 37
-Hasle 26
-Arrangementer: 1067
+Østermarie 3
+Gudhjem 94
+Allinge 87
+Klemensker 35
+Hasle 27
+Arrangementer: 1069
+Kunne ikke hente https://www.bornholmertaarnet.dk/ Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://www.bornholmertaarnet.dk/", waiting until "domcontentloaded"
+
+Kunne ikke hente https://www.bornholmertaarnet.dk/efterarsferie/ Page.goto: Timeout 45000ms exceeded.
+Call log:
+  - navigating to "https://www.bornholmertaarnet.dk/efterarsferie/", waiting until "domcontentloaded"
+
+Bornholmertårnet: kunne ikke hentes – bruger sidste gode resultat
