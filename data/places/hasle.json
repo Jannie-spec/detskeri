@@ -44,8 +44,8 @@
   "desc_en": "Cosy beer bar with Bornholm and Danish beers on tap and snacks to match.",
   "desc_de": "Gemütliche Bierbar mit Bieren aus Bornholm und Dänemark vom Fass und passenden Snacks.",
   "desc_sv": "Mysig ölbar med öl från Bornholm och Danmark på fat och snacks till.",
-  "label": "Fre–lør 14–22",
-  "hours": {"5": [["14:00","22:00"]], "6": [["14:00","22:00"]]},
+  "label": "Fre–lør 14–22 · ekstra åbent tor 19/11 14–22",
+  "seasons": [{"from": "11-19", "to": "11-19", "hours": {"4": [["14:00","22:00"]]}}, {"from": "01-01", "to": "12-31", "hours": {"5": [["14:00","22:00"]], "6": [["14:00","22:00"]]}}],
   "src": ["https://oelhuzed.dk/", "https://www.visitdenmark.com/denmark/plan-your-trip/olhuzed-gdk1154705"], "sure": true
  },
  {

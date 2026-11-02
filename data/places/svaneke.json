@@ -124,10 +124,9 @@
   "desc_en": "Cosy bar on the square with seasonal small plates for sharing, natural wine and cocktails.",
   "desc_de": "Gemütliche Bar am Marktplatz mit saisonalen Gerichten zum Teilen, Naturwein und Cocktails.",
   "desc_sv": "Mysig bar vid torget med små säsongsrätter att dela, naturvin och cocktails.",
-  "label": "Alle dage 17–22.30",
+  "label": "Ons–lør 17–22.30",
   "hours": {
-   "0": [["17:00","22:30"]], "1": [["17:00","22:30"]], "2": [["17:00","22:30"]], "3": [["17:00","22:30"]],
-   "4": [["17:00","22:30"]], "5": [["17:00","22:30"]], "6": [["17:00","22:30"]]
+   "3": [["17:00","22:30"]], "4": [["17:00","22:30"]], "5": [["17:00","22:30"]], "6": [["17:00","22:30"]]
   },
   "src": ["https://www.delbar.dk/", "https://www.visitdenmark.com/denmark/explore/delbar-gdk1156946"],
   "sure": false
