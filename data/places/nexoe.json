@@ -192,7 +192,7 @@
   "desc_en": "Small café by the harbour with open sandwiches, salads and homemade cakes.",
   "desc_de": "Kleines Café am Hafen mit Smørrebrød, Sandwiches, Salaten und Selbstgebackenem.",
   "desc_sv": "Litet kafé vid hamnen med smørrebrød, smörgåsar, sallader och hembakat.",
-  "label": "Tirs–søn 11–17 · uge 42 alle dage · lukket 24.–25. okt",
+  "label": "Tirs–søn 11–17 · fra december fre–lør 11–19",
   "seasons": [
    {"from": "01-01", "to": "10-11", "hours": {
     "0": [["11:00", "17:00"]], "2": [["11:00", "17:00"]], "3": [["11:00", "17:00"]],
@@ -203,9 +203,13 @@
     "0": [["11:00", "17:00"]], "2": [["11:00", "17:00"]], "3": [["11:00", "17:00"]],
     "4": [["11:00", "17:00"]], "5": [["11:00", "17:00"]], "6": [["11:00", "17:00"]]
    }},
-   {"from": "10-26", "to": "12-31", "hours": {
+   {"from": "10-26", "to": "11-30", "hours": {
     "0": [["11:00", "17:00"]], "2": [["11:00", "17:00"]], "3": [["11:00", "17:00"]],
     "4": [["11:00", "17:00"]], "5": [["11:00", "17:00"]], "6": [["11:00", "17:00"]]
+   }},
+   {"from": "12-01", "to": "12-31", "hours": {
+    "0": [["11:00", "17:00"]], "2": [["11:00", "17:00"]], "3": [["11:00", "17:00"]],
+    "4": [["11:00", "17:00"]], "5": [["11:00", "19:00"]], "6": [["11:00", "19:00"]]
    }}
   ],
   "src": ["https://mariesbiks.dk/aabningstider/", "https://www.visitdenmark.com/denmark/explore/maries-gdk1154663"],

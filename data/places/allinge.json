@@ -141,8 +141,8 @@
   "desc_en": "Cosy café in central Allinge with lunch, dinner, burgers and barista coffee – open all year.",
   "desc_de": "Gemütliches Café im Zentrum von Allinge mit Mittag- und Abendessen, Burgern und Barista-Kaffee – ganzjährig.",
   "desc_sv": "Mysigt café mitt i Allinge med lunch, middag, burgare och baristakaffe – öppet året runt.",
-  "label": "Alle dage 16.30–21 (køkken til 20) · hele året",
-  "hours": {"all": [["16:30", "21:00"]]},
+  "label": "Fre 16.30–21 · lør–søn 12.30–21 (køkken til 20)",
+  "hours": {"5": [["16:30", "21:00"]], "6": [["12:30", "21:00"]], "0": [["12:30", "21:00"]]},
   "src": ["https://cafedroemmen.dk/"],
   "sure": true
  },
