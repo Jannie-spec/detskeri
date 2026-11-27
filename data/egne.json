@@ -53,12 +53,39 @@
    "url": "https://jylkat-bar.dk/"
   },
   {
+   "date": "2026-11-28",
+   "time": "17.00",
+   "title": "Julemusikbingo",
+   "where": "Jylkat, Skt. Jørgens Gaard",
+   "text": "Gratis, med præmier, i juleteltet på havnen. Kom bare forbi",
+   "show": "jyl",
+   "url": "https://jylkat-bar.dk/"
+  },
+  {
    "date": "2026-12-04",
    "to": "2026-12-06",
    "title": "Jul i Gudhjem – julemarked",
    "where": "Brøddegade",
    "text": "Julemarked i byen hele weekenden. Hotelgæster får et glas gløgg på Jylkat",
    "url": "https://www.hotelklippen.com/julemarkedsweekend-gudhjem"
+  },
+  {
+   "date": "2026-12-12",
+   "time": "17.00",
+   "title": "Julemusikbingo",
+   "where": "Jylkat, Skt. Jørgens Gaard",
+   "text": "Gratis, med præmier, i juleteltet på havnen. Kom bare forbi",
+   "show": "jyl",
+   "url": "https://jylkat-bar.dk/"
+  },
+  {
+   "date": "2026-12-19",
+   "time": "17.00",
+   "title": "Julemusikbingo",
+   "where": "Jylkat, Skt. Jørgens Gaard",
+   "text": "Gratis, med præmier, i juleteltet på havnen. Kom bare forbi",
+   "show": "jyl",
+   "url": "https://jylkat-bar.dk/"
   }
  ]
 }
